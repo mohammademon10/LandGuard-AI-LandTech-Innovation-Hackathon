@@ -104,6 +104,16 @@
 
 ## 9. Session Log (newest first)
 
+### 2026-10-17: Primary Daylight Theme Enforcement & Full High-Fidelity Screenshots
+- **What changed**:
+  - Enforced daylight (light mode) as the strict primary default in `frontend/js/shell.js` (removed unwanted auto-dark switching via `prefers-color-scheme`).
+  - Deleted previous screenshots that were caught in intermediate loading/spinner states or dark mode.
+  - Built CDP-based screenshot tool `scripts/capture-all-screenshots.py` using Chrome DevTools Protocol to guarantee all mock asynchronous data and DOM elements (KPI cards, SVG semicircle gauge, tables, audit trail) are completely loaded and crisp.
+  - Recaptured 17 high-fidelity daylight screenshots across all viewports (1280px, 768px, 375px).
+- **Tests run / results**:
+  - All 17 screenshots verified clear, fully rendered, without loading spinners.
+  - Committed and pushed to GitHub `main` branch.
+
 ### 2026-10-17: UI Refinement - Removed Hackathon Badge & Footer Subtitle
 - **What changed**:
   - Removed hero badge `🚀 ল্যান্ডটেক ইনোভেশন হ্যাকাথন ২০২৬ · দল: প্রোটন (PROTON)` from `frontend/index.html`.
