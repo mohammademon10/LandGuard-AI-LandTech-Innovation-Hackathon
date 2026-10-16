@@ -104,6 +104,18 @@
 
 ## 9. Session Log (newest first)
 
+### 2026-10-17: UI Refinement - Removed Hackathon Badge & Footer Subtitle
+- **What changed**:
+  - Removed hero badge `🚀 ল্যান্ডটেক ইনোভেশন হ্যাকাথন ২০২৬ · দল: প্রোটন (PROTON)` from `frontend/index.html`.
+  - Removed meta description hackathon/team references.
+  - Removed hackathon footer subtitle from all 10 frontend templates (`index.html`, `login.html`, `register.html`, `dashboard.html`, `upload.html`, `result.html`, `403.html`, `admin/index.html`, `admin/records.html`, `admin/audit.html`).
+  - Updated `disclaimer.footer_note` in `bn.json` and `en.json` to professional copyright notice, keeping 100% key parity.
+  - Added Render cloud deployment support (`$PORT` binding and `requirements.txt`).
+- **Tests run / results**:
+  - `git grep -i "proton" frontend/` verified 0 occurrences.
+  - `python scripts/check-i18n-parity.py` confirmed 100% parity across 176 keys.
+  - Committed and pushed to GitHub `main` branch.
+
 ### 2026-10-17: Prompt 1 - Frontend First (Steps F0 to F10) Completed & Frozen
 - **What changed**:
   - Created complete frontend infrastructure (`frontend/index.html`, `login.html`, `register.html`, `dashboard.html`, `upload.html`, `result.html`, `report.html`, `admin/index.html`, `admin/records.html`, `admin/audit.html`, `403.html`).
