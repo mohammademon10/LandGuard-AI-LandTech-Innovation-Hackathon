@@ -1,419 +1,457 @@
 <div align="center">
 
-# 🛡️ LandGuard AI (ল্যান্ডগার্ড এআই)
-### বাংলা-প্রথম এআইনির্ভর ভূমি দলিল যাচাইকরণ ও জালিয়াতি ঝুঁকি সনাক্তকরণ প্ল্যাটফর্ম
-**Bangla-First AI-Assisted Land Document Verification & Fraud-Risk Detection Prototype**
+# 🛡️ LandGuard AI
+### Bangla-First AI-Assisted Land Document Verification & Fraud-Risk Detection Prototype
+**Event:** LandTech Innovation Hackathon 2026 · **Team:** PROTON  
+**Official Tagline:** *Verify Before You Buy.* (*কেনার আগে যাচাই করুন।*)
 
 [![GitHub Pages Deployment](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-13A579?style=for-the-badge&logo=github)](https://mohammademon10.github.io/LandGuard-AI-LandTech-Innovation-Hackathon/)
-[![Frontend Freeze](https://img.shields.io/badge/Release-frontend--freeze-0B2545?style=for-the-badge&logo=git)](https://github.com/mohammademon10/LandGuard-AI-LandTech-Innovation-Hackathon/releases/tag/frontend-freeze)
+[![Frontend Release](https://img.shields.io/badge/Release-frontend--freeze-0B2545?style=for-the-badge&logo=git)](https://github.com/mohammademon10/LandGuard-AI-LandTech-Innovation-Hackathon/releases/tag/frontend-freeze)
 [![License: MIT](https://img.shields.io/badge/License-MIT-E9B949?style=for-the-badge)](LICENSE)
-[![WCAG 2.1 AA](https://img.shields.io/badge/Accessibility-WCAG%202.1%20AA-1E9E5A?style=for-the-badge)](https://www.w3.org/WAI/standards-guidelines/wcag/)
-[![i18n Parity](https://img.shields.io/badge/i18n%20Parity-100%25%20(176%20Keys)-13A579?style=for-the-badge)](scripts/check-i18n-parity.py)
-
-**ল্যান্ডটেক ইনোভেশন হ্যাকাথন ২০২৬ (LandTech Innovation Hackathon 2026)**  
-**দল (Team):** প্রোটন (PROTON) · **মূল স্লোগান (Tagline):** *কেনার আগে যাচাই করুন।* (Verify Before You Buy.)
+[![WCAG 2.1 AA Compliant](https://img.shields.io/badge/Accessibility-WCAG%202.1%20AA-1E9E5A?style=for-the-badge)](https://www.w3.org/WAI/standards-guidelines/wcag/)
+[![i18n Parity: 100%](https://img.shields.io/badge/i18n%20Parity-100%25%20(176%20Keys)-13A579?style=for-the-badge)](scripts/check-i18n-parity.py)
 
 ---
 
-[🌐 লাইভ ডেমো (Live Demo)](https://mohammademon10.github.io/LandGuard-AI-LandTech-Innovation-Hackathon/) • [📖 এপিআই চুক্তি (API Contract)](docs/frontend-api-contract.md) • [📸 স্ক্রিনশট গ্যালারি (Screenshots)](docs/screenshots/) • [⚙️ রান নির্দেশিকা (Run Guide)](#-installation--local-setup)
+[🌐 Live Demo](https://mohammademon10.github.io/LandGuard-AI-LandTech-Innovation-Hackathon/) • [📖 API Contract](docs/frontend-api-contract.md) • [📸 Visual Gallery](#-complete-page-by-page-visual-showcase) • [⚙️ Quickstart](#-installation--local-setup) • [🧪 Test Scenarios](#-canonical-test-scenarios)
 
 </div>
 
 ---
 
-> ### ⚠️ আইনি সতর্কতা ও প্রোটোটাইপ ঘোষণা (Legal Disclaimer)
-> **বাংলা:** "এটি একটি প্রোটোটাইপ, যা কৃত্রিম (সিনথেটিক) ভূমি রেকর্ড ব্যবহার করে। ঝুঁকির স্কোর সম্ভাব্য অসঙ্গতি নির্দেশ করে; এটি জালিয়াতি বা আইনি মালিকানার প্রমাণ নয়।"  
-> **English:** "Prototype using synthetic land records. Risk score indicates potential inconsistencies, not proof of fraud or legal ownership."  
-> *Our prototype demonstrates an AI-assisted verification workflow using structured and synthetic land records, designed to integrate with authorized digital land databases in the future.*
+> ### ⚠️ Mandatory Legal Notice & Synthetic Data Disclaimer
+> **Bengali (বাংলা):** *"এটি একটি প্রোটোটাইপ, যা কৃত্রিম (সিনথেটিক) ভূমি রেকর্ড ব্যবহার করে। ঝুঁকির স্কোর সম্ভাব্য অসঙ্গতি নির্দেশ করে; এটি জালিয়াতি বা আইনি মালিকানার প্রমাণ নয়।"*  
+> **English:** *"Prototype using synthetic land records. Risk score indicates potential inconsistencies, not proof of fraud or legal ownership."*  
+> 
+> *Our prototype demonstrates an AI-assisted verification workflow using structured and synthetic land records, designed to integrate with authorized digital land databases in the future. It does not replace official government registry records or legal title determination.*
 
 ---
 
-## 📑 সূচিপত্র (Table of Contents)
+## 📑 Table of Contents
 
-1. [প্রকল্প পরিচিতি ও পটভূমি (Project Overview & Problem Statement)](#-project-overview--problem-statement)
-2. [মূল বৈশিষ্ট্যসমূহ (Core Features & Capabilities)](#-core-features--capabilities)
-3. [ক্যানোনিকাল ৩টি টেস্ট দৃশ্যপট (Canonical Test Scenarios)](#-canonical-test-scenarios)
-4. [ভিজ্যুয়াল শোকেস ও স্ক্রিনশট (Visual Showcase)](#-visual-showcase)
-5. [সিস্টেম আর্কিটেকচার ও ডেটা প্রবাহ (Architecture & Workflows)](#-system-architecture--workflows)
-6. [প্রযুক্তিগত স্ট্যাক (Technology Stack)](#-technology-stack)
-7. [ফোল্ডার ও ফাইল কাঠামো (Project Structure)](#-project-structure)
-8. [লোকাল সেটআপ ও রান করার নির্দেশিকা (Installation & Local Setup)](#-installation--local-setup)
-9. [টেস্ট অ্যাকাউন্ট ও ১-ক্লিক ডেমো লগইন (Demo & Test Accounts)](#-demo--test-accounts)
-10. [ইউনিফাইড এপিআই চুক্তি (Unified API Contract Summary)](#-unified-api-contract-summary)
-11. [নিরাপত্তা, প্রাইভেসী ও ডেটা লিকেজ রোধ (Security & Privacy Controls)](#-security--privacy-controls)
-12. [স্বয়ংক্রিয় কিউএ ও কোয়ালিটি গেট ফলাফল (Automated QA & Quality Gates)](#-automated-qa--quality-gates)
-13. [ডেভেলপমেন্ট রোডম্যাপ (Development Roadmap)](#-development-roadmap)
-14. [লাইসেন্স ও কৃতজ্ঞতা (License & Team Credits)](#-license--credits)
-
----
-
-## 🌍 Project Overview & Problem Statement
-
-### বিদ্যমান সংকট (The Problem in Bangladesh Land Transactions)
-বাংলাদেশে জমি কেনাবেচা ও হস্তান্তর প্রক্রিয়ায় সাধারণ নাগরিকরা প্রতিনিয়ত নানাবিধ জালিয়াতি ও আইনি ঝুঁকির সম্মুখীন হন:
-* **ভুয়া মালিকানা দাবি:** একই নামের একাধিক ব্যক্তি সাজিয়ে বা নকল ওয়ারিশ সনদ তৈরি করে সাব-রেজিস্ট্রি অফিসে ভুয়া সাফ কবলা দলিল সম্পাদন করা হয়।
-* **জমির পরিমাণ ও দাগ নম্বরের গরমিল:** মূল মৌজা ও খতিয়ান রেকর্ডে যে পরিমাণ জমি বরাদ্দ রয়েছে, তার চেয়ে বেশি জমি দলিলে দেখিয়ে বিক্রয় করা হয়।
-* **মালিকানা ধারার বিচ্ছিন্নতা (Ownership Chain Gap):** সিএস (CS), এসএ (SA) বা আরএস (RS) খতিয়ান থেকে বর্তমান বিক্রেতা পর্যন্ত কোনো একটি নামজারি বা উত্তরাধিকার দলিল অনুপস্থিত থাকলে ভবিষ্যতে ক্রেতা চরম আইনি জটিলতা ও মামলার শিকার হন।
-
-### ল্যান্ডগার্ড এআই এর সমাধান (The Solution)
-**LandGuard AI** হলো একটি আধুনিক, বাংলা-প্রথম কৃত্রিম বুদ্ধিমত্তানির্ভর প্রোটোটাইপ যা দলিল যাচাইকরণকে সম্পূর্ণ স্বয়ংক্রিয়, স্বচ্ছ এবং ব্যাখ্যাযোগ্য করে তোলে:
-1. **বাংলা অপটিক্যাল ও এআই এক্সট্রাকশন:** দলিলের স্ক্যান কপি থেকে মালিকের নাম, খতিয়ান নম্বর, দাগ নম্বর, মৌজা, উপজেলা, জেলা, জমির পরিমাণ এবং নিবন্ধনের তারিখ স্বয়ংক্রিয়ভাবে সংগ্রহ করে।
-2. **ক্রস-ভেরিফিকেশন ও অমিল সনাক্তকরণ:** সংগৃহীত তথ্য ডিজিটাল রেফারেন্স খতিয়ানের সাথে মিলিয়ে দেখে অক্ষরের বানান, সাংখ্যিক পরিমাণ এবং ভৌগোলিক তথ্যের গরমিল চিহ্নিত করে।
-3. **ব্যাখ্যাযোগ্য ঝুঁকি পরিমাপ (Explainable Risk Scoring):** একটি স্বচ্ছ গাণিতিক ফর্মুলায় ১০০ স্কোরের মধ্যে ঝুঁকি নিরূপণ করে (০-২৯ নিম্ন 🟢, ৩০-৫৯ মধ্যম 🟡, ৬০-১০০ উচ্চ 🔴) এবং প্রতিটি পেনাল্টি পয়েন্টের সুনির্দিষ্ট কারণ ব্যাখ্যা করে।
-4. **প্রিন্ট-রেডি প্রত্যয়ন পত্র:** তাত্ক্ষণিক অনলাইনে সত্যতা যাচাইয়ের জন্য কিউআর কোড ও ডিজিটাল সিল সম্বলিত এ৪ ফরম্যাটের প্রত্যয়ন পত্র প্রদান করে।
+1. [Executive Summary & Problem Statement](#-executive-summary--problem-statement)
+2. [Complete Page-by-Page Visual Showcase](#-complete-page-by-page-visual-showcase)
+3. [Core Capabilities & Features](#-core-capabilities--features)
+4. [Canonical Verification Test Scenarios](#-canonical-verification-test-scenarios)
+5. [System Architecture & Workflow Diagrams](#-system-architecture--workflow-diagrams)
+6. [Verified Technology Stack](#-verified-technology-stack)
+7. [Repository File & Directory Structure](#-repository-file--directory-structure)
+8. [Installation & Local Setup](#-installation--local-setup)
+9. [Pre-Seeded Demo Accounts & Credentials](#-pre-seeded-demo-accounts--credentials)
+10. [Unified API Contract Specification](#-unified-api-contract-specification)
+11. [Security, Privacy & Data Leak Prevention](#-security-privacy--data-leak-prevention)
+12. [Automated QA Verification & Test Evidence](#-automated-qa-verification--test-evidence)
+13. [Roadmap: Part A Frozen vs Part B Backend](#-roadmap-part-a-frozen-vs-part-b-backend)
+14. [License & Team Credits](#-license--team-credits)
 
 ---
 
-## ✨ Core Features & Capabilities
+## 🌍 Executive Summary & Problem Statement
 
-| ফিচার | বিবরণ | বাস্তবায়ন স্থিতি |
-|---|---|:---:|
-| **বাংলা-প্রথম ইউআই (Bangla-First UI)** | ডিফল্ট `<html lang="bn">`, *Noto Sans Bengali* ফন্ট, $\ge 1.75$ লাইন হাইট, খাঁটি বাংলা সংখ্যামালা (`০-৯`) | ✅ সম্পন্ন (Frozen) |
-| **দ্বিভাষিক অনুবাদ (100% i18n)** | `bn.json` মূল সূত্র (১৭৬টি কী), সেকেন্ডারি ইংরেজি টগল `en.json` এ হুবহু ১৭৬টি কী সম্বলিত | ✅ সম্পন্ন (Frozen) |
-| **ঝুঁকি কালার রিজার্ভেশন** | ডিজাইন সিস্টেম নিয়ম অনুসারে লাল, হলুদ ও সবুজ শুধুমাত্র ঝুঁকির স্থিতি নির্দেশনায় সংরক্ষিত | ✅ সম্পন্ন (Frozen) |
-| **অ্যানিমেটেড এসভিজি ঝুঁকি গজ** | সেমি-সার্কেল এসভিজি স্টোক অ্যানিমেশন, সেন্টারে ঝুঁকি স্কোর, `prefers-reduced-motion` সম্মান করে | ✅ সম্পন্ন (Frozen) |
-| **ফিল্ড তুলনা টেবিল** | তথ্য ক্ষেত্র, আপলোডকৃত তথ্য, রেফারেন্স সরকারি রেকর্ড ও রেজাল্ট স্ট্যাটাস ব্যাজ (✓ ⚠️ ❌) | ✅ সম্পন্ন (Frozen) |
-| **মালিকানা ধারাবাহিকতা টাইমলাইন** | পূর্বতন মালিক থেকে বর্তমান মালিক পর্যন্ত হস্তান্তর ইতিহাস ও চেইন গ্যাপ অ্যালার্ট ব্যানার | ✅ সম্পন্ন (Frozen) |
-| **প্রিন্ট-রেডি প্রত্যয়ন পত্র** | এ৪ প্রিন্ট ফ্রেন্ডলি `@media print`, কিউআর কোড, ডিজিটাল প্রত্যয়ন সিল ও সিগনেচার ব্লক | ✅ সম্পন্ন (Frozen) |
-| **রোল-ভিত্তিক এক্সেস কন্ট্রোল** | `citizen` ও `admin` রোল বিভাজন, রাউট গার্ডস ও অননুমোদিত প্রবেশের জন্য নিবেদিত ৪০৩ পর্দা | ✅ সম্পন্ন (Frozen) |
-| **অ্যাডমিন নিয়ন্ত্রণ কনসোল** | সার্বিক যাচাইকরণ মনিটরিং, ৩০+ রেফারেন্স ল্যান্ড রেকর্ডস সিআরইউডি (CRUD) ও অডিট লগ ট্রেইল | ✅ সম্পন্ন (Frozen) |
-| **প্রোটোটাইপ সিমুলেটর উইজেট** | মূল্যায়নকারীদের জন্য ফ্লোটিং কন্ট্রোলার: ১-ক্লিকে দৃশ্যপট বদল, রোল টগল, লেটেন্সি ও ত্রুটি সিমুলেশন | ✅ সম্পন্ন (Frozen) |
-| **একক এপিআই গেটওয়ে (`api.js`)** | `USE_MOCK = true` সুইচ; ব্যাকএন্ড ও ফ্রন্টএন্ডের মধ্যে কঠোর আর্কিটেকচারাল সেপারেশন | ✅ সম্পন্ন (Frozen) |
-| **পাইথন ফাস্টএপিআই ও ওসিআর** | টেসারাক্ট বাংলা ওসিআর, জেমিনি এলএলএম এক্সট্রাকশন ও নরমালাইজার | ⏳ পর্ব ২ (Part B) |
-| **পিএইচপি অর্কেস্ট্রেটর ও মাইএসকিউএল** | পিএইচপি ৮.১ পিডিও, মাইএসকিউএল ৮ ডাটাবেজ পারসিস্টেন্স ও ডমপিডিএফ | ⏳ পর্ব ২ (Part B) |
+### The Real-World Land Crisis in Bangladesh
+Land transactions in Bangladesh present severe financial and legal risks to citizens due to fragmented documentation, fraudulent deed creation, and historical chain gaps:
+* **Identity Fraud & Impersonation:** Forged land deeds (*সাফ কবলা দলিল*) are frequently executed by impostors using fake names, mismatched patronymics, or fabricated inheritance certificates.
+* **Area & Boundary Inflation:** Unscrupulous sellers deliberately inflate land areas on deeds beyond the actual recorded quota in the cadastral surveys, selling non-existent land.
+* **Historical Chain-of-Title Gaps (Chain Gap):** Land changes hands through CS (*Cadastral Survey*), SA (*State Acquisition*), and RS (*Revisional Survey*) records. If any link—such as an unrecorded mutation (*নামজারি পরচা*) or inheritance partition—is missing, innocent buyers inherit protracted litigation.
+
+### The LandGuard AI Solution
+**LandGuard AI** provides an autonomous, explainable verification engine built specifically for Bangladesh land documentation:
+1. **Bangla-First AI Extraction:** High-accuracy Optical Character Recognition (OCR) coupled with Gemini AI extracts structured fields (*Owner Name, Khatian No., Dag No., Mouza, Upazila, District, Area, Document No., and Registration Date*).
+2. **Deterministic Cross-Verification:** Compares extracted parameters directly against digital reference cadastral land records with configurable fuzzy tolerance.
+3. **Transparent & Explainable Risk Scoring:** Computes a normalized score from 0 to 100 based on fixed mathematical weights, pairing the score with actionable explanations for every penalty point.
+4. **Print-Ready Verification Certificate:** Generates a secure, print-ready A4 verification certificate complete with dynamic QR verification, digital verification seals, and mandatory disclaimers.
 
 ---
 
-## 🧪 Canonical Test Scenarios
+## 📸 Complete Page-by-Page Visual Showcase
 
-`PRD.md §5` এবং `rules.md §1.7` অনুযায়ী সিস্টেমে ৩টি ক্যানোনিকাল দৃশ্যপট নির্ধারিত রয়েছে:
+Every page across the LandGuard AI prototype has been built, tested, and captured in high resolution.
+
+### 1. Landing Page (`frontend/index.html`)
+The public-facing, Bangla-first landing page features an interactive hero section, a problem analysis breakdown, a 4-step workflow explainer, a fixed-weight risk calculator breakdown, interactive scenario preview tabs, and an FAQ accordion.
+
+| Desktop View (1280px) | Mobile View (375px) |
+|---|---|
+| ![Landing Page Desktop](docs/screenshots/landing-1280.png) | <img src="docs/screenshots/landing-375.png" alt="Landing Page Mobile" width="360"> |
+
+---
+
+### 2. User Authentication & Access Control
+
+#### A. Sign In Page (`frontend/login.html`)
+Features inline validation, error banners, keyboard accessibility, and **1-Click Demo Login** shortcuts for instant role-based exploration.
+![Login Page](docs/screenshots/login-1280.png)
+
+#### B. User Registration Page (`frontend/register.html`)
+Allows new citizens or land officers to register with instant validation and role selection.
+![Register Page](docs/screenshots/register-1280.png)
+
+#### C. Role Barrier — 403 Forbidden Access Screen (`frontend/403.html`)
+When a regular citizen attempts to access protected officer routes (e.g. `/admin/*`), the client-side route guard safely blocks access and displays this 403 screen.
+![403 Forbidden Screen](docs/screenshots/403-forbidden-1280.png)
+
+---
+
+### 3. Citizen Verification Dashboard (`frontend/dashboard.html`)
+Provides real-time KPI overview cards (*Total Documents, Successfully Verified, Potential Conflicts, High Risk*), filterable verification tables (`ALL`, `LOW`, `MEDIUM`, `HIGH`), empty states, and loading indicators.
+
+| Desktop View (1280px) | Mobile View (375px) |
+|---|---|
+| ![Dashboard Desktop](docs/screenshots/dashboard-1280.png) | <img src="docs/screenshots/dashboard-375.png" alt="Dashboard Mobile" width="360"> |
+
+---
+
+### 4. Document Upload & Multi-Step Verification Flow (`frontend/upload.html`)
+Features drag-and-drop file ingestion, file size ($\le 5$ MB) and format (PDF/JPG/PNG) validation, 1-click canonical deed presets, and a 5-step animated progress timeline (`aria-live="polite"`).
+![Upload Experience](docs/screenshots/upload-1280.png)
+
+---
+
+### 5. Detailed Verification Result & Risk Analysis (`frontend/result.html`)
+Displays the animated SVG semicircle risk gauge, explainable risk reasons breakdown with point weights, field-by-field cross-verification table, prominent chain gap alert banner, and sequential ownership timeline.
+
+| Desktop View (1280px) | Mobile View (375px) |
+|---|---|
+| ![Result Page Desktop](docs/screenshots/result-1280.png) | <img src="docs/screenshots/result-375.png" alt="Result Page Mobile" width="360"> |
+
+---
+
+### 6. Print-Ready Verification Certificate (`frontend/report.html`)
+Formatted for standard A4 printing and PDF export via `@media print`. Includes verification code, QR verification placeholder, itemized field comparisons, timeline summary, digital verification seal, and official signatures.
+![Verification Report Certificate](docs/screenshots/report-1280.png)
+
+---
+
+### 7. Land Officer Admin Management Console
+
+#### A. System-Wide Verifications Monitor (`frontend/admin/index.html`)
+Allows administrative land officers to oversee all citizen submissions, filter by risk level, and review case details.
+![Admin Verifications](docs/screenshots/admin-verifications-1280.png)
+
+#### B. Reference Land Records Registry (`frontend/admin/records.html`)
+Full CRUD interface managing 30+ synthetic reference land records with real-time search, modal creation, editing, and deletion.
+![Admin Records CRUD](docs/screenshots/admin-records-1280.png)
+
+#### C. Privacy-Preserving Security Audit Trail (`frontend/admin/audit.html`)
+Immutable audit log recording authentication, upload, verification, and report download events without exposing PII or raw document content.
+![Admin Security Audit Log](docs/screenshots/admin-audit-1280.png)
+
+---
+
+## ✨ Core Capabilities & Features
+
+### 1. Bangla-First User Experience & Full Bilingual Support
+* **Native Typography:** Built from the ground up in standard Bengali using Google Fonts *Noto Sans Bengali*, configured with a line-height of $\ge 1.75$ to preserve complex conjuncts (*যুক্তাক্ষর*) without clipping.
+* **100% i18n Key Parity:** Fully internationalized via [`frontend/js/i18n.js`](frontend/js/i18n.js). The primary dictionary [`frontend/i18n/bn.json`](frontend/i18n/bn.json) contains **176 keys**, matching the secondary English dictionary [`frontend/i18n/en.json`](frontend/i18n/en.json) with zero missing keys.
+* **Localized Numerals:** Automatically formats numbers into authentic Bengali digits (`০-৯`) when in Bengali mode.
+
+### 2. Mathematical & Explainable Risk Scoring Engine
+* **Fixed Weight Model:** Strictly adheres to `PRD.md §5`. The score is purely mathematical and fully explainable:
+  * Owner Name Mismatch: **35 pts**
+  * Land Area Discrepancy: **20 pts**
+  * Dag Number Mismatch: **15 pts**
+  * Khatian Number Mismatch: **15 pts**
+  * Ownership Chain Gap: **10 pts**
+  * Missing Information / Unclear Seal: **3 pts**
+  * Suspicious OCR / Inconsistent Dates: **2 pts**
+* **Score Tiers:** `0-29` Low Risk (🟢), `30-59` Medium Risk (🟡), `60-100` High Risk (🔴).
+
+### 3. Strict GovTech Visual Design System (`design.md`)
+* **Color Reservation Guardrail:** Red, amber, and green are reserved **exclusively** for risk indicators and alert states. Normal UI elements utilize Deep Navy (`#0B2545`) and Forest Green (`#13A579`).
+* **Accessibility (WCAG 2.1 AA):** High-contrast ratios ($\ge 4.5:1$), keyboard skip links, visible 3px focus rings, and full `prefers-reduced-motion` compliance.
+
+### 4. Single Gateway Architecture (`frontend/js/api.js`)
+* Every data operation across the application flows through one unified module (`api.js`) equipped with a `USE_MOCK` switch. Swapping to the live PHP backend in Phase 2 requires zero changes to UI templates.
+
+### 5. Floating Prototype Simulator Widget (`frontend/js/simulator.js`)
+* Injected into every page for hackathon judges and evaluators. Allows instant scenario switching, citizen/admin role swapping, network latency tuning (50ms–1500ms), simulated server failure testing, and one-click database resets.
+
+---
+
+## 🧪 Canonical Verification Test Scenarios
+
+The prototype embeds the three canonical test deeds defined in `PRD.md §5` and `rules.md §1.7`:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                       FIXED RISK SCORING WEIGHTS                            │
-├────────────────────────────────┬─────────┬──────────────────────────────────┤
-│ Factor                         │ Weight  │ Scoring Rule                     │
-├────────────────────────────────┼─────────┼──────────────────────────────────┤
-│ Owner Name Mismatch            │ 35 pts  │ Exact/Fuzzy < 75 = 35; Partial = 18│
-│ Land Area Discrepancy          │ 20 pts  │ > 5% diff = 20; 2-5% diff = 10   │
-│ Dag Number Mismatch            │ 15 pts  │ Exact match after normalization  │
-│ Khatian Number Mismatch        │ 15 pts  │ Exact match after normalization  │
-│ Ownership Chain Gap            │ 10 pts  │ Missing link in historical chain │
-│ Missing / Unclear Information  │ 3 pts   │ Missing mandatory field/seal     │
-│ Suspicious Anomaly / Low OCR   │ 2 pts   │ Inconsistent dates / low clarity │
-├────────────────────────────────┴─────────┴──────────────────────────────────┤
-│ Total Potential Score: 100 Points                                           │
-│ Levels: 0-29 LOW 🟢 | 30-59 MEDIUM 🟡 | 60-100 HIGH 🔴                      │
-└─────────────────────────────────────────────────────────────────────────────┘
+│                      CANONICAL SCENARIO SPECIFICATIONS                      │
+├─────────────────────┬──────────────────┬─────────────┬──────────────────────┤
+│ Scenario Slug       │ Document Type    │ Risk Score  │ Resulting Level      │
+├─────────────────────┼──────────────────┼─────────────┼──────────────────────┤
+│ Rahim_Land_Deed     │ Saf Kabala Deed  │ 65 / 100    │ 🔴 HIGH RISK (65)    │
+│ medium_risk         │ Danpatra (Gift)  │ 40 / 100    │ 🟡 MEDIUM RISK (40)  │
+│ clean_match         │ Sale Deed        │ 5 / 100     │ 🟢 LOW RISK (5)      │
+└─────────────────────┴──────────────────┴─────────────┴──────────────────────┘
 ```
 
-### ১. 🔴 ক্যানোনিকাল হ্যাকাথন ডেমো: মোঃ রহিম - সাফ কবলা দলিল (`Rahim_Land_Deed`)
-* **আপলোডকৃত তথ্য:** মোঃ রহিম, খতিয়ান: ১০২৪৫, দাগ: ৪৫৬, পরিমাণ: ১২.০ শতক, মৌজা: মির্জাপুর, কালিয়াকৈর, গাজীপুর।
-* **রেফারেন্স সরকারি রেকর্ড:** মোঃ করিম, খতিয়ান: ১০২৪৫, দাগ: ৪৫৬, পরিমাণ: ১০.০ শতক, মৌজা: মির্জাপুর, কালিয়াকৈর, গাজীপুর।
-* **স্কোর বিশ্লেষণ:**
-  * মালিকের নাম অমিল (`মোঃ রহিম` বনাম `মোঃ করিম`): **+৩৫ পয়েন্ট**
-  * জমির পরিমাপে ২০% গরমিল (১২ শতক বনাম ১০ শতক): **+২০ পয়েন্ট**
-  * মালিকানা ধারায় ২০১৫ সালের হস্তান্তর বা নামজারি রেকর্ড অনুপস্থিত (Chain Gap): **+১০ পয়েন্ট**
-  * **চূড়ান্ত স্কোর:** $35 + 20 + 10 = \mathbf{65}$ **(উচ্চ ঝুঁকি / HIGH 🔴)**
+### 🔴 1. Canonical Hackathon Demo: Md. Rahim Land Deed (`Rahim_Land_Deed`)
+* **Extracted Document Fields:** Md. Rahim, Khatian: 10245, Dag: 456, Area: 12.0 Decimal, Mouza: Mirzapur, Kaliakair, Gazipur.
+* **Official Reference Record:** Md. Karim, Khatian: 10245, Dag: 456, Area: 10.0 Decimal, Mouza: Mirzapur, Kaliakair, Gazipur.
+* **Point Breakdown:**
+  * Owner Name Mismatch (`Md. Rahim` vs `Md. Karim`): **+35 points**
+  * Land Area Discrepancy (12.0 vs 10.0 Decimal, 20% diff): **+20 points**
+  * Ownership Chain Gap (2015 inheritance transfer deed missing): **+10 points**
+  * **Total Score:** $35 + 20 + 10 = \mathbf{65}$ **(HIGH RISK 🔴)**
 
-### ২. 🟡 আংশিক অসঙ্গতিযুক্ত দলিল: মোসাঃ সুলতানা জাহান - দানপত্র দলিল (`medium_risk`)
-* **স্কোর:** **৪০ / ১০০ (মধ্যম ঝুঁকি / MEDIUM 🟡)**
-* নামের উপাধির আংশিক পার্থক্য (১৮ পয়েন্ট) + জমির পরিমাপে ৪.৩৭% পার্থক্য (১০ পয়েন্ট) + চেইন গ্যাপ (১০ পয়েন্ট) + অস্পষ্টতা (২ পয়েন্ট) = ৪০ পয়েন্ট।
+### 🟡 2. Partial Inconsistency Deed: Mst. Sultana Jahan (`medium_risk`)
+* **Extracted Document Fields:** Mst. Sultana Jahan, Khatian: 6504, Dag: 889, Area: 8.35 Decimal, Savar, Dhaka.
+* **Official Reference Record:** Sultana Jahan, Khatian: 6504, Dag: 889, Area: 8.0 Decimal, Savar, Dhaka.
+* **Score:** **40 / 100 (MEDIUM RISK 🟡)** (Owner partial mismatch: 18 pts + Area partial mismatch: 10 pts + Chain gap: 10 pts + Low OCR clarity: 2 pts).
 
-### ৩. 🟢 পরিচ্ছন্ন দলিল: আনোয়ারুল ইসলাম - বিক্রয় কবলা দলিল (`clean_match`)
-* **স্কোর:** **৫ / ১০০ (নিম্ন ঝুঁকি / LOW 🟢)**
-* সকল তথ্য সরকারি রেকর্ডের সাথে হুবহু মিলেছে এবং তিন ধাপের সম্পূর্ণ ধারাবাহিক মালিকানা চেইন বিদ্যমান।
-
----
-
-## 📸 Visual Showcase
-
-<div align="center">
-
-### 1. ল্যান্ডিং পেজ (Bangla-First Responsive Landing Page)
-![Landing Page Desktop](docs/screenshots/landing-1280.png)
-
-<details>
-<summary>📱 মোবাইল ভিউ দেখতে ক্লিক করুন (375px Mobile View)</summary>
-<br>
-
-<img src="docs/screenshots/landing-375.png" alt="Landing Page Mobile" width="375">
-</details>
+### 🟢 3. Clean Match Deed: Anwarul Islam (`clean_match`)
+* **Extracted Document Fields:** Anwarul Islam, Khatian: 8412, Dag: 102, Area: 15.0 Decimal, Tejgaon, Dhaka.
+* **Score:** **5 / 100 (LOW RISK 🟢)**. All fields match the reference record perfectly, and the historical transfer chain is uninterrupted.
 
 ---
 
-### 2. যাচাইকরণ ড্যাশবোর্ড (Verification Dashboard with KPIs & Filters)
-![Dashboard Desktop](docs/screenshots/dashboard-1280.png)
+## 🏗️ System Architecture & Workflow Diagrams
 
----
-
-### 3. বিস্তারিত যাচাইকরণ ফলাফল ও ঝুঁকি গজ (Detailed Result with Risk Gauge & Chain Gap)
-![Result Page Desktop](docs/screenshots/result-1280.png)
-
----
-
-### 4. এ৪ প্রিন্ট-রেডি যাচাই প্রত্যয়ন পত্র (Print-Ready Verification Certificate)
-![Report Certificate](docs/screenshots/report-1280.png)
-
----
-
-### 5. আধুনিক দলিল আপলোড ও প্রোগ্রেস ফ্লো (Upload UI & Multi-Step Progress)
-![Upload UI](docs/screenshots/upload-1280.png)
-
-</div>
-
----
-
-## 🏗️ System Architecture & Workflows
-
-### ১. সার্বিক আর্কিটেকচার ডায়াগ্রাম (Overall Architecture)
+### 1. Overall System Architecture
 
 ```mermaid
 flowchart TD
-    subgraph Client ["ব্রাউজার ক্লায়েন্ট (Frontend Layer - Bangla First)"]
-        UI["HTML5 / Bootstrap 5 / Vanilla ES Modules"]
-        I18N["i18n ইঞ্জিন (bn.json ডিফল্ট / en.json টগল)"]
-        GAUGE["অ্যানিমেটেড এসভিজি ঝুঁকি গজ (gauge.js)"]
-        GATEWAY["একক এপিআই গেটওয়ে (api.js)"]
+    subgraph Client ["Client Browser (Bangla-First Frontend)"]
+        UI["HTML5 UI / Bootstrap 5 / Vanilla ES Modules"]
+        I18N["i18n Engine (bn.json / en.json)"]
+        GAUGE["Animated SVG Risk Gauge (gauge.js)"]
+        SIM["Evaluator Simulator Widget (simulator.js)"]
+        API["Single API Gateway (api.js)"]
     end
 
-    subgraph MockLayer ["পর্ব ১: মক ডাটা ও সিমুলেশন লেয়ার"]
-        MOCK_DB[("ক্লায়েন্ট মক ডিবি (mock/db.js)")]
-        SCENARIOS["ক্যানোনিকাল ৩টি সিনারিও (scenarios.js)"]
-        SIM_UI["প্রোটোটাইপ সিমুলেটর উইজেট (simulator.js)"]
+    subgraph Phase1 ["Phase 1: Mock State Layer (Active)"]
+        MOCK_DB[("Mock LocalStorage DB (mock/db.js)")]
+        SCENARIOS["Canonical Test Deeds (mock/scenarios.js)"]
     end
 
-    subgraph BackendPlan ["পর্ব ২: পূর্ণাঙ্গ ফুল-স্ট্যাক ব্যাকএন্ড (পরিকল্পিত)"]
-        PHP["পিএইচপি ৮.১+ অর্কেস্ট্রেটর (PDO Router)"]
-        AUTH["রোল অথেন্টিকেশন (session / bcrypt)"]
-        MYSQL[("মাইএসকিউএল ৮ ডাটাবেজ (utf8mb4)")]
-        DOMPDF["ডমপিডিএফ (Noto Sans Bengali TTF)"]
-        FASTAPI["পাইথন ফাস্টএপিআই এআই সার্ভিস"]
-        TESSERACT["টেরেসারেক্ট ওসিআর (eng+ben)"]
-        GEMINI["জেমিনি এআই ফিল্ড এক্সট্রাকশন"]
-        RISK_ENG["ব্যাখ্যাযোগ্য ঝুঁকি ক্যালকুলেটর"]
+    subgraph Phase2 ["Phase 2: Full-Stack Backend (Planned Architecture)"]
+        PHP["PHP 8.1+ Thin Orchestrator (PDO Router)"]
+        AUTH["Session Auth & Bcrypt Security"]
+        MYSQL[("MySQL 8 Database (utf8mb4)")]
+        DOMPDF["Dompdf (Embedded Noto Sans Bengali)"]
+        FASTAPI["Python FastAPI AI Service (localhost:8001)"]
+        TESSERACT["Tesseract OCR (eng + ben)"]
+        GEMINI["Gemini Structured Field Extraction"]
+        SCORER["Weighted Risk Calculation Engine"]
     end
 
     UI --> I18N
     UI --> GAUGE
-    UI --> GATEWAY
-    SIM_UI -.-> MOCK_DB
-    GATEWAY -->|USE_MOCK = true| MOCK_DB
+    SIM -.-> MOCK_DB
+    UI --> API
+    API -->|USE_MOCK = true| MOCK_DB
     MOCK_DB --> SCENARIOS
-    GATEWAY -.->|USE_MOCK = false| PHP
+    API -.->|USE_MOCK = false| PHP
     PHP --> AUTH
     PHP --> MYSQL
     PHP --> DOMPDF
     PHP --> FASTAPI
     FASTAPI --> TESSERACT
     FASTAPI --> GEMINI
-    FASTAPI --> RISK_ENG
+    FASTAPI --> SCORER
 ```
 
-### ২. ৫-ধাপের যাচাইকরণ কর্মপ্রবাহ সিকোয়েন্স (Verification Sequence Flow)
+### 2. End-to-End Verification Sequence
 
 ```mermaid
 sequenceDiagram
     autonumber
-    actor User as নাগরিক / ক্রেতা
-    participant Browser as ল্যান্ডগার্ড এআই ইউআই
-    participant API as api.js (Gateway)
-    participant Engine as ঝুঁকি ও ক্রস-ভেরিফিকেশন ইঞ্জিন
-    participant Report as প্রতিবেদন জেনারেটর
+    actor User as Citizen / Buyer
+    participant UI as Browser Interface
+    participant Gateway as api.js
+    participant Engine as Verification & Risk Engine
+    participant Cert as Report Certificate
 
-    User->>Browser: দলিল নির্বাচন / ড্র্যাগ-অ্যান্ড-ড্রপ
-    Browser->>Browser: ফাইল ভ্যালিডেশন (PDF/JPG/PNG <= 5MB)
-    User->>Browser: "এআই বিশ্লেষণ শুরু করুন" ক্লিক
-    Browser->>Browser: ৫-ধাপের অ্যানিমেটেড প্রোগ্রেস বার প্রদর্শন
-    Browser->>API: documents.upload(file, doc_type)
-    API->>Engine: টেক্সট নিষ্কাশন ও ডিজিটাল রেফারেন্স খতিয়ান ক্রস-চেক
-    Engine->>Engine: নাম, দাগ, খতিয়ান, পরিমাণ ও চেইন গ্যাপ বিশ্লেষণ
-    Engine->>Engine: ব্যাখ্যাযোগ্য ঝুঁকি স্কোর ও কারণ নির্ধারণ (Rahim = 65)
-    Engine-->>API: { ok: true, data: { verification_id, risk_score: 65, ... } }
-    API-->>Browser: রিডাইরেক্ট /result.html?id=3
-    Browser->>User: এসভিজি গজ, তুলনা টেবিল ও চেইন গ্যাপ অ্যালার্ট প্রদর্শন
-    User->>Report: "প্রতিবেদন প্রিন্ট / পিডিএফ" ক্লিক
-    Report-->>User: কিউআর কোড ও ডিজিটাল সিল সম্বলিত এ৪ প্রত্যয়ন পত্র
+    User->>UI: Selects or drops land deed file (PDF/JPG/PNG <= 5MB)
+    UI->>UI: Validates MIME type and file size locally
+    User->>UI: Clicks "Start AI Verification"
+    UI->>UI: Displays 5-step animated progress timeline
+    UI->>Gateway: documents.upload(file, doc_type)
+    Gateway->>Engine: Extracts text and cross-references reference records
+    Engine->>Engine: Checks Owner, Khatian, Dag, Area, and Chain Gaps
+    Engine->>Engine: Computes explainable risk score (Rahim Deed = 65)
+    Engine-->>Gateway: { ok: true, data: { verification_id, risk_score: 65, ... } }
+    Gateway-->>UI: Redirects to /result.html?id=3
+    UI->>User: Displays SVG Gauge, Comparison Table, and Gap Warning
+    User->>Cert: Clicks "Print / PDF Report"
+    Cert-->>User: Renders A4 print-ready certificate with QR & Digital Seal
 ```
 
 ---
 
 ## 💻 Technology Stack
 
-| লেয়ার (Layer) | প্রযুক্তি (Technology) | ভেরিফাইড সংস্করণ (Version) | ব্যবহারের উদ্দেশ্য (Purpose) |
+| Layer | Technology | Verified Version | Purpose |
 |---|---|:---:|---|
-| **Frontend Framework** | HTML5 / Vanilla JavaScript | ES2022 Modules | কোনো হেভি ফ্রেমওয়ার্ক ব্যতিরেকে দ্রুততম লাইটওয়েট রেন্ডারিং |
-| **Grid & Utilities** | Bootstrap 5 | 5.3.3 | মোবাইল-ফার্স্ট রেসপনসিভ গ্রিড ও ফর্ম ইউটিলিটিজ |
-| **Styling & Tokens** | Pure CSS3 Custom Properties | CSS3 Variables | গভর্নমেন্ট-টেক ডিজাইন সিস্টেম, ডার্ক মোড ও ডেডিকেটেড ঝুঁকি কালার |
-| **Typography** | Google Fonts | Web Font API | *Noto Sans Bengali* (বাংলা যুক্তাক্ষর), *Inter*, *Poppins*, *JetBrains Mono* |
-| **Localization (i18n)** | Custom i18n Engine | In-house (`i18n.js`) | বাংলা-প্রথম ডিকশনারি, দ্বিভাষিক টগল ও বাংলা সংখ্যামালা রূপান্তর |
-| **Component Vector** | Inline SVG & Semicircle Arc | Native SVG DOM | ইন্টারেক্টিভ ঝুঁকি গজ ও ডিজিটাল সিল (কোনো সিডিএন আইকন নির্ভরশীলতা নেই) |
-| **Runtime & Tooling** | Python | 3.13.5 | স্ট্যাটিক ডেভেলপমেন্ট সার্ভার ও স্বয়ংক্রিয় কিউএ টেস্ট স্ক্রিপ্টস |
-| **Node.js Environment** | Node.js | v24.15.0 | সিআই/সিডি অটোমেশন ও ডিপ্লয়মেন্ট টুলিং |
-| **Version Control** | Git & GitHub | 2.47+ | কনভেনশনাল কমিটস ও রিলিজ ট্যাগিং (`frontend-freeze`) |
-| **CI/CD Deployment** | GitHub Actions | actions/deploy-pages@v4 | গিটহাবে পুশ করার সাথে সাথে অটোমেটিক লাইভ পেজেস ডিপ্লয়মেন্ট |
+| **Frontend Runtime** | Vanilla JavaScript | ES2022 Modules | Ultra-fast native execution without framework overhead |
+| **Grid & Utilities** | Bootstrap 5 | 5.3.3 (Local) | Responsive 12-column layout and form styling |
+| **Design System** | Pure CSS3 Variables | CSS3 Standard | Custom govtech design tokens and dark mode styling |
+| **Typography** | Google Fonts | Web Font API | *Noto Sans Bengali*, *Inter*, *Poppins*, and *JetBrains Mono* |
+| **Localization** | In-House i18n Engine | Custom (`i18n.js`) | Dynamic DOM translation, language switching, and Bengali digits |
+| **Visual Graphics** | Native SVG Elements | SVG 1.1 / DOM | Semicircle risk gauge and digital verification seal |
+| **Tooling & Scripts** | Python | 3.13.5 | Local multi-threaded development server and automated QA suites |
+| **Node Environment** | Node.js | v24.15.0 | Deployment tooling and CI/CD workflow compatibility |
+| **Version Control** | Git & GitHub | 2.47+ | Conventional commits and release tagging (`frontend-freeze`) |
+| **CI/CD Pipeline** | GitHub Actions | `deploy-pages@v4` | Automated deployment of `frontend/` to GitHub Pages on push |
 
 ---
 
-## 📁 Project Structure
+## 📁 Repository File & Directory Structure
 
 ```
 LandGuard-AI-LandTech-Innovation-Hackathon/
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml            # GitHub Pages স্বয়ংক্রিয় ডিপ্লয়মেন্ট সিআই ওয়ার্কফ্লো
+│       └── deploy.yml            # GitHub Pages automated deployment workflow
 ├── docs/
-│   ├── frontend-api-contract.md  # ফ্রন্টএন্ড-ব্যাকএন্ড সম্পূর্ণ ইউনিফাইড এপিআই চুক্তি
-│   └── screenshots/              # ৩টি ব্রেকপয়েন্টের ভেরিফাইড রেসপনসিভ স্ক্রিনশট গ্যালারি
+│   ├── frontend-api-contract.md  # Complete 14-endpoint frontend/backend API contract
+│   └── screenshots/              # Verified screenshots across desktop, tablet, and mobile
 ├── frontend/
-│   ├── index.html                # মূল বাংলা-প্রথম ল্যান্ডিং পেজ
-│   ├── login.html                # ভ্যালিডেশন ও ১-ক্লিক ডেমো অ্যাকাউন্ট সম্বলিত লগইন পেজ
-│   ├── register.html             # নাগরিক ও অ্যাডমিন কর্মকর্তা নিবন্ধন পেজ
-│   ├── dashboard.html            # ৪টি কেপিআই কার্ড ও ফিল্টারেবল নথি তালিকা ড্যাশবোর্ড
-│   ├── upload.html               # ড্র্যাগ-ড্রপ ও ৫-ধাপের অ্যানিমেটেড প্রোগ্রেস আপলোড পেজ
-│   ├── result.html               # এসভিজি ঝুঁকি গজ, ফিল্ড তুলনা ও টাইমলাইন ফলাফল পেজ
-│   ├── report.html               # কিউআর কোড সম্বলিত এ৪ প্রিন্ট-রেডি যাচাই প্রত্যয়ন পত্র
-│   ├── 403.html                  # অননুমোদিত প্রবেশের জন্য নিবেদিত সুরক্ষা পর্দা (Forbidden)
+│   ├── index.html                # Public landing page with hero, explainer & FAQ
+│   ├── login.html                # Authentication login page with 1-click demo buttons
+│   ├── register.html             # Citizen and officer registration page
+│   ├── dashboard.html            # Dashboard with KPI cards & filterable table
+│   ├── upload.html               # Upload UI with presets & 5-step animated progress
+│   ├── result.html               # Result page with SVG gauge, comparisons & timeline
+│   ├── report.html               # A4 print-ready verification certificate with QR
+│   ├── 403.html                  # Role barrier screen for unauthorized route attempts
 │   ├── admin/
-│   │   ├── index.html            # অ্যাডমিন সকল ভেরিফিকেশন মনিটরিং ও ফিল্টার
-│   │   ├── records.html          # ৩০+ রেফারেন্স ল্যান্ড রেকর্ডস সিআরইউডি (CRUD) প্যানেল
-│   │   └── audit.html            # নিরাপত্তা ও কার্যক্রম অডিট ট্রেইল (PII মুক্ত)
+│   │   ├── index.html            # Admin monitor for all system verifications
+│   │   ├── records.html          # Admin 30+ synthetic reference records CRUD
+│   │   └── audit.html            # Privacy-preserving security audit log trail
 │   ├── css/
-│   │   ├── tokens.css            # কালার, স্পেসিং, ফন্ট ও শ্যাডো ডিজাইন টোকেনস
-│   │   ├── base.css              # গ্লোবাল রিসেট, এক্সেসিবিলিটি ফোকাস ও বাংলা টাইপোগ্রাফি
-│   │   ├── components.css        # বাটন, কার্ড, গজ, ব্যাজ, টেবিল ও টাইমলাইন স্টাইল
-│   │   └── bootstrap.min.css     # লোকাল বুটস্ট্র্যাপ গ্রিড ও ইউটিলিটি লাইব্রেরি
+│   │   ├── tokens.css            # Color, spacing, shadow, and font design tokens
+│   │   ├── base.css              # Global reset, typography, and focus ring styles
+│   │   ├── components.css        # Card, button, gauge, table, and timeline styles
+│   │   └── bootstrap.min.css     # Localized Bootstrap 5 grid and utility CSS
 │   ├── js/
-│   │   ├── api.js                # একক এপিআই গেটওয়ে (USE_MOCK সুইচ সম্বলিত)
-│   │   ├── auth.js               # রাউট গার্ডস, সেশন হ্যান্ডলিং ও ৪০৩ নিরাপত্তা
-│   │   ├── i18n.js               # বাংলা সংখ্যামালা ও দ্বিভাষিক ট্রান্সলেশন ইঞ্জিন
-│   │   ├── gauge.js              # সেমি-সার্কেল এসভিজি ঝুঁকি গজ রেন্ডারার
-│   │   ├── shell.js              # শেয়ার্ড নেভবার, থিম সুইচ (লাইট/ডার্ক) ও ইউজার মেনু
-│   │   ├── simulator.js          # মূল্যায়নকারীদের জন্য ফ্লোটিং ডেমো কন্ট্রোলার উইজেট
+│   │   ├── api.js                # Single unified API gateway with USE_MOCK switch
+│   │   ├── auth.js               # Route guards, session management & 403 handlers
+│   │   ├── i18n.js               # Localization engine and Bengali numerals formatter
+│   │   ├── gauge.js              # Animated SVG semicircle risk gauge renderer
+│   │   ├── shell.js              # Shared navigation, theme toggle & user pill
+│   │   ├── simulator.js          # Evaluator prototype simulator drawer widget
 │   │   └── mock/
-│   │       ├── db.js             # ব্রাউজার লোকালস্টেট মক ডাটাবেজ ইঞ্জিন
-│   │       └── scenarios.js      # ক্যানোনিকাল ৩টি টেস্ট সিনারিও (Rahim = 65/HIGH)
+│   │       ├── db.js             # LocalStorage client mock database engine
+│   │       └── scenarios.js      # Canonical demo scenarios (Rahim = 65 / HIGH)
 │   └── i18n/
-│       ├── bn.json               # বাংলা প্রাইমারি ল্যাঙ্গুয়েজ ডিকশনারি (১৭৬টি কী)
-│       └── en.json               # ইংরেজি সেকেন্ডারি ল্যাঙ্গুয়েজ ডিকশনারি (১৭৬টি কী)
+│       ├── bn.json               # Primary Bengali dictionary (176 keys)
+│       └── en.json               # Secondary English dictionary (176 keys)
 ├── scripts/
-│   ├── run-frontend.cmd          # উইন্ডোজ ১-ক্লিক ফ্রন্টএন্ড রানার ব্যাচ স্ক্রিপ্ট
-│   ├── serve-frontend.py         # মাল্টি-থ্রেডেড পাইথন স্ট্যাটিক ডেভেলপমেন্ট সার্ভার
-│   ├── check-i18n-parity.py      # বাংলা ও ইংরেজি ১৭৬টি কী-এর ১০০% প্যারিটি চেকার
-│   ├── test-frontend-qa.py       # স্বয়ংক্রিয় এইচটিটিপি স্ট্যাটাস, ডিসক্লেইমার ও স্কোর অডিটর
-│   ├── capture-all-screenshots.py# হেডলেস ক্রোম রেসপনসিভ স্ক্রিনশট অটোমেশন
-│   └── make-paths-relative.py    # গিটহাব পেজেস সাবপাথ রিলেটিভ পাথ রূপান্তরক
-├── index.html                    # রুট অটো-রিডাইরেক্টর (frontend/ ফোল্ডারে রিডাইরেক্ট করে)
-├── architecture.md               # টেকনিক্যাল আর্কিটেকচার ও স্কিমা স্পেসিফিকেশন
-├── design.md                     # কালার টোকেন ও বাংলা টাইপোগ্রাফিক গাইডলাইন
-├── memory.md                     # লিভিং প্রজেক্ট মেমোরি ও সেশন লগ
-├── phases.md                     # হ্যাকাথন রোডম্যাপ ও ফেজ গেট চেকলিস্ট
-├── PRD.md                        # প্রজেক্ট রিকোয়ারমেন্টস ডকুমেন্ট (Source of Truth)
-├── rules.md                      # নন-নেগোশিয়েবল ডেভেলপার ও এআই গার্ডরেইলসমূহ
-└── LICENSE                       # অফিসিয়াল এমআইটি (MIT) লাইসেন্স
+│   ├── run-frontend.cmd          # One-click Windows runner batch script
+│   ├── serve-frontend.py         # Multi-threaded Python static development server
+│   ├── check-i18n-parity.py      # Automated script verifying 100% i18n key parity
+│   ├── test-frontend-qa.py       # Automated HTTP status, asset & disclaimer suite
+│   ├── capture-all-screenshots.py# Headless Chrome responsive screenshot capture tool
+│   └── make-paths-relative.py    # Path normalizer ensuring subpath deployment safety
+├── index.html                    # Root redirector pointing to frontend/
+├── architecture.md               # Technical architecture & database schema specification
+├── design.md                     # GovTech design tokens & typography specification
+├── memory.md                     # Living project memory & session task log
+├── phases.md                     # Hackathon development phases & gate checklists
+├── PRD.md                        # Project Requirements Document (Single Source of Truth)
+├── rules.md                      # Binding guardrails and coding standards
+└── LICENSE                       # Official MIT License
 ```
 
 ---
 
 ## 🚀 Installation & Local Setup
 
-### পূর্বশর্ত (Prerequisites)
-* যেকোনো আধুনিক ওয়েব ব্রাউজার (Chrome, Edge, Firefox, Safari)।
-* পাইথন ৩.৮+ অথবা নোড.জেএস (শুধুমাত্র লোকাল স্ট্যাটিক সার্ভার চালানোর জন্য)।
+### Prerequisites
+* Any modern web browser (Google Chrome, Microsoft Edge, Mozilla Firefox, or Safari).
+* Python 3.8+ or Node.js (used solely to run the local static server).
 
-### ১. রিপোজিটরি ক্লোন করুন (Clone Repository)
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/mohammademon10/LandGuard-AI-LandTech-Innovation-Hackathon.git
 cd LandGuard-AI-LandTech-Innovation-Hackathon
 ```
 
-### ২. সার্ভার চালু করুন (Start Frontend Server)
+### 2. Start the Frontend Server
 
-#### অপশন ১: উইন্ডোজ ১-ক্লিক রানার (Windows Recommended)
-ফোল্ডারে থাকা `scripts\run-frontend.cmd` ফাইলে ডাবল-ক্লিক করুন, অথবা টার্মিনালে চালান:
+#### Option A: One-Click Windows Runner (Recommended)
+Double-click `scripts\run-frontend.cmd` or run:
 ```cmd
 scripts\run-frontend.cmd
 ```
 
-#### অপশন ২: পাইথন বিল্ট-ইন মাল্টিথ্রেডেড সার্ভার
+#### Option B: Python Static Server
 ```bash
 python scripts/serve-frontend.py
 ```
 
-#### অপশন ৩: নোড.জেএস / এনপিএক্স
+#### Option C: Node.js / NPX
 ```bash
 npx serve frontend -p 8080
 ```
 
-### ৩. ব্রাউজারে ওপেন করুন
-সার্ভার চালু হলে ব্রাউজারে প্রবেশ করুন:  
+### 3. Open in Browser
+Visit the application in your browser:  
 👉 **[http://127.0.0.1:8080](http://127.0.0.1:8080)**
 
 ---
 
-## 🔑 Demo & Test Accounts
+## 🔑 Pre-Seeded Demo Accounts & Credentials
 
-লগইন পেজে সরাসরি প্রবেশ করে নিচের যেকোনো অ্যাকাউন্ট দিয়ে পরীক্ষা করতে পারেন (অথবা লগইন ফর্মের নিচে থাকা **১-ক্লিক ডেমো বাটনে** ক্লিক করুন):
+The prototype includes pre-configured mock roles. You can enter the credentials manually or click the **1-Click Demo Login** buttons on [`login.html`](frontend/login.html):
 
-| ব্যবহারকারীর ভূমিকা | ইমেইল ঠিকানা (Email) | পাসওয়ার্ড (Password) | প্রবেশাধিকার ও সুবিধাসমূহ |
+| User Role | Email Address | Password | Permissions & Available Routes |
 |---|---|---|---|
-| **নাগরিক (Citizen Demo)** | `citizen@landguard.gov.bd` | `Password123!` | ড্যাশবোর্ড, নতুন নথি আপলোড, ব্যক্তিগত ফলাফল দর্শন ও প্রত্যয়ন পত্র প্রিন্ট |
-| **অ্যাডমিন (Admin Demo)** | `admin@landguard.gov.bd` | `AdminPassword123!` | সার্বিক সিস্টেমের সকল যাচাইকরণ নজরদারি, ৩০+ রেফারেন্স রেকর্ডস সিআরইউডি ও অডিট লগ |
+| **Citizen (নাগরিক)** | `citizen@landguard.gov.bd` | `Password123!` | Dashboard, Upload, View Personal Results & Print Reports |
+| **Land Officer (অ্যাডমিন)** | `admin@landguard.gov.bd` | `AdminPassword123!` | Full Admin Panel, Reference Records CRUD & Security Audit Trail |
 
 ---
 
-## 📋 Unified API Contract Summary
+## 📋 Unified API Contract Specification
 
-সকল ফ্রন্টএন্ড কম্পোনেন্ট একক গেটওয়ে `frontend/js/api.js` এর মাধ্যমে যোগাযোগ করে। সম্পূর্ণ চুক্তি [`docs/frontend-api-contract.md`](docs/frontend-api-contract.md) ফাইলে সংরক্ষিত রয়েছে:
+All data queries pass through [`frontend/js/api.js`](frontend/js/api.js). The full contract is documented in [`docs/frontend-api-contract.md`](docs/frontend-api-contract.md):
 
 ```
 ┌────────┬─────────────────────────────┬──────────────┬──────────────────────────────────────────┐
 │ Method │ Endpoint Route              │ Access Role  │ Purpose                                  │
 ├────────┼─────────────────────────────┼──────────────┼──────────────────────────────────────────┤
-│ POST   │ /api/auth/login             │ Public       │ ইমেইল ও পাসওয়ার্ড দিয়ে লগইন           │
-│ POST   │ /api/auth/register          │ Public       │ নতুন নাগরিক/কর্মকর্তা নিবন্ধন           │
-│ POST   │ /api/auth/logout            │ Auth         │ সেশন সমাপ্ত ও লগআউট                      │
-│ GET    │ /api/me                     │ Auth         │ বর্তমান ব্যবহারকারীর প্রোফাইল ও ভাষা     │
-│ PATCH  │ /api/me/language            │ Auth         │ ভাষা পছন্দ আপডেট (bn / en)               │
-│ POST   │ /api/documents/upload       │ Auth         │ নথি আপলোড ও যাচাইকরণ সূচনা               │
-│ GET    │ /api/documents              │ Auth         │ ব্যবহারকারীর নিজস্ব নথির তালিকা          │
-│ GET    │ /api/verifications/{id}     │ Owner/Admin  │ বিস্তারিত যাচাই ফলাফল ও ফিল্ড তুলনা     │
-│ GET    │ /api/verifications/{id}/rep │ Owner/Admin  │ এ৪ প্রিন্ট-রেডি প্রত্যয়ন পত্র পে-লোড    │
-│ GET    │ /api/dashboard/stats        │ Auth         │ ড্যাশবোর্ডের ৪টি কেপিআই কাউন্টার ও সাম্প্রতিক তালিকা │
-│ GET    │ /api/ownership/{land_id}    │ Owner/Admin  │ মালিকানা হস্তান্তরের ঐতিহাসিক ধারা        │
-│ GET    │ /api/admin/verifications    │ Admin Only   │ সার্বিক যাচাইকরণ মনিটরিং ও ঝুঁকি ফিল্টার │
-│ CRUD   │ /api/admin/records          │ Admin Only   │ রেফারেন্স ল্যান্ড রেকর্ডস সংযোজন/সম্পাদন/মুছে ফেলা │
-│ GET    │ /api/admin/audit            │ Admin Only   │ অপরিবর্তনীয় নিরাপত্তা অডিট ট্রেইল        │
+│ POST   │ /api/auth/login             │ Public       │ Authenticate user and issue session      │
+│ POST   │ /api/auth/register          │ Public       │ Register new citizen or officer account  │
+│ POST   │ /api/auth/logout            │ Auth         │ Terminate user session                   │
+│ GET    │ /api/me                     │ Auth         │ Retrieve current user profile and locale │
+│ PATCH  │ /api/me/language            │ Auth         │ Persist language preference (bn / en)    │
+│ POST   │ /api/documents/upload       │ Auth         │ Ingest document and initiate verification│
+│ GET    │ /api/documents              │ Auth         │ List user's verified land documents      │
+│ GET    │ /api/verifications/{id}     │ Owner/Admin  │ Fetch complete comparison and score data │
+│ GET    │ /api/verifications/{id}/rep │ Owner/Admin  │ Retrieve A4 printable certificate payload│
+│ GET    │ /api/dashboard/stats        │ Auth         │ Retrieve 4 KPI counters and recent deeds │
+│ GET    │ /api/ownership/{land_id}    │ Owner/Admin  │ Retrieve historical ownership chain      │
+│ GET    │ /api/admin/verifications    │ Admin Only   │ Monitor system-wide verifications        │
+│ CRUD   │ /api/admin/records          │ Admin Only   │ Create, Read, Update, Delete ref records │
+│ GET    │ /api/admin/audit            │ Admin Only   │ Review immutable security audit trail    │
 └────────┴─────────────────────────────┴──────────────┴──────────────────────────────────────────┘
 ```
 
-**স্ট্যান্ডার্ড রেসপন্স এনভেলপ:**
+**Standard Response Envelope:**
 ```json
-// সফল রেসপন্স
+// Success Response
 { "ok": true, "data": { ... }, "error": null }
 
-// ব্যর্থ রেসপন্স
+// Failure Response
 { "ok": false, "data": null, "error": { "code": "STRING_CODE", "message_key": "i18n.key" } }
 ```
 
 ---
 
-## 🔒 Security & Privacy Controls
+## 🔒 Security, Privacy & Data Leak Prevention
 
-`rules.md §4.1` এবং `architecture.md §1.6` অনুযায়ী সিস্টেমে বাস্তবায়িত সুরক্ষাসমূহ:
-1. **কৃত্রিম ডেটা নীতি (Synthetic Data Only):** কোনো বাস্তব নাগরিক বা সংবেদনশীল সরকারি রেকর্ডের তথ্য ব্যবহার করা হয় না। সকল নমুনা নথিতে `"SYNTHETIC / SAMPLE - NOT A REAL DOCUMENT"` ওয়াটারমার্ক দৃশ্যমান।
-2. **ব্যক্তিগত তথ্যের গোপনীয়তা (Leak Prevention):** কোনো পাসওয়ার্ড, ফাইল কনটেন্ট বা সম্পূর্ণ পিআইআই (PII) ব্রাউজার কনসোল বা অডিট লগে প্রকাশ করা হয় না।
-3. **রাউট গার্ডস ও ৪০৩ পর্দা:** অ্যাডমিন রুটে কোনো সাধারণ নাগরিক প্রবেশের চেষ্টা করলে ক্লায়েন্ট সাইড গার্ড স্বয়ংক্রিয়ভাবে তাকে ব্লক করে `403.html` সুরক্ষা পর্দায় স্থানান্তর করে।
-4. **মালিকানা সুরক্ষা (Ownership Check):** একজন সাধারণ নাগরিক শুধুমাত্র তার নিজস্ব আপলোডকৃত নথির ফলাফল দেখতে পারেন; অন্য ব্যবহারকারীর আইডিতে প্রবেশের অনুমতি সংরক্ষিত।
-5. **এক্সএসএস (XSS) ও সিএসআরএফ (CSRF) সুরক্ষা:** কোনো আন-এসকেপড এইচটিএমএল ইনজেকশন অনুমোদন করা হয় না; ডাটা রেন্ডারিংয়ে সুরক্ষিত `textContent` এবং ডোম প্রপার্টি ব্যবহৃত।
+* **Synthetic Data Guardrail:** No real citizens, personal data, or real land parcels are used. All sample documents and reports carry the watermark `"SYNTHETIC / SAMPLE - NOT A REAL DOCUMENT"`.
+* **Zero PII Exposure:** Passwords, authentication tokens, and raw document contents are never logged in the security audit trail or exposed via client-side state.
+* **Role-Based Guards & 403 Barrier:** Administrative routes are guarded at the router level. Unauthorized attempts immediately redirect to [`403.html`](frontend/403.html).
+* **Cross-User Isolation:** Regular citizens are strictly restricted to reading their own documents and verification IDs.
 
 ---
 
-## 🧪 Automated QA & Quality Gates
+## 🧪 Automated QA Verification & Test Evidence
 
-রিপোজিটরিতে অন্তর্নির্মিত কিউএ টেস্ট স্ক্রিপ্টসের মাধ্যমে ফ্রন্টএন্ড কোয়ালিটি গেট যাচাইকৃত:
+The repository includes automated test suites ensuring complete technical integrity:
 
-### ১. দ্বিভাষিক কী প্যারিটি পরীক্ষা (`scripts/check-i18n-parity.py`)
+### 1. Bilingual Key Parity Test (`scripts/check-i18n-parity.py`)
 ```bash
 python scripts/check-i18n-parity.py
 ```
@@ -423,11 +461,16 @@ Total English keys: 176
 ✅ 100% Key Parity Confirmed! bn.json and en.json match perfectly.
 ```
 
-### ২. এন্ড-টু-এন্ড ফ্রন্টএন্ড কিউএ পরীক্ষা (`scripts/test-frontend-qa.py`)
+### 2. End-to-End Frontend QA Test Suite (`scripts/test-frontend-qa.py`)
 ```bash
 python scripts/test-frontend-qa.py
 ```
 ```text
+==================================================
+ LandGuard AI - Automated Frontend QA Test Suite
+ Target Base URL: http://127.0.0.1:8080
+==================================================
+
 --- [1] Checking HTML Pages ---
   [200 OK] /index.html            (37,282 bytes) [✓ Disclaimer]
   [200 OK] /login.html            (10,818 bytes) [✓ Disclaimer]
@@ -450,15 +493,19 @@ python scripts/test-frontend-qa.py
 
 --- [4] Checking Mandatory Disclaimer Strings ---
   ✅ Mandatory BN and EN disclaimer strings verified across all pages.
+
+==================================================
+🎉 ALL FRONTEND QA CHECKS PASSED SUCCESSFULLY!
+==================================================
 ```
 
 ---
 
-## 🗺️ Development Roadmap
+## 🗺️ Roadmap: Part A Frozen vs Part B Backend
 
 ```
-  [COMPLETED] Part A: Frontend First (Frozen at tag: frontend-freeze)
-  ├── F0: Scaffold & Single API Gateway (api.js with USE_MOCK switch)
+  [COMPLETED & FROZEN] Part A: Frontend First (Git Tag: frontend-freeze)
+  ├── F0: Scaffold & Unified API Gateway (api.js with USE_MOCK switch)
   ├── F1: GovTech Design Tokens, Base Typography & Component Library
   ├── F2: Bangla-First Authentication UI, Validation & 403 Barrier
   ├── F3: Dashboard with KPIs, Risk Badges, Filters & Empty States
@@ -487,14 +534,14 @@ python scripts/test-frontend-qa.py
 
 ## 👥 License & Credits
 
-### টিম প্রোটন (Team PROTON)
-* **ইভেন্ট:** ল্যান্ডটেক ইনোভেশন হ্যাকাথন ২০২৬ (LandTech Innovation Hackathon 2026)
-* **রিপোজিটরি মেইনটেইনার:** MD. Emon Hossain ([@mohammademon10](https://github.com/mohammademon10))
-* **লাইসেন্স:** এই প্রকল্পটি [MIT লাইসেন্স](LICENSE) এর অধীনে উন্মুক্ত।
+### Team PROTON
+* **Event:** LandTech Innovation Hackathon 2026
+* **Repository Maintainer:** MD. Emon Hossain ([@mohammademon10](https://github.com/mohammademon10))
+* **License:** This project is open-source and released under the [MIT License](LICENSE).
 
 ---
 
 <div align="center">
-  <sub>নির্মিত হয়েছে টিম প্রোটন (PROTON) কর্তৃক · ল্যান্ডটেক ইনোভেশন হ্যাকাথন ২০২৬</sub><br>
-  <strong>LandGuard AI — কেনার আগে যাচাই করুন।</strong>
+  <sub>Developed by Team PROTON · LandTech Innovation Hackathon 2026</sub><br>
+  <strong>LandGuard AI — Verify Before You Buy.</strong>
 </div>

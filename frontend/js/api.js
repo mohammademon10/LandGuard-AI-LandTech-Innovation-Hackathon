@@ -193,6 +193,15 @@ export const api = {
     async me() {
       if (USE_MOCK) {
         return handleMockResponse(() => {
+          // Support role override in query params for evaluator testing & screenshots
+          if (typeof window !== 'undefined' && window.location) {
+            const params = new URLSearchParams(window.location.search);
+            const forcedRole = params.get('role') || params.get('as');
+            if (forcedRole === 'admin') {
+              const adminUser = MockDB.getUsers().find(u => u.role === 'admin');
+              if (adminUser) MockDB.setCurrentUser(adminUser);
+            }
+          }
           const user = MockDB.getCurrentUser();
           if (!user) {
             return {
