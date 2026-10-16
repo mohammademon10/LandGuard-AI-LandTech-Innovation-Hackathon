@@ -7,10 +7,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Poppins:wght@600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/tokens.css">
-  <link rel="stylesheet" href="/css/base.css">
-  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/components.css">
 </head>
 <body>
   <a href="#main" class="skip-link">মূল বিষয়বস্তুতে যান</a>
@@ -18,7 +18,7 @@
   <!-- Header / Navigation -->
   <header class="navbar-custom">
     <div class="container-lg-custom d-flex justify-content-between align-items-center">
-      <a href="/index.html" class="navbar-brand-wrap">
+      <a href="./index.html" class="navbar-brand-wrap">
         <span style="font-size: 1.6rem;">🛡️</span>
         <div>
           <span class="navbar-brand-title">LandGuard AI</span>
@@ -28,9 +28,9 @@
 
       <!-- Desktop Nav Links -->
       <nav class="d-none d-md-flex align-items-center gap-1">
-        <a href="/dashboard.html" class="nav-link-custom" data-nav="dashboard" data-i18n="nav.dashboard">ড্যাশবোর্ড</a>
-        <a href="/upload.html" class="nav-link-custom" data-nav="upload" data-i18n="nav.upload">নথি যাচাই</a>
-        <a href="/admin/index.html" class="nav-link-custom nav-admin-only" style="display: none;" data-nav="admin" data-i18n="nav.admin">অ্যাডমিন</a>
+        <a href="./dashboard.html" class="nav-link-custom" data-nav="dashboard" data-i18n="nav.dashboard">ড্যাশবোর্ড</a>
+        <a href="./upload.html" class="nav-link-custom" data-nav="upload" data-i18n="nav.upload">নথি যাচাই</a>
+        <a href="./admin/index.html" class="nav-link-custom nav-admin-only" style="display: none;" data-nav="admin" data-i18n="nav.admin">অ্যাডমিন</a>
       </nav>
 
       <!-- User & Utilities -->
@@ -67,7 +67,7 @@
           <p class="text-muted-custom mb-0" data-i18n="dashboard.subtitle">আপনার আপলোডকৃত ও যাচাইকৃত সকল দলিলের সারাংশ ও বর্তমান স্থিতি</p>
         </div>
         <div>
-          <a href="/upload.html" class="btn-custom btn-secondary-custom shadow-sm">
+          <a href="./upload.html" class="btn-custom btn-secondary-custom shadow-sm">
             <span>➕</span>
             <span data-i18n="dashboard.upload_cta">নতুন নথি যাচাই করুন</span>
           </a>
@@ -150,7 +150,7 @@
           <div class="empty-state__icon">📁</div>
           <h3 class="h4" data-i18n="dashboard.empty_title">এখনো কোনো নথি যাচাই করা হয়নি</h3>
           <p class="text-muted-custom mb-4" data-i18n="dashboard.empty_desc">আপনার জমির দলিল আপলোড করে সরকারি খতিয়ান ও দাগের সাথে নিমেষেই যাচাই করুন।</p>
-          <a href="/upload.html" class="btn-custom btn-primary-custom" data-i18n="dashboard.upload_cta">
+          <a href="./upload.html" class="btn-custom btn-primary-custom" data-i18n="dashboard.upload_cta">
             নতুন নথি যাচাই করুন
           </a>
         </div>
@@ -198,10 +198,10 @@
   </footer>
 
   <script type="module">
-    import { initAppShell } from '/js/shell.js';
-    import { auth } from '/js/auth.js';
-    import { api } from '/js/api.js';
-    import { formatNumber, t } from '/js/i18n.js';
+    import { initAppShell } from './js/shell.js';
+    import { auth } from './js/auth.js';
+    import { api } from './js/api.js';
+    import { formatNumber, t } from './js/i18n.js';
 
     // Route Guard: Authentication required
     const user = await auth.requireAuth();
@@ -315,10 +315,10 @@
             </td>
             <td>
               <div class="d-flex gap-2">
-                <a href="/result.html?id=${item.id}" class="btn-custom btn-primary-custom" style="min-height: 32px; padding: 2px 10px; font-size: 0.8rem;" data-i18n="dashboard.view_result">
+                <a href="./result.html?id=${item.id}" class="btn-custom btn-primary-custom" style="min-height: 32px; padding: 2px 10px; font-size: 0.8rem;" data-i18n="dashboard.view_result">
                   ফলাফল
                 </a>
-                <a href="/report.html?id=${item.id}" class="btn-custom btn-outline-custom" style="min-height: 32px; padding: 2px 10px; font-size: 0.8rem;" data-i18n="dashboard.view_report">
+                <a href="./report.html?id=${item.id}" class="btn-custom btn-outline-custom" style="min-height: 32px; padding: 2px 10px; font-size: 0.8rem;" data-i18n="dashboard.view_report">
                   প্রতিবেদন
                 </a>
               </div>

@@ -7,10 +7,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/tokens.css">
-  <link rel="stylesheet" href="/css/base.css">
-  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/components.css">
 </head>
 <body>
   <a href="#main" class="skip-link">মূল বিষয়বস্তুতে যান</a>
@@ -18,7 +18,7 @@
   <!-- Header / Navigation -->
   <header class="navbar-custom">
     <div class="container-lg-custom d-flex justify-content-between align-items-center">
-      <a href="/index.html" class="navbar-brand-wrap">
+      <a href="./index.html" class="navbar-brand-wrap">
         <span style="font-size: 1.6rem;">🛡️</span>
         <div>
           <span class="navbar-brand-title">LandGuard AI</span>
@@ -85,7 +85,7 @@
 
             <div class="text-center mb-4">
               <span class="text-muted-custom" data-i18n="auth.no_account">নতুন ব্যবহারকারী?</span>
-              <a href="/register.html" class="fw-semibold ms-1" style="color: var(--color-secondary);" data-i18n="auth.register_title">নিবন্ধন করুন</a>
+              <a href="./register.html" class="fw-semibold ms-1" style="color: var(--color-secondary);" data-i18n="auth.register_title">নিবন্ধন করুন</a>
             </div>
 
             <!-- 1-Click Demo Accounts -->
@@ -127,9 +127,9 @@
   </footer>
 
   <script type="module">
-    import { initAppShell } from '/js/shell.js';
-    import { api } from '/js/api.js';
-    import { t } from '/js/i18n.js';
+    import { initAppShell } from './js/shell.js';
+    import { api } from './js/api.js';
+    import { t } from './js/i18n.js';
 
     await initAppShell();
 

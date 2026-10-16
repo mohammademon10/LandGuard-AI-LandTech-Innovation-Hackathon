@@ -16,7 +16,9 @@ export const auth = {
     const res = await api.auth.me();
     if (!res.ok || !res.data || !res.data.user) {
       const currentPath = encodeURIComponent(window.location.pathname + window.location.search);
-      window.location.href = `/login.html?redirect=${currentPath}`;
+      const loginUrl = new URL('login.html', window.location.href);
+      loginUrl.searchParams.set('redirect', currentPath);
+      window.location.href = loginUrl.href;
       return null;
     }
 
@@ -24,7 +26,7 @@ export const auth = {
 
     // Check specific role requirement (e.g. admin)
     if (options.requireRole && user.role !== options.requireRole) {
-      window.location.href = '/403.html';
+      window.location.href = new URL('403.html', window.location.href).href;
       return null;
     }
 
@@ -47,7 +49,7 @@ export const auth = {
    */
   async logout() {
     await api.auth.logout();
-    window.location.href = '/login.html';
+    window.location.href = new URL('login.html', window.location.href).href;
   },
 
   /**

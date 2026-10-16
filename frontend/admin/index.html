@@ -7,10 +7,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Poppins:wght@600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/tokens.css">
-  <link rel="stylesheet" href="/css/base.css">
-  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
 </head>
 <body>
   <a href="#main" class="skip-link">মূল বিষয়বস্তুতে যান</a>
@@ -18,7 +18,7 @@
   <!-- Header / Navigation -->
   <header class="navbar-custom">
     <div class="container-lg-custom d-flex justify-content-between align-items-center">
-      <a href="/index.html" class="navbar-brand-wrap">
+      <a href="../index.html" class="navbar-brand-wrap">
         <span style="font-size: 1.6rem;">🛡️</span>
         <div>
           <span class="navbar-brand-title">LandGuard AI</span>
@@ -28,11 +28,11 @@
 
       <!-- Desktop Nav Links -->
       <nav class="d-none d-md-flex align-items-center gap-1">
-        <a href="/dashboard.html" class="nav-link-custom" data-nav="dashboard" data-i18n="nav.dashboard">ড্যাশবোর্ড</a>
-        <a href="/upload.html" class="nav-link-custom" data-nav="upload" data-i18n="nav.upload">নথি যাচাই</a>
-        <a href="/admin/index.html" class="nav-link-custom active" data-nav="admin" data-i18n="nav.admin">অ্যাডমিন</a>
-        <a href="/admin/records.html" class="nav-link-custom" data-i18n="nav.records">ভূমি রেকর্ডস</a>
-        <a href="/admin/audit.html" class="nav-link-custom" data-i18n="nav.audit">অডিট লগ</a>
+        <a href="../dashboard.html" class="nav-link-custom" data-nav="dashboard" data-i18n="nav.dashboard">ড্যাশবোর্ড</a>
+        <a href="../upload.html" class="nav-link-custom" data-nav="upload" data-i18n="nav.upload">নথি যাচাই</a>
+        <a href="./index.html" class="nav-link-custom active" data-nav="admin" data-i18n="nav.admin">অ্যাডমিন</a>
+        <a href="./records.html" class="nav-link-custom" data-i18n="nav.records">ভূমি রেকর্ডস</a>
+        <a href="./audit.html" class="nav-link-custom" data-i18n="nav.audit">অডিট লগ</a>
       </nav>
 
       <!-- User & Utilities -->
@@ -63,13 +63,13 @@
 
       <!-- Admin Top Nav Tabs -->
       <div class="d-flex flex-wrap gap-2 mb-4 border-bottom pb-3">
-        <a href="/admin/index.html" class="btn-custom btn-primary-custom" style="min-height: 38px; font-size: 0.9rem;">
+        <a href="./index.html" class="btn-custom btn-primary-custom" style="min-height: 38px; font-size: 0.9rem;">
           📋 <span data-i18n="admin.tab_verifications">সকল যাচাইকরণ</span>
         </a>
-        <a href="/admin/records.html" class="btn-custom btn-outline-custom" style="min-height: 38px; font-size: 0.9rem;">
+        <a href="./records.html" class="btn-custom btn-outline-custom" style="min-height: 38px; font-size: 0.9rem;">
           🗃️ <span data-i18n="admin.tab_records">রেফারেন্স ল্যান্ড রেকর্ডস</span>
         </a>
-        <a href="/admin/audit.html" class="btn-custom btn-outline-custom" style="min-height: 38px; font-size: 0.9rem;">
+        <a href="./audit.html" class="btn-custom btn-outline-custom" style="min-height: 38px; font-size: 0.9rem;">
           🔒 <span data-i18n="admin.tab_audit">নিরাপত্তা অডিট লগ</span>
         </a>
       </div>
@@ -145,10 +145,10 @@
   </footer>
 
   <script type="module">
-    import { initAppShell } from '/js/shell.js';
-    import { auth } from '/js/auth.js';
-    import { api } from '/js/api.js';
-    import { formatNumber, t } from '/js/i18n.js';
+    import { initAppShell } from '../js/shell.js';
+    import { auth } from '../js/auth.js';
+    import { api } from '../js/api.js';
+    import { formatNumber, t } from '../js/i18n.js';
 
     // Role Guard: strictly requires admin role
     const user = await auth.requireAuth({ requireRole: 'admin' });
@@ -228,10 +228,10 @@
             </td>
             <td>
               <div class="d-flex gap-1">
-                <a href="/result.html?id=${item.id}" class="btn-custom btn-primary-custom" style="min-height: 30px; padding: 2px 8px; font-size: 0.75rem;">
+                <a href="../result.html?id=${item.id}" class="btn-custom btn-primary-custom" style="min-height: 30px; padding: 2px 8px; font-size: 0.75rem;">
                   ফলাফল
                 </a>
-                <a href="/report.html?id=${item.id}" class="btn-custom btn-outline-custom" style="min-height: 30px; padding: 2px 8px; font-size: 0.75rem;">
+                <a href="../report.html?id=${item.id}" class="btn-custom btn-outline-custom" style="min-height: 30px; padding: 2px 8px; font-size: 0.75rem;">
                   প্রতিবেদন
                 </a>
               </div>

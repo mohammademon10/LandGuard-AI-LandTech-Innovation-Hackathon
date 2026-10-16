@@ -38,10 +38,10 @@ export async function initI18n() {
       currentLanguage = saved;
     }
 
-    // Fetch both language dictionaries
+    // Fetch both language dictionaries relative to this module
     const [bnRes, enRes] = await Promise.all([
-      fetch('/i18n/bn.json').then(r => r.json()),
-      fetch('/i18n/en.json').then(r => r.json())
+      fetch(new URL('../i18n/bn.json', import.meta.url)).then(r => r.json()),
+      fetch(new URL('../i18n/en.json', import.meta.url)).then(r => r.json())
     ]);
 
     translations.bn = bnRes;
