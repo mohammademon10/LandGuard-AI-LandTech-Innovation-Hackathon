@@ -1,0 +1,99 @@
+/**
+ * LandGuard AI - Design Tokens (design.md)
+ * Clean govtech design system. Red/amber/green strictly reserved for risk states.
+ */
+
+:root {
+  /* Brand colors */
+  --color-primary: #0B2545;
+  --color-primary-hover: #13315C;
+  --color-secondary: #13A579;
+  --color-secondary-hover: #0E8A64;
+  --color-accent: #E9B949; /* Soft gold: highlights/decorative only, never risk */
+  --color-bg: #F7FAFC;
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #EEF3F8;
+  --color-border: #D6E0EA;
+  --color-text: #14213D;
+  --color-text-muted: #5B6B7F;
+  --color-focus: #1D6FE0;
+
+  /* Reserved risk colors (pair always with icon + text) */
+  --risk-low: #1E9E5A;
+  --risk-low-bg: #E6F6EC;
+  --risk-low-border: #A3E0BD;
+
+  --risk-medium: #E0A100;
+  --risk-medium-bg: #FFF4D6;
+  --risk-medium-border: #F7D57F;
+
+  --risk-high: #D64545;
+  --risk-high-bg: #FDE8E8;
+  --risk-high-border: #F5A9A9;
+
+  /* Spacing Scale (8-pt baseline) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* Border Radii */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(11, 37, 69, 0.08);
+  --shadow-md: 0 6px 18px rgba(11, 37, 69, 0.10);
+  --shadow-lg: 0 16px 40px rgba(11, 37, 69, 0.14);
+
+  /* Fonts */
+  --font-bn: "Noto Sans Bengali", "Hind Siliguri", "Kalpurush", "Segoe UI", system-ui, sans-serif;
+  --font-en: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-heading-en: "Poppins", var(--font-en);
+  --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+
+  /* Line heights */
+  --line-height-bn: 1.75;
+  --line-height-en: 1.6;
+
+  /* Transitions */
+  --transition-fast: 150ms ease-out;
+  --transition-base: 250ms ease-out;
+}
+
+/* Dark mode token overrides */
+[data-theme="dark"] {
+  --color-bg: #0D1B2A;
+  --color-surface: #142638;
+  --color-surface-alt: #1A3047;
+  --color-border: #27415C;
+  --color-text: #E8EEF5;
+  --color-text-muted: #9DB0C4;
+  --color-primary: #7FB2F0;
+  --color-primary-hover: #9EC4F5;
+  --color-secondary: #2BC89A;
+  --color-secondary-hover: #3DE1B0;
+
+  /* Adjusted contrast for dark backgrounds */
+  --risk-low: #34D385;
+  --risk-low-bg: rgba(30, 158, 90, 0.18);
+  --risk-low-border: rgba(30, 158, 90, 0.4);
+
+  --risk-medium: #F5B82E;
+  --risk-medium-bg: rgba(224, 161, 0, 0.20);
+  --risk-medium-border: rgba(224, 161, 0, 0.4);
+
+  --risk-high: #F26161;
+  --risk-high-bg: rgba(214, 69, 69, 0.20);
+  --risk-high-border: rgba(214, 69, 69, 0.4);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>নিবন্ধন | LandGuard AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">মূল বিষয়বস্তুতে যান</a>
+
+  <!-- Header / Navigation -->
+  <header class="navbar-custom">
+    <div class="container-lg-custom d-flex justify-content-between align-items-center">
+      <a href="/index.html" class="navbar-brand-wrap">
+        <span style="font-size: 1.6rem;">🛡️</span>
+        <div>
+          <span class="navbar-brand-title">LandGuard AI</span>
+          <span class="navbar-brand-tagline" data-i18n="app.tagline">কেনার আগে যাচাই করুন।</span>
+        </div>
+      </a>
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn-custom btn-ghost-custom text-white theme-toggle-btn" aria-label="Toggle theme">
+          <span class="theme-toggle-icon">🌙</span>
+        </button>
+        <button class="btn-custom btn-outline-custom text-white border-white lang-toggle-btn" style="min-height: 36px; padding: 0 12px; font-size: 0.85rem;">
+          English
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main" class="main-content py-5">
+    <div class="container-lg-custom">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+          <div class="card-custom">
+            <div class="text-center mb-4">
+              <span style="font-size: 2.5rem; display: inline-block; margin-bottom: 8px;">📝</span>
+              <h1 class="h2 mb-1" data-i18n="auth.register_title">নতুন অ্যাকাউন্ট তৈরি করুন</h1>
+              <p class="text-muted-custom" data-i18n="auth.register_subtitle">নাগরিক হিসেবে ভূমি যাচাই সেবা পেতে নিবন্ধন সম্পন্ন করুন</p>
+            </div>
+
+            <!-- Error Banner -->
+            <div id="registerAlert" class="alert-custom" style="display: none; background-color: var(--risk-high-bg); border: 1px solid var(--risk-high-border); color: var(--risk-high);" role="alert">
+              <span>⚠️</span>
+              <span id="registerAlertMsg">দয়া করে সকল তথ্য সঠিকভাবে পূরণ করুন।</span>
+            </div>
+
+            <form id="registerForm" novalidate>
+              <div class="form-group-custom">
+                <label for="nameInput" class="form-label-custom">
+                  <span data-i18n="auth.name">আপনার পূর্ণ নাম</span>
+                  <span class="required-star">*</span>
+                </label>
+                <input type="text" id="nameInput" class="form-control-custom" placeholder="উদা: মোঃ আরিফুল ইসলাম" required autocomplete="name">
+                <div class="form-error-feedback" id="nameError">
+                  <span>❌</span> <span data-i18n="auth.error.missing_fields">নামের ক্ষেত্রটি পূরণ করা আবশ্যক</span>
+                </div>
+              </div>
+
+              <div class="form-group-custom">
+                <label for="emailInput" class="form-label-custom">
+                  <span data-i18n="auth.email">ইমেইল ঠিকানা</span>
+                  <span class="required-star">*</span>
+                </label>
+                <input type="email" id="emailInput" class="form-control-custom" placeholder="name@example.com" required autocomplete="email">
+                <div class="form-error-feedback" id="emailError">
+                  <span>❌</span> <span data-i18n="auth.error.missing_fields">সঠিক ইমেইল ঠিকানা দিন</span>
+                </div>
+              </div>
+
+              <div class="form-group-custom">
+                <label for="passwordInput" class="form-label-custom">
+                  <span data-i18n="auth.password">পাসওয়ার্ড</span>
+                  <span class="required-star">*</span>
+                </label>
+                <input type="password" id="passwordInput" class="form-control-custom" placeholder="••••••••" required autocomplete="new-password">
+                <div class="form-error-feedback" id="passwordError">
+                  <span>❌</span> <span>পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে</span>
+                </div>
+              </div>
+
+              <div class="form-group-custom">
+                <label for="roleSelect" class="form-label-custom">
+                  <span data-i18n="auth.role">ব্যবহারকারীর ধরন</span>
+                </label>
+                <select id="roleSelect" class="form-select-custom">
+                  <option value="citizen" data-i18n="auth.role_citizen">নাগরিক (Citizen)</option>
+                  <option value="admin" data-i18n="auth.role_admin">অ্যাডমিন কর্মকর্তা (Land Officer)</option>
+                </select>
+              </div>
+
+              <button type="submit" id="submitBtn" class="btn-custom btn-primary-custom w-100 mt-3 mb-3">
+                <span id="btnSpinner" class="spinner-border spinner-border-sm me-2" style="display: none;" role="status"></span>
+                <span data-i18n="auth.register_btn">নিবন্ধন সম্পন্ন করুন</span>
+              </button>
+            </form>
+
+            <div class="text-center">
+              <span class="text-muted-custom" data-i18n="auth.have_account">ইতোমধ্যে অ্যাকাউন্ট আছে?</span>
+              <a href="/login.html" class="fw-semibold ms-1" style="color: var(--color-secondary);" data-i18n="auth.login_title">লগইন করুন</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-custom">
+    <div class="container-lg-custom">
+      <div class="alert-custom alert-disclaimer mb-3">
+        <span style="font-size: 1.25rem;">ℹ️</span>
+        <div>
+          <div class="fw-bold mb-1" data-i18n="disclaimer.title">গুরুত্বপূর্ণ আইনি সতর্কতা ও প্রোটোটাইপ ঘোষণা</div>
+          <div data-i18n="disclaimer.text">এটি একটি প্রোটোটাইপ, যা কৃত্রিম (সিনথেটিক) ভূমি রেকর্ড ব্যবহার করে। ঝুঁকির স্কোর সম্ভাব্য অসঙ্গতি নির্দেশ করে; এটি জালিয়াতি বা আইনি মালিকানার প্রমাণ নয়।</div>
+        </div>
+      </div>
+      <div class="text-center" data-i18n="disclaimer.footer_note">
+        ল্যান্ডটেক ইনোভেশন হ্যাকাথন ২০২৬ · দল: প্রোটন (PROTON)
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initAppShell } from '/js/shell.js';
+    import { api } from '/js/api.js';
+    import { t } from '/js/i18n.js';
+
+    await initAppShell();
+
+    const form = document.getElementById('registerForm');
+    const nameInput = document.getElementById('nameInput');
+    const emailInput = document.getElementById('emailInput');
+    const passwordInput = document.getElementById('passwordInput');
+    const roleSelect = document.getElementById('roleSelect');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnSpinner = document.getElementById('btnSpinner');
+    const registerAlert = document.getElementById('registerAlert');
+    const registerAlertMsg = document.getElementById('registerAlertMsg');
+
+    const nameError = document.getElementById('nameError');
+    const emailError = document.getElementById('emailError');
+    const passwordError = document.getElementById('passwordError');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      registerAlert.style.display = 'none';
+
+      let hasError = false;
+
+      if (!nameInput.value.trim()) {
+        nameInput.classList.add('is-invalid');
+        nameError.classList.add('active');
+        hasError = true;
+      } else {
+        nameInput.classList.remove('is-invalid');
+        nameError.classList.remove('active');
+      }
+
+      if (!emailInput.value.trim() || !emailInput.value.includes('@')) {
+        emailInput.classList.add('is-invalid');
+        emailError.classList.add('active');
+        hasError = true;
+      } else {
+        emailInput.classList.remove('is-invalid');
+        emailError.classList.remove('active');
+      }
+
+      if (!passwordInput.value || passwordInput.value.length < 6) {
+        passwordInput.classList.add('is-invalid');
+        passwordError.classList.add('active');
+        hasError = true;
+      } else {
+        passwordInput.classList.remove('is-invalid');
+        passwordError.classList.remove('active');
+      }
+
+      if (hasError) return;
+
+      submitBtn.disabled = true;
+      btnSpinner.style.display = 'inline-block';
+
+      const res = await api.auth.register({
+        name: nameInput.value.trim(),
+        email: emailInput.value.trim(),
+        password: passwordInput.value,
+        role: roleSelect.value,
+        language: document.documentElement.lang || 'bn'
+      });
+
+      submitBtn.disabled = false;
+      btnSpinner.style.display = 'none';
+
+      if (res.ok) {
+        window.location.href = '/dashboard.html';
+      } else {
+        registerAlertMsg.textContent = t(res.error ? res.error.message_key : 'auth.error.missing_fields');
+        registerAlert.style.display = 'flex';
+      }
+    });
+  </script>
+</body>
+</html>

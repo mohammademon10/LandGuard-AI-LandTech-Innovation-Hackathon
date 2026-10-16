@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>যাচাইকরণ ফলাফল | LandGuard AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Poppins:wght@600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">মূল বিষয়বস্তুতে যান</a>
+
+  <!-- Header / Navigation -->
+  <header class="navbar-custom">
+    <div class="container-lg-custom d-flex justify-content-between align-items-center">
+      <a href="/index.html" class="navbar-brand-wrap">
+        <span style="font-size: 1.6rem;">🛡️</span>
+        <div>
+          <span class="navbar-brand-title">LandGuard AI</span>
+          <span class="navbar-brand-tagline" data-i18n="app.tagline">কেনার আগে যাচাই করুন।</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="d-none d-md-flex align-items-center gap-1">
+        <a href="/dashboard.html" class="nav-link-custom" data-nav="dashboard" data-i18n="nav.dashboard">ড্যাশবোর্ড</a>
+        <a href="/upload.html" class="nav-link-custom" data-nav="upload" data-i18n="nav.upload">নথি যাচাই</a>
+        <a href="/admin/index.html" class="nav-link-custom nav-admin-only" style="display: none;" data-nav="admin" data-i18n="nav.admin">অ্যাডমিন</a>
+      </nav>
+
+      <!-- User & Utilities -->
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn-custom btn-ghost-custom text-white theme-toggle-btn" aria-label="Toggle theme">
+          <span class="theme-toggle-icon">🌙</span>
+        </button>
+        <button class="btn-custom btn-outline-custom text-white border-white lang-toggle-btn" style="min-height: 36px; padding: 0 12px; font-size: 0.85rem;">
+          English
+        </button>
+
+        <!-- User profile pill / logout -->
+        <div class="d-flex align-items-center gap-2 ps-2 border-start border-secondary">
+          <div class="text-end d-none d-sm-block text-white">
+            <div class="fw-semibold nav-user-name" style="font-size: 0.85rem;">...</div>
+            <div class="nav-user-role" style="font-size: 0.7rem; color: #a7c5eb;">...</div>
+          </div>
+          <button class="btn-custom btn-ghost-custom text-white logout-trigger" title="লগআউট" aria-label="লগআউট">
+            <span>🚪</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main" class="main-content py-4">
+    <div class="container-lg-custom">
+
+      <!-- Loading State -->
+      <div id="resultLoading" class="text-center py-5">
+        <div class="loading-spinner mx-auto mb-3"></div>
+        <p class="text-muted-custom" data-i18n="common.loading">ফলাফল প্রস্তুত হচ্ছে...</p>
+      </div>
+
+      <!-- Error State -->
+      <div id="resultError" class="card-custom text-center py-5" style="display: none;">
+        <span style="font-size: 3rem;">⚠️</span>
+        <h2 class="h3 mb-2" id="errorMessageTitle">নথি খুঁজে পাওয়া যায়নি</h2>
+        <p class="text-muted-custom mb-4" id="errorMessageBody">অনুরোধকৃত নথির ফলাফল প্রদর্শন করা সম্ভব হচ্ছে না।</p>
+        <div>
+          <a href="/dashboard.html" class="btn-custom btn-primary-custom" data-i18n="auth.back_to_dashboard">ড্যাশবোর্ডে ফিরে যান</a>
+        </div>
+      </div>
+
+      <!-- Main Result Content -->
+      <div id="resultContent" style="display: none;">
+
+        <!-- Header Bar -->
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4 pb-3 border-bottom border-light-subtle">
+          <div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <h1 class="h2 mb-0" data-i18n="result.title">দলিল যাচাইকরণ বিস্তারিত ফলাফল</h1>
+              <span class="badge bg-secondary-subtle text-secondary-emphasis" data-i18n="common.synthetic_badge">কৃত্রিম ডাটা</span>
+            </div>
+            <p class="text-muted-custom mb-0" data-i18n="result.subtitle">এআই বিশ্লেষিত দলিলের তথ্য ও ডিজিটাল ভূমি রেকর্ডের তুলনামূলক পর্যালোচনা</p>
+          </div>
+          <div class="d-flex gap-2 flex-wrap">
+            <a href="/upload.html" class="btn-custom btn-outline-custom" data-i18n="result.btn_reupload">
+              <span>🔄</span> <span>অন্য দলিল যাচাই</span>
+            </a>
+            <a id="reportDownloadBtn" href="#" class="btn-custom btn-secondary-custom shadow-sm" data-i18n="result.btn_download_report">
+              <span>📄</span> <span>প্রতিবেদন প্রিন্ট / পিডিএফ</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Meta Summary Banner -->
+        <div class="card-custom mb-4 watermark-synthetic" style="background-color: var(--color-surface-alt);">
+          <div class="row g-3 align-items-center">
+            <div class="col-12 col-md-4">
+              <span class="text-muted-custom" style="font-size: 0.85rem;">দলিলের ফাইলের নাম:</span>
+              <div class="fw-bold" id="docNameDisplay">-</div>
+            </div>
+            <div class="col-6 col-md-3">
+              <span class="text-muted-custom" style="font-size: 0.85rem;">দলিলের ধরন:</span>
+              <div class="fw-semibold" id="docTypeDisplay">-</div>
+            </div>
+            <div class="col-6 col-md-2">
+              <span class="text-muted-custom" style="font-size: 0.85rem;">রিপোর্ট কোড:</span>
+              <div class="fw-bold font-mono text-primary" id="reportCodeDisplay">-</div>
+            </div>
+            <div class="col-12 col-md-3 text-md-end">
+              <span class="text-muted-custom" style="font-size: 0.85rem;">যাচাইয়ের সময়:</span>
+              <div class="font-mono" id="docDateDisplay">-</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 1: Risk Gauge + Identified Reasons (2 Columns) -->
+        <div class="row g-4 mb-4">
+          <!-- Left: SVG Gauge -->
+          <div class="col-12 col-lg-5">
+            <div class="card-custom h-100 text-center d-flex flex-column justify-content-center py-4">
+              <h2 class="h4 mb-3" data-i18n="result.score_card_title">ঝুঁকির সামগ্রিক পরিমাপ</h2>
+              <div id="gaugeContainer" class="my-2">
+                <!-- SVG semicircle gauge rendered here -->
+              </div>
+              <div class="mt-3 text-muted-custom" style="font-size: 0.85rem;">
+                স্কোর স্কেল: ০-২৯ নিম্ন (🟢) • ৩০-৫৯ মধ্যম (🟡) • ৬০-১০০ উচ্চ (🔴)
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Reasons & Weight Breakdown -->
+          <div class="col-12 col-lg-7">
+            <div class="card-custom h-100">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="h4 mb-0" data-i18n="result.reasons_title">চিহ্নিত কারণ ও অসঙ্গতির ব্যাখ্যা</h2>
+                <span class="badge bg-light text-dark border" style="font-size: 0.75rem;">Explainable AI</span>
+              </div>
+
+              <div id="reasonsList" class="d-flex flex-column gap-3">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Chain Gap Warning Banner (If Present) -->
+        <div id="chainGapAlert" class="alert-custom mb-4" style="display: none; background-color: var(--risk-high-bg); border: 2px dashed var(--risk-high-border); color: var(--risk-high);">
+          <span style="font-size: 1.8rem;">⚠️</span>
+          <div>
+            <h3 class="h4 mb-1" data-i18n="result.chain_gap_alert_title">মালিকানা ধারায় সম্ভাব্য বিচ্ছিন্নতা (Chain Gap) সনাক্ত হয়েছে!</h3>
+            <div data-i18n="result.chain_gap_alert_text">এই জমির মালিকানা ধারায় একটি আবশ্যক হস্তান্তর বা নামজারি পরচা অনুপস্থিত রয়েছে, যা ভবিষ্যতে আইনি জটিলতা তৈরি করতে পারে।</div>
+          </div>
+        </div>
+
+        <!-- Section 3: Field-by-Field Comparison Table -->
+        <div class="card-custom mb-4">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="h4 mb-0" data-i18n="result.comparison_title">মাঠপর্যায়ের তথ্য বনাম রেফারেন্স রেকর্ডের তুলনা</h2>
+            <span class="text-muted-custom" style="font-size: 0.85rem;">ক্রস-ভেরিফিকেশন ফিল্ডস</span>
+          </div>
+
+          <div class="table-responsive-custom">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th data-i18n="result.col_field">তথ্য ক্ষেত্র (Field)</th>
+                  <th data-i18n="result.col_uploaded">আপলোডকৃত দলিলে প্রাপ্ত তথ্য</th>
+                  <th data-i18n="result.col_record">ডিজিটাল সরকারি রেকর্ডে রক্ষিত তথ্য</th>
+                  <th data-i18n="result.col_match_result">যাচাই ফলাফল</th>
+                </tr>
+              </thead>
+              <tbody id="comparisonTableBody">
+                <!-- Field comparisons -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Section 4: Ownership Timeline -->
+        <div class="card-custom mb-4">
+          <div class="mb-3">
+            <h2 class="h4 mb-1" data-i18n="result.timeline_title">মালিকানা হস্তান্তরের ঐতিহাসিক ধারা (Ownership Chain)</h2>
+            <p class="text-muted-custom mb-0" style="font-size: 0.9rem;" data-i18n="result.timeline_desc">জমির পূর্ববর্তী মালিকানা হস্তান্তর ও নামজারির ধারাবাহিকতা</p>
+          </div>
+
+          <div class="ownership-timeline" id="timelineContainer">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer with Mandatory Disclaimer -->
+  <footer class="footer-custom">
+    <div class="container-lg-custom">
+      <div class="alert-custom alert-disclaimer mb-3">
+        <span style="font-size: 1.25rem;">ℹ️</span>
+        <div>
+          <div class="fw-bold mb-1" data-i18n="disclaimer.title">গুরুত্বপূর্ণ আইনি সতর্কতা ও প্রোটোটাইপ ঘোষণা</div>
+          <div data-i18n="disclaimer.text">এটি একটি প্রোটোটাইপ, যা কৃত্রিম (সিনথেটিক) ভূমি রেকর্ড ব্যবহার করে। ঝুঁকির স্কোর সম্ভাব্য অসঙ্গতি নির্দেশ করে; এটি জালিয়াতি বা আইনি মালিকানার প্রমাণ নয়।</div>
+        </div>
+      </div>
+      <div class="text-center" data-i18n="disclaimer.footer_note">
+        ল্যান্ডটেক ইনোভেশন হ্যাকাথন ২০২৬ · দল: প্রোটন (PROTON)
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initAppShell } from '/js/shell.js';
+    import { auth } from '/js/auth.js';
+    import { api } from '/js/api.js';
+    import { renderRiskGauge } from '/js/gauge.js';
+    import { formatNumber, t } from '/js/i18n.js';
+
+    // Route Guard
+    const user = await auth.requireAuth();
+    await initAppShell();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const verificationId = urlParams.get('id') || '3'; // Default to Rahim Demo if not specified
+
+    const resultLoading = document.getElementById('resultLoading');
+    const resultError = document.getElementById('resultError');
+    const resultContent = document.getElementById('resultContent');
+    const errorMessageTitle = document.getElementById('errorMessageTitle');
+    const errorMessageBody = document.getElementById('errorMessageBody');
+
+    const docNameDisplay = document.getElementById('docNameDisplay');
+    const docTypeDisplay = document.getElementById('docTypeDisplay');
+    const reportCodeDisplay = document.getElementById('reportCodeDisplay');
+    const docDateDisplay = document.getElementById('docDateDisplay');
+    const reportDownloadBtn = document.getElementById('reportDownloadBtn');
+
+    const gaugeContainer = document.getElementById('gaugeContainer');
+    const reasonsList = document.getElementById('reasonsList');
+    const chainGapAlert = document.getElementById('chainGapAlert');
+    const comparisonTableBody = document.getElementById('comparisonTableBody');
+    const timelineContainer = document.getElementById('timelineContainer');
+
+    let currentData = null;
+
+    async function loadResult() {
+      resultLoading.style.display = 'block';
+      resultError.style.display = 'none';
+      resultContent.style.display = 'none';
+
+      const res = await api.verifications.get(verificationId);
+      resultLoading.style.display = 'none';
+
+      if (res.ok && res.data) {
+        currentData = res.data;
+        renderResult(currentData);
+        resultContent.style.display = 'block';
+      } else {
+        resultError.style.display = 'block';
+        if (res.error && res.error.code === 'FORBIDDEN') {
+          errorMessageTitle.textContent = t('auth.forbidden_title');
+          errorMessageBody.textContent = t('auth.error.forbidden');
+        } else {
+          errorMessageTitle.textContent = "নথি খুঁজে পাওয়া যায়নি";
+          errorMessageBody.textContent = "অনুরোধকৃত নথির ফলাফল পাওয়া যায়নি।";
+        }
+      }
+    }
+
+    function renderResult(data) {
+      // Header details
+      docNameDisplay.textContent = data.filename || data.document_name || "Land_Deed.pdf";
+      docTypeDisplay.textContent = data.document_type || "বিক্রয় কবলা দলিল";
+      reportCodeDisplay.textContent = data.report_code || "LG-2026-00412";
+      docDateDisplay.textContent = data.uploaded_at || new Date().toISOString().substring(0, 10);
+      reportDownloadBtn.href = `/report.html?id=${data.id || verificationId}`;
+
+      // Render Gauge
+      renderRiskGauge(gaugeContainer, data.risk_score, data.risk_level);
+
+      // Render Reasons Breakdown
+      if (!data.reasons || data.reasons.length === 0) {
+        reasonsList.innerHTML = `
+          <div class="alert-custom alert-info-custom">
+            <span>✅</span>
+            <span data-i18n="result.no_reasons">কোনো অসঙ্গতি বা ঝুঁকি পাওয়া যায়নি। নথির সকল তথ্য রেকর্ডের সাথে হুবহু মিলেছে।</span>
+          </div>
+        `;
+      } else {
+        reasonsList.innerHTML = data.reasons.map(r => {
+          let reasonText = t(`reasons.${r.code}`, r.params || {});
+          let pointColor = 'var(--risk-high)';
+          let badgeBg = 'var(--risk-high-bg)';
+          if (r.points < 15) {
+            pointColor = 'var(--risk-medium)';
+            badgeBg = 'var(--risk-medium-bg)';
+          }
+
+          return `
+            <div class="p-3 rounded-3 d-flex align-items-center justify-content-between gap-3" style="background-color: var(--color-surface-alt); border: 1px solid var(--color-border);">
+              <div class="d-flex align-items-center gap-2">
+                <span>⚠️</span>
+                <span class="fw-semibold">${reasonText}</span>
+              </div>
+              <span class="font-mono fw-bold px-2 py-1 rounded" style="background-color: ${badgeBg}; color: ${pointColor}; font-size: 0.85rem; white-space: nowrap;">
+                +${formatNumber(r.points)} পয়েন্ট
+              </span>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Chain gap banner
+      if (data.chain_gap) {
+        chainGapAlert.style.display = 'flex';
+      } else {
+        chainGapAlert.style.display = 'none';
+      }
+
+      // Comparison Table
+      const fields = [
+        { key: 'owner', labelKey: 'fields.owner' },
+        { key: 'khatian', labelKey: 'fields.khatian' },
+        { key: 'dag', labelKey: 'fields.dag' },
+        { key: 'area', labelKey: 'fields.area', format: v => `${formatNumber(v)} শতক` },
+        { key: 'mouza', labelKey: 'fields.mouza' },
+        { key: 'upazila', labelKey: 'fields.upazila' },
+        { key: 'district', labelKey: 'fields.district' },
+        { key: 'registration_date', labelKey: 'fields.registration_date' }
+      ];
+
+      comparisonTableBody.innerHTML = fields.map(f => {
+        const resultItem = (data.field_results && data.field_results[f.key]) || {
+          status: 'match',
+          uploaded: data.extracted ? data.extracted[f.key + '_no'] || data.extracted[f.key + '_name'] || data.extracted[f.key] : '-',
+          record: data.reference ? data.reference[f.key + '_no'] || data.reference[f.key + '_name'] || data.reference[f.key] : '-'
+        };
+
+        let statusClass = 'status-cell--match';
+        let statusIcon = '✓';
+        let statusKey = 'status_labels.match';
+
+        if (resultItem.status === 'mismatch') {
+          statusClass = 'status-cell--mismatch';
+          statusIcon = '❌';
+          statusKey = 'status_labels.mismatch';
+        } else if (resultItem.status === 'partial') {
+          statusClass = 'status-cell--partial';
+          statusIcon = '⚠️';
+          statusKey = 'status_labels.partial';
+        }
+
+        const uploadedVal = f.format ? f.format(resultItem.uploaded) : formatNumber(resultItem.uploaded);
+        const recordVal = f.format ? f.format(resultItem.record) : formatNumber(resultItem.record);
+
+        return `
+          <tr>
+            <td class="fw-semibold">${t(f.labelKey)}</td>
+            <td class="font-mono">${uploadedVal || '-'}</td>
+            <td class="font-mono">${recordVal || '-'}</td>
+            <td>
+              <span class="status-cell ${statusClass}">
+                <span>${statusIcon}</span>
+                <span>${t(statusKey)}</span>
+              </span>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      // Timeline Rendering
+      const history = data.ownership_history || [];
+      timelineContainer.innerHTML = history.map((item, idx) => {
+        if (item.is_gap) {
+          return `
+            <div class="timeline-node timeline-node--gap">
+              <div class="timeline-marker">⚠️</div>
+              <div class="timeline-content">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <span class="fw-bold text-danger">⚠️ ${t('status_labels.gap')}</span>
+                  <span class="badge bg-danger text-white">ধারাবাহিকতা বিচ্ছিন্ন</span>
+                </div>
+                <div class="text-danger" style="font-size: 0.9rem;">
+                  ${item.note || "এই সময়কালে কোনো বৈধ হস্তান্তর বা নামজারি পরচা পাওয়া যায়নি।"}
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        return `
+          <div class="timeline-node">
+            <div class="timeline-marker">${formatNumber(item.seq_no || idx + 1)}</div>
+            <div class="timeline-content">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <span class="fw-bold">${item.previous_owner || 'পূর্বতন মালিক'} ➔ ${item.new_owner}</span>
+                <span class="badge bg-light text-dark border font-mono" style="font-size: 0.75rem;">${item.transfer_date || ''}</span>
+              </div>
+              <div class="text-muted-custom" style="font-size: 0.85rem;">
+                হস্তান্তরের ধরন: <span class="fw-semibold">${item.transfer_type === 'sale' ? 'বিক্রয়' : item.transfer_type === 'inheritance' ? 'উত্তরাধিকার' : item.transfer_type === 'gift' ? 'দানপত্র' : item.transfer_type}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    window.addEventListener('languageChanged', () => {
+      if (currentData) renderResult(currentData);
+    });
+
+    await loadResult();
+  </script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>রেফারেন্স ভূমি রেকর্ডস | LandGuard AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Poppins:wght@600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">মূল বিষয়বস্তুতে যান</a>
+
+  <!-- Header / Navigation -->
+  <header class="navbar-custom">
+    <div class="container-lg-custom d-flex justify-content-between align-items-center">
+      <a href="/index.html" class="navbar-brand-wrap">
+        <span style="font-size: 1.6rem;">🛡️</span>
+        <div>
+          <span class="navbar-brand-title">LandGuard AI</span>
+          <span class="navbar-brand-tagline" data-i18n="app.tagline">কেনার আগে যাচাই করুন।</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="d-none d-md-flex align-items-center gap-1">
+        <a href="/dashboard.html" class="nav-link-custom" data-nav="dashboard" data-i18n="nav.dashboard">ড্যাশবোর্ড</a>
+        <a href="/upload.html" class="nav-link-custom" data-nav="upload" data-i18n="nav.upload">নথি যাচাই</a>
+        <a href="/admin/index.html" class="nav-link-custom" data-i18n="nav.admin">অ্যাডমিন</a>
+        <a href="/admin/records.html" class="nav-link-custom active" data-i18n="nav.records">ভূমি রেকর্ডস</a>
+        <a href="/admin/audit.html" class="nav-link-custom" data-i18n="nav.audit">অডিট লগ</a>
+      </nav>
+
+      <!-- User & Utilities -->
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn-custom btn-ghost-custom text-white theme-toggle-btn" aria-label="Toggle theme">
+          <span class="theme-toggle-icon">🌙</span>
+        </button>
+        <button class="btn-custom btn-outline-custom text-white border-white lang-toggle-btn" style="min-height: 36px; padding: 0 12px; font-size: 0.85rem;">
+          English
+        </button>
+
+        <div class="d-flex align-items-center gap-2 ps-2 border-start border-secondary">
+          <div class="text-end d-none d-sm-block text-white">
+            <div class="fw-semibold nav-user-name" style="font-size: 0.85rem;">...</div>
+            <div class="nav-user-role" style="font-size: 0.7rem; color: #a7c5eb;">অ্যাডমিন কর্মকর্তা</div>
+          </div>
+          <button class="btn-custom btn-ghost-custom text-white logout-trigger" title="লগআউট" aria-label="লগআউট">
+            <span>🚪</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main" class="main-content py-4">
+    <div class="container-lg-custom">
+
+      <!-- Admin Top Nav Tabs -->
+      <div class="d-flex flex-wrap gap-2 mb-4 border-bottom pb-3">
+        <a href="/admin/index.html" class="btn-custom btn-outline-custom" style="min-height: 38px; font-size: 0.9rem;">
+          📋 <span data-i18n="admin.tab_verifications">সকল যাচাইকরণ</span>
+        </a>
+        <a href="/admin/records.html" class="btn-custom btn-primary-custom" style="min-height: 38px; font-size: 0.9rem;">
+          🗃️ <span data-i18n="admin.tab_records">রেফারেন্স ল্যান্ড রেকর্ডস</span>
+        </a>
+        <a href="/admin/audit.html" class="btn-custom btn-outline-custom" style="min-height: 38px; font-size: 0.9rem;">
+          🔒 <span data-i18n="admin.tab_audit">নিরাপত্তা অডিট লগ</span>
+        </a>
+      </div>
+
+      <!-- Action & Search Bar -->
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        <div>
+          <h1 class="h2 mb-1" data-i18n="admin.tab_records">রেফারেন্স ল্যান্ড রেকর্ডস (Synthetic Records)</h1>
+          <p class="text-muted-custom mb-0">ক্রস-ভেরিফিকেশনে ব্যবহৃত ৩০+ কৃত্রিম সরকারি রেফারেন্স ভূমি খতিয়ান ডাটাবেজ</p>
+        </div>
+        <div class="d-flex gap-2">
+          <input type="text" id="searchInput" class="form-control-custom" style="min-width: 250px;" placeholder="মালিক, খতিয়ান বা দাগ দিয়ে খুঁজুন...">
+          <button id="addRecordBtn" class="btn-custom btn-secondary-custom text-nowrap">
+            <span>➕</span> <span data-i18n="admin.btn_add_record">নতুন রেকর্ড যোগ করুন</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Table Card -->
+      <div class="card-custom">
+        <div id="loading" class="text-center py-5">
+          <div class="loading-spinner mx-auto mb-3"></div>
+          <span class="text-muted-custom" data-i18n="common.loading">লোড হচ্ছে...</span>
+        </div>
+
+        <div class="table-responsive-custom" id="tableWrap" style="display: none;">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>আইডি</th>
+                <th>মালিকের নাম</th>
+                <th>খতিয়ান নম্বর</th>
+                <th>দাগ নম্বর</th>
+                <th>মৌজা</th>
+                <th>উপজেলা ও জেলা</th>
+                <th>জমির পরিমাণ</th>
+                <th>নিবন্ধনের তারিখ</th>
+                <th>পদক্ষেপ</th>
+              </tr>
+            </thead>
+            <tbody id="recordsTableBody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Modal for Add/Edit -->
+  <div class="modal fade" id="recordModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background-color: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border); border-radius: var(--radius-lg);">
+        <div class="modal-header border-bottom border-light-subtle">
+          <h2 class="modal-title h5" id="modalTitle" data-i18n="admin.modal_record_title">রেফারেন্স ভূমি রেকর্ড সম্পাদন</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="recordForm">
+          <div class="modal-body">
+            <input type="hidden" id="recId">
+            <div class="form-group-custom">
+              <label class="form-label-custom">মালিকের নাম <span class="required-star">*</span></label>
+              <input type="text" id="recOwner" class="form-control-custom" required>
+            </div>
+            <div class="row g-2">
+              <div class="col-6 form-group-custom">
+                <label class="form-label-custom">খতিয়ান নম্বর <span class="required-star">*</span></label>
+                <input type="text" id="recKhatian" class="form-control-custom font-mono" required>
+              </div>
+              <div class="col-6 form-group-custom">
+                <label class="form-label-custom">দাগ নম্বর <span class="required-star">*</span></label>
+                <input type="text" id="recDag" class="form-control-custom font-mono" required>
+              </div>
+            </div>
+            <div class="row g-2">
+              <div class="col-4 form-group-custom">
+                <label class="form-label-custom">মৌজা <span class="required-star">*</span></label>
+                <input type="text" id="recMouza" class="form-control-custom" required>
+              </div>
+              <div class="col-4 form-group-custom">
+                <label class="form-label-custom">উপজেলা <span class="required-star">*</span></label>
+                <input type="text" id="recUpazila" class="form-control-custom" required>
+              </div>
+              <div class="col-4 form-group-custom">
+                <label class="form-label-custom">জেলা <span class="required-star">*</span></label>
+                <input type="text" id="recDistrict" class="form-control-custom" required>
+              </div>
+            </div>
+            <div class="row g-2">
+              <div class="col-6 form-group-custom">
+                <label class="form-label-custom">জমির পরিমাণ (শতক) <span class="required-star">*</span></label>
+                <input type="number" step="0.01" id="recArea" class="form-control-custom font-mono" required>
+              </div>
+              <div class="col-6 form-group-custom">
+                <label class="form-label-custom">নিবন্ধনের তারিখ</label>
+                <input type="date" id="recDate" class="form-control-custom font-mono">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer border-top border-light-subtle">
+            <button type="button" class="btn-custom btn-outline-custom" data-bs-dismiss="modal" data-i18n="common.cancel">বাতিল</button>
+            <button type="submit" class="btn-custom btn-primary-custom" data-i18n="admin.save_record_btn">রেকর্ড সংরক্ষণ করুন</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer with Disclaimer -->
+  <footer class="footer-custom">
+    <div class="container-lg-custom text-center" data-i18n="disclaimer.footer_note">
+      ল্যান্ডটেক ইনোভেশন হ্যাকাথন ২০২৬ · দল: প্রোটন (PROTON)
+    </div>
+  </footer>
+
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script type="module">
+    import { initAppShell } from '/js/shell.js';
+    import { auth } from '/js/auth.js';
+    import { api } from '/js/api.js';
+    import { formatNumber, t } from '/js/i18n.js';
+
+    // Strictly requires admin role
+    const user = await auth.requireAuth({ requireRole: 'admin' });
+    await initAppShell({ activeNav: 'admin' });
+
+    let records = [];
+    const loading = document.getElementById('loading');
+    const tableWrap = document.getElementById('tableWrap');
+    const recordsTableBody = document.getElementById('recordsTableBody');
+    const searchInput = document.getElementById('searchInput');
+    const addRecordBtn = document.getElementById('addRecordBtn');
+    const recordForm = document.getElementById('recordForm');
+
+    const modalEl = document.getElementById('recordModal');
+    const modal = new bootstrap.Modal(modalEl);
+
+    async function loadRecords(query = '') {
+      loading.style.display = 'block';
+      tableWrap.style.display = 'none';
+
+      const res = await api.admin.getRecords(query);
+      loading.style.display = 'none';
+
+      if (res.ok && res.data) {
+        records = res.data;
+        renderTable();
+        tableWrap.style.display = 'block';
+      }
+    }
+
+    function renderTable() {
+      recordsTableBody.innerHTML = records.map(r => `
+        <tr>
+          <td class="font-mono text-muted-custom">#${r.id}</td>
+          <td class="fw-semibold">${r.owner_name}</td>
+          <td class="font-mono fw-bold">${formatNumber(r.khatian_no)}</td>
+          <td class="font-mono fw-bold">${formatNumber(r.dag_no)}</td>
+          <td>${r.mouza}</td>
+          <td>${r.upazila}, ${r.district}</td>
+          <td class="font-mono fw-bold">${formatNumber(r.area_decimal)} শতক</td>
+          <td class="font-mono">${r.registration_date || '-'}</td>
+          <td>
+            <div class="d-flex gap-1">
+              <button class="btn-custom btn-outline-custom edit-btn" data-id="${r.id}" style="min-height: 28px; padding: 2px 8px; font-size: 0.75rem;">
+                ✏️
+              </button>
+              <button class="btn-custom btn-outline-custom text-danger delete-btn" data-id="${r.id}" style="min-height: 28px; padding: 2px 8px; font-size: 0.75rem;">
+                🗑️
+              </button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+
+      // Bind edit and delete handlers
+      document.querySelectorAll('.edit-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          const rec = records.find(r => String(r.id) === String(id));
+          if (rec) {
+            document.getElementById('recId').value = rec.id;
+            document.getElementById('recOwner').value = rec.owner_name;
+            document.getElementById('recKhatian').value = rec.khatian_no;
+            document.getElementById('recDag').value = rec.dag_no;
+            document.getElementById('recMouza').value = rec.mouza;
+            document.getElementById('recUpazila').value = rec.upazila;
+            document.getElementById('recDistrict').value = rec.district;
+            document.getElementById('recArea').value = rec.area_decimal;
+            document.getElementById('recDate').value = rec.registration_date || '';
+            modal.show();
+          }
+        });
+      });
+
+      document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const id = btn.getAttribute('data-id');
+          if (confirm(t('admin.delete_confirm'))) {
+            await api.admin.deleteRecord(id);
+            await loadRecords(searchInput.value);
+          }
+        });
+      });
+    }
+
+    addRecordBtn.addEventListener('click', () => {
+      document.getElementById('recId').value = '';
+      recordForm.reset();
+      modal.show();
+    });
+
+    recordForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('recId').value;
+      const recordData = {
+        owner_name: document.getElementById('recOwner').value.trim(),
+        khatian_no: document.getElementById('recKhatian').value.trim(),
+        dag_no: document.getElementById('recDag').value.trim(),
+        mouza: document.getElementById('recMouza').value.trim(),
+        upazila: document.getElementById('recUpazila').value.trim(),
+        district: document.getElementById('recDistrict').value.trim(),
+        area_decimal: parseFloat(document.getElementById('recArea').value),
+        registration_date: document.getElementById('recDate').value || null
+      };
+
+      if (id) {
+        await api.admin.updateRecord(id, recordData);
+      } else {
+        await api.admin.createRecord(recordData);
+      }
+
+      modal.hide();
+      await loadRecords(searchInput.value);
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      loadRecords(e.target.value);
+    });
+
+    await loadRecords();
+  </script>
+</body>
+</html>

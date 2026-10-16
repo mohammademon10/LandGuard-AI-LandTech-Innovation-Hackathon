@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>নিরাপত্তা অডিট লগ | LandGuard AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Poppins:wght@600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">মূল বিষয়বস্তুতে যান</a>
+
+  <!-- Header / Navigation -->
+  <header class="navbar-custom">
+    <div class="container-lg-custom d-flex justify-content-between align-items-center">
+      <a href="/index.html" class="navbar-brand-wrap">
+        <span style="font-size: 1.6rem;">🛡️</span>
+        <div>
+          <span class="navbar-brand-title">LandGuard AI</span>
+          <span class="navbar-brand-tagline" data-i18n="app.tagline">কেনার আগে যাচাই করুন।</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="d-none d-md-flex align-items-center gap-1">
+        <a href="/dashboard.html" class="nav-link-custom" data-nav="dashboard" data-i18n="nav.dashboard">ড্যাশবোর্ড</a>
+        <a href="/upload.html" class="nav-link-custom" data-nav="upload" data-i18n="nav.upload">নথি যাচাই</a>
+        <a href="/admin/index.html" class="nav-link-custom" data-i18n="nav.admin">অ্যাডমিন</a>
+        <a href="/admin/records.html" class="nav-link-custom" data-i18n="nav.records">ভূমি রেকর্ডস</a>
+        <a href="/admin/audit.html" class="nav-link-custom active" data-nav="audit" data-i18n="nav.audit">অডিট লগ</a>
+      </nav>
+
+      <!-- User & Utilities -->
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn-custom btn-ghost-custom text-white theme-toggle-btn" aria-label="Toggle theme">
+          <span class="theme-toggle-icon">🌙</span>
+        </button>
+        <button class="btn-custom btn-outline-custom text-white border-white lang-toggle-btn" style="min-height: 36px; padding: 0 12px; font-size: 0.85rem;">
+          English
+        </button>
+
+        <div class="d-flex align-items-center gap-2 ps-2 border-start border-secondary">
+          <div class="text-end d-none d-sm-block text-white">
+            <div class="fw-semibold nav-user-name" style="font-size: 0.85rem;">...</div>
+            <div class="nav-user-role" style="font-size: 0.7rem; color: #a7c5eb;">অ্যাডমিন কর্মকর্তা</div>
+          </div>
+          <button class="btn-custom btn-ghost-custom text-white logout-trigger" title="লগআউট" aria-label="লগআউট">
+            <span>🚪</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main" class="main-content py-4">
+    <div class="container-lg-custom">
+
+      <!-- Admin Top Nav Tabs -->
+      <div class="d-flex flex-wrap gap-2 mb-4 border-bottom pb-3">
+        <a href="/admin/index.html" class="btn-custom btn-outline-custom" style="min-height: 38px; font-size: 0.9rem;">
+          📋 <span data-i18n="admin.tab_verifications">সকল যাচাইকরণ</span>
+        </a>
+        <a href="/admin/records.html" class="btn-custom btn-outline-custom" style="min-height: 38px; font-size: 0.9rem;">
+          🗃️ <span data-i18n="admin.tab_records">রেফারেন্স ল্যান্ড রেকর্ডস</span>
+        </a>
+        <a href="/admin/audit.html" class="btn-custom btn-primary-custom" style="min-height: 38px; font-size: 0.9rem;">
+          🔒 <span data-i18n="admin.tab_audit">নিরাপত্তা অডিট লগ</span>
+        </a>
+      </div>
+
+      <!-- Heading -->
+      <div class="mb-4">
+        <h1 class="h2 mb-1" data-i18n="admin.tab_audit">নিরাপত্তা অডিট লগ (Security Audit Trail)</h1>
+        <p class="text-muted-custom mb-0">লগইন, নথি আপলোড, যাচাই ও রিপোর্ট ডাউনলোড সংক্রান্ত সকল অপরিবর্তনীয় নিরাপত্তা লগ (PII মুক্ত)</p>
+      </div>
+
+      <!-- Table Card -->
+      <div class="card-custom">
+        <div id="loading" class="text-center py-5">
+          <div class="loading-spinner mx-auto mb-3"></div>
+          <span class="text-muted-custom" data-i18n="common.loading">লোড হচ্ছে...</span>
+        </div>
+
+        <div class="table-responsive-custom" id="tableWrap" style="display: none;">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>আইডি</th>
+                <th data-i18n="admin.col_user">ব্যবহারকারী</th>
+                <th data-i18n="admin.col_action">কার্যক্রম (Action)</th>
+                <th data-i18n="admin.col_entity">সংশ্লিষ্ট টেবিল</th>
+                <th>টার্গেট আইডি</th>
+                <th data-i18n="admin.col_ip">আইপি ঠিকানা</th>
+                <th data-i18n="admin.col_time">সময়</th>
+              </tr>
+            </thead>
+            <tbody id="auditTableBody">
+              <!-- Logs populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer with Disclaimer -->
+  <footer class="footer-custom">
+    <div class="container-lg-custom">
+      <div class="alert-custom alert-disclaimer mb-3">
+        <span style="font-size: 1.25rem;">ℹ️</span>
+        <div>
+          <div class="fw-bold mb-1" data-i18n="disclaimer.title">গুরুত্বপূর্ণ আইনি সতর্কতা ও প্রোটোটাইপ ঘোষণা</div>
+          <div data-i18n="disclaimer.text">এটি একটি প্রোটোটাইপ, যা কৃত্রিম (সিনথেটিক) ভূমি রেকর্ড ব্যবহার করে। ঝুঁকির স্কোর সম্ভাব্য অসঙ্গতি নির্দেশ করে; এটি জালিয়াতি বা আইনি মালিকানার প্রমাণ নয়।</div>
+        </div>
+      </div>
+      <div class="text-center" data-i18n="disclaimer.footer_note">
+        ল্যান্ডটেক ইনোভেশন হ্যাকাথন ২০২৬ · দল: প্রোটন (PROTON)
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initAppShell } from '/js/shell.js';
+    import { auth } from '/js/auth.js';
+    import { api } from '/js/api.js';
+    import { formatNumber } from '/js/i18n.js';
+
+    // Strictly requires admin role
+    const user = await auth.requireAuth({ requireRole: 'admin' });
+    await initAppShell({ activeNav: 'admin' });
+
+    const loading = document.getElementById('loading');
+    const tableWrap = document.getElementById('tableWrap');
+    const auditTableBody = document.getElementById('auditTableBody');
+
+    async function loadLogs() {
+      loading.style.display = 'block';
+      tableWrap.style.display = 'none';
+
+      const res = await api.admin.getAuditLogs();
+      loading.style.display = 'none';
+
+      if (res.ok && res.data) {
+        renderLogs(res.data);
+        tableWrap.style.display = 'block';
+      }
+    }
+
+    function renderLogs(logs) {
+      auditTableBody.innerHTML = logs.map(l => {
+        let actionBadgeClass = 'bg-secondary';
+        if (l.action === 'login') actionBadgeClass = 'bg-info text-dark';
+        else if (l.action === 'upload') actionBadgeClass = 'bg-primary';
+        else if (l.action === 'verify') actionBadgeClass = 'bg-success';
+        else if (l.action === 'report_download') actionBadgeClass = 'bg-warning text-dark';
+        else if (l.action.includes('delete')) actionBadgeClass = 'bg-danger';
+
+        return `
+          <tr>
+            <td class="font-mono text-muted-custom">#${l.id}</td>
+            <td>
+              <div class="fw-semibold">${l.user_email}</div>
+              <div class="text-muted-custom" style="font-size: 0.75rem;">User ID: #${l.user_id}</div>
+            </td>
+            <td>
+              <span class="badge ${actionBadgeClass} font-mono">${l.action}</span>
+            </td>
+            <td><span class="font-mono text-muted-custom">${l.entity || '-'}</span></td>
+            <td><span class="font-mono">${l.entity_id ? '#' + l.entity_id : '-'}</span></td>
+            <td><span class="font-mono">${l.ip || '127.0.0.1'}</span></td>
+            <td><span class="font-mono" style="font-size: 0.85rem;">${l.created_at}</span></td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    await loadLogs();
+  </script>
+</body>
+</html>

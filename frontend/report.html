@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>যাচাইকরণ প্রত্যয়ন পত্র | LandGuard AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Poppins:wght@600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <style>
+    /* Print Specific Styles */
+    @media print {
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        font-size: 12pt;
+      }
+      .no-print, header, footer, .sim-drawer-wrap {
+        display: none !important;
+      }
+      .report-sheet {
+        box-shadow: none !important;
+        border: 2px solid #000000 !important;
+        padding: 20mm !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        page-break-after: avoid;
+      }
+      .watermark-synthetic::after {
+        opacity: 0.08 !important;
+      }
+    }
+
+    .report-sheet {
+      background-color: #ffffff;
+      max-width: 850px;
+      margin: 0 auto;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 40px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+
+    [data-theme="dark"] .report-sheet {
+      background-color: #ffffff;
+      color: #14213D;
+      border-color: #ced4da;
+    }
+  </style>
+</head>
+<body style="background-color: #f0f4f8;">
+  <a href="#main" class="skip-link">মূল বিষয়বস্তুতে যান</a>
+
+  <!-- Top Action Bar (Screen Only) -->
+  <div class="no-print bg-white border-bottom py-3 sticky-top shadow-sm">
+    <div class="container-lg-custom d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center gap-2">
+        <a id="backBtn" href="/result.html" class="btn-custom btn-outline-custom" style="min-height: 38px; font-size: 0.85rem;" data-i18n="report.back_to_result">
+          ← ফলাফলে ফিরে যান
+        </a>
+        <span class="sim-pill d-none d-sm-inline">A4 Print Ready</span>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn-custom btn-outline-custom lang-toggle-btn" style="min-height: 38px; font-size: 0.85rem;">
+          English
+        </button>
+        <button id="printBtn" class="btn-custom btn-primary-custom" style="min-height: 38px; font-size: 0.9rem;">
+          <span>🖨️</span> <span data-i18n="report.print_btn">প্রতিবেদন প্রিন্ট / পিডিএফ সংরক্ষণ</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Printable Report Sheet -->
+  <main id="main" class="main-content py-4">
+    <div class="container-lg-custom">
+
+      <div class="report-sheet watermark-synthetic" id="reportSheet">
+        
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-start border-bottom pb-3 mb-4" style="border-color: #0B2545 !important; border-bottom-width: 2px !important;">
+          <div class="d-flex align-items-center gap-3">
+            <div style="font-size: 2.8rem;">🛡️</div>
+            <div>
+              <h1 class="h3 mb-0" style="color: #0B2545;" data-i18n="report.title">ভূমি দলিল প্রাথমিক যাচাইকরণ প্রত্যয়ন পত্র</h1>
+              <div class="fw-semibold text-secondary" style="font-size: 0.9rem;" data-i18n="report.subtitle">ল্যান্ডগার্ড এআই স্বয়ংক্রিয় যাচাই প্রতিবেদন</div>
+              <div style="font-size: 0.75rem; color: #6c757d;">গণপ্রজাতন্ত্রী বাংলাদেশ সরকারের ডিজিটাল ল্যান্ড ভেরিফিকেশন প্রোটোটাইপ ফ্রেমওয়ার্ক</div>
+            </div>
+          </div>
+
+          <!-- QR Code & Code -->
+          <div class="text-end">
+            <div style="display: inline-block; padding: 6px; border: 1px solid #ced4da; border-radius: 6px; background: #fff; margin-bottom: 4px;">
+              <svg width="64" height="64" viewBox="0 0 100 100" style="display: block;">
+                <!-- Authentic styled QR simulation -->
+                <rect width="100" height="100" fill="#fff" />
+                <rect x="10" y="10" width="25" height="25" fill="#0B2545" />
+                <rect x="15" y="15" width="15" height="15" fill="#fff" />
+                <rect x="65" y="10" width="25" height="25" fill="#0B2545" />
+                <rect x="70" y="15" width="15" height="15" fill="#fff" />
+                <rect x="10" y="65" width="25" height="25" fill="#0B2545" />
+                <rect x="15" y="70" width="15" height="15" fill="#fff" />
+                <rect x="42" y="15" width="10" height="10" fill="#0B2545" />
+                <rect x="42" y="42" width="16" height="16" fill="#0B2545" />
+                <rect x="70" y="45" width="12" height="12" fill="#0B2545" />
+                <rect x="15" y="45" width="12" height="12" fill="#0B2545" />
+                <rect x="45" y="70" width="15" height="15" fill="#0B2545" />
+                <rect x="70" y="70" width="15" height="15" fill="#0B2545" />
+              </svg>
+            </div>
+            <div class="font-mono fw-bold" style="font-size: 0.8rem; color: #0B2545;" id="repCode">LG-2026-00412</div>
+          </div>
+        </div>
+
+        <!-- Meta Details Box -->
+        <div class="p-3 mb-4 rounded" style="background-color: #f8fafc; border: 1px solid #e2e8f0; font-size: 0.9rem;">
+          <div class="row g-2">
+            <div class="col-6 col-md-3">
+              <span class="text-muted d-block" style="font-size: 0.75rem;">দলিল নম্বর:</span>
+              <span class="fw-bold font-mono" id="repDocNo">-</span>
+            </div>
+            <div class="col-6 col-md-3">
+              <span class="text-muted d-block" style="font-size: 0.75rem;">দলিলের ধরন:</span>
+              <span class="fw-semibold" id="repDocType">-</span>
+            </div>
+            <div class="col-6 col-md-3">
+              <span class="text-muted d-block" style="font-size: 0.75rem;">যাচাইয়ের তারিখ ও সময়:</span>
+              <span class="font-mono" id="repDate">-</span>
+            </div>
+            <div class="col-6 col-md-3">
+              <span class="text-muted d-block" style="font-size: 0.75rem;">যাচাইকারী সিস্টেম:</span>
+              <span class="fw-bold text-success">LandGuard AI v1.0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Overall Risk Evaluation Score Box -->
+        <div class="p-3 mb-4 rounded d-flex justify-content-between align-items-center" id="scoreBannerBox" style="background-color: #FDE8E8; border: 1px solid #F5A9A9;">
+          <div>
+            <div class="fw-bold" style="font-size: 1.1rem; color: #14213D;" data-i18n="result.score_card_title">ঝুঁকির সামগ্রিক পরিমাপ</div>
+            <div class="text-muted" style="font-size: 0.85rem;">কৃত্রিম বুদ্ধিমত্তা বিশ্লেষিত জালিয়াতি ও অসঙ্গতি সম্ভাবনা স্কোর</div>
+          </div>
+          <div class="text-end d-flex align-items-center gap-3">
+            <div class="text-end">
+              <span class="font-mono fw-bold" style="font-size: 2.2rem; line-height: 1;" id="repScore">৬৫</span>
+              <span class="text-muted" style="font-size: 0.85rem;">/১০০</span>
+            </div>
+            <span class="risk-badge" id="repBadge" style="font-size: 0.95rem; padding: 6px 14px;">
+              <span id="repBadgeIcon">🔴</span>
+              <span id="repBadgeText">উচ্চ ঝুঁকি</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Identified Inconsistencies -->
+        <div class="mb-4">
+          <h2 class="h5 mb-2 pb-1 border-bottom" style="color: #0B2545;" data-i18n="result.reasons_title">চিহ্নিত কারণ ও অসঙ্গতির ব্যাখ্যা</h2>
+          <div id="repReasonsList" class="d-flex flex-column gap-2" style="font-size: 0.9rem;">
+            <!-- Reasons populated here -->
+          </div>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="mb-4">
+          <h2 class="h5 mb-2 pb-1 border-bottom" style="color: #0B2545;" data-i18n="result.comparison_title">মাঠপর্যায়ের তথ্য বনাম রেফারেন্স রেকর্ডের তুলনা</h2>
+          <table class="table table-bordered table-sm comparison-table mb-0" style="font-size: 0.85rem;">
+            <thead class="table-light">
+              <tr>
+                <th>তথ্য ক্ষেত্র</th>
+                <th>আপলোডকৃত দলিলের তথ্য</th>
+                <th>রেফারেন্স সরকারি রেকর্ড</th>
+                <th>যাচাই ফলাফল</th>
+              </tr>
+            </thead>
+            <tbody id="repTableBody">
+              <!-- Comparison rows -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Ownership Sequence Summary -->
+        <div class="mb-4">
+          <h2 class="h5 mb-2 pb-1 border-bottom" style="color: #0B2545;" data-i18n="result.timeline_title">মালিকানা হস্তান্তরের ঐতিহাসিক ধারা (Ownership Chain)</h2>
+          <div id="repTimelineSummary" style="font-size: 0.85rem;">
+            <!-- Timeline summary -->
+          </div>
+        </div>
+
+        <!-- Mandatory Disclaimer Box -->
+        <div class="p-3 mb-4 rounded" style="background-color: #FFF9E6; border: 1px solid #F7D57F; font-size: 0.8rem; line-height: 1.5;">
+          <div class="fw-bold mb-1" style="color: #8C6200;">⚠️ আইনি সতর্কতা ও প্রোটোটাইপ ঘোষণা (Legal Disclaimer):</div>
+          <div class="mb-1" style="color: #5C4100;">
+            <strong>বাংলা:</strong> এটি একটি প্রোটোটাইপ, যা কৃত্রিম (সিনথেটিক) ভূমি রেকর্ড ব্যবহার করে। ঝুঁকির স্কোর সম্ভাব্য অসঙ্গতি নির্দেশ করে; এটি জালিয়াতি বা আইনি মালিকানার প্রমাণ নয়।
+          </div>
+          <div style="color: #5C4100;">
+            <strong>English:</strong> Prototype using synthetic land records. Risk score indicates potential inconsistencies, not proof of fraud or legal ownership.
+          </div>
+        </div>
+
+        <!-- Signature & Seal -->
+        <div class="row pt-4 mt-4 border-top align-items-end" style="border-color: #ced4da !important;">
+          <div class="col-6 text-center">
+            <div style="display: inline-block; border: 2px dashed #0B2545; border-radius: 50%; width: 90px; height: 90px; padding: 12px; font-size: 0.65rem; color: #0B2545; text-transform: uppercase; font-weight: 700; line-height: 1.2;">
+              LandGuard AI<br>★ VERIFIED ★<br>PROTOTYPE<br>2026
+            </div>
+            <div class="text-muted mt-1" style="font-size: 0.75rem;" data-i18n="report.signature_seal">স্বয়ংক্রিয় ডিজিটাল প্রত্যয়ন সিল</div>
+          </div>
+          <div class="col-6 text-center">
+            <div class="fw-bold font-mono" style="border-bottom: 1px solid #000; padding-bottom: 4px; display: inline-block; min-width: 180px;">
+              SYSTEM GENERATED
+            </div>
+            <div class="text-muted mt-1" style="font-size: 0.75rem;">দায়িত্বপ্রাপ্ত কর্মকর্তার ডিজিটাল স্বাক্ষর</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <script type="module">
+    import { initAppShell } from '/js/shell.js';
+    import { auth } from '/js/auth.js';
+    import { api } from '/js/api.js';
+    import { formatNumber, t } from '/js/i18n.js';
+
+    // Route guard
+    const user = await auth.requireAuth();
+    await initAppShell();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const verificationId = urlParams.get('id') || '3';
+
+    const backBtn = document.getElementById('backBtn');
+    const printBtn = document.getElementById('printBtn');
+    backBtn.href = `/result.html?id=${verificationId}`;
+
+    printBtn.addEventListener('click', () => {
+      window.print();
+    });
+
+    async function loadReport() {
+      const res = await api.verifications.getReport(verificationId);
+      if (res.ok && res.data) {
+        renderReportData(res.data);
+      }
+    }
+
+    function renderReportData(data) {
+      document.getElementById('repCode').textContent = data.report_code || "LG-2026-00412";
+      document.getElementById('repDocNo').textContent = data.document_no || (data.extracted ? data.extracted.document_no : "D-2026-0041");
+      document.getElementById('repDocType').textContent = data.document_type || "বিক্রয় কবলা দলিল";
+      document.getElementById('repDate').textContent = data.uploaded_at || new Date().toISOString().substring(0, 19).replace('T', ' ');
+
+      // Score and Badge
+      const scoreEl = document.getElementById('repScore');
+      const badgeEl = document.getElementById('repBadge');
+      const badgeIcon = document.getElementById('repBadgeIcon');
+      const badgeText = document.getElementById('repBadgeText');
+      const scoreBanner = document.getElementById('scoreBannerBox');
+
+      scoreEl.textContent = formatNumber(data.risk_score);
+
+      if (data.risk_level === 'HIGH') {
+        badgeEl.className = 'risk-badge risk-badge--high';
+        badgeIcon.textContent = '🔴';
+        badgeText.textContent = t('risk_levels.HIGH');
+        scoreBanner.style.backgroundColor = '#FDE8E8';
+        scoreBanner.style.borderColor = '#F5A9A9';
+      } else if (data.risk_level === 'MEDIUM') {
+        badgeEl.className = 'risk-badge risk-badge--medium';
+        badgeIcon.textContent = '🟡';
+        badgeText.textContent = t('risk_levels.MEDIUM');
+        scoreBanner.style.backgroundColor = '#FFF4D6';
+        scoreBanner.style.borderColor = '#F7D57F';
+      } else {
+        badgeEl.className = 'risk-badge risk-badge--low';
+        badgeIcon.textContent = '🟢';
+        badgeText.textContent = t('risk_levels.LOW');
+        scoreBanner.style.backgroundColor = '#E6F6EC';
+        scoreBanner.style.borderColor = '#A3E0BD';
+      }
+
+      // Reasons list
+      const reasonsList = document.getElementById('repReasonsList');
+      if (!data.reasons || data.reasons.length === 0) {
+        reasonsList.innerHTML = `<div class="p-2 text-success">✓ কোনো অসঙ্গতি পাওয়া যায়নি (No inconsistencies found).</div>`;
+      } else {
+        reasonsList.innerHTML = data.reasons.map(r => `
+          <div class="d-flex justify-content-between align-items-center p-2 rounded" style="background: #f8fafc; border: 1px solid #e2e8f0;">
+            <div>⚠️ ${t(`reasons.${r.code}`, r.params || {})}</div>
+            <span class="font-mono fw-bold text-danger">+${formatNumber(r.points)}</span>
+          </div>
+        `).join('');
+      }
+
+      // Comparison table
+      const fields = [
+        { key: 'owner', label: 'মালিকের নাম (Owner)' },
+        { key: 'khatian', label: 'খতিয়ান নম্বর (Khatian)' },
+        { key: 'dag', label: 'দাগ নম্বর (Dag)' },
+        { key: 'area', label: 'জমির পরিমাণ (Area)', format: v => `${formatNumber(v)} শতক` },
+        { key: 'mouza', label: 'মৌজা (Mouza)' },
+        { key: 'district', label: 'জেলা (District)' }
+      ];
+
+      const tbody = document.getElementById('repTableBody');
+      tbody.innerHTML = fields.map(f => {
+        const item = (data.field_results && data.field_results[f.key]) || {
+          status: 'match',
+          uploaded: data.extracted ? data.extracted[f.key] : '-',
+          record: data.reference ? data.reference[f.key] : '-'
+        };
+
+        let statusText = '✓ মিল পাওয়া গেছে (Match)';
+        let statusStyle = 'color: #1E9E5A; font-weight: 600;';
+        if (item.status === 'mismatch') {
+          statusText = '❌ গরমিল (Mismatch)';
+          statusStyle = 'color: #D64545; font-weight: 600;';
+        } else if (item.status === 'partial') {
+          statusText = '⚠️ আংশিক মিল (Partial)';
+          statusStyle = 'color: #E0A100; font-weight: 600;';
+        }
+
+        const upVal = f.format ? f.format(item.uploaded) : formatNumber(item.uploaded);
+        const recVal = f.format ? f.format(item.record) : formatNumber(item.record);
+
+        return `
+          <tr>
+            <td class="fw-semibold">${f.label}</td>
+            <td class="font-mono">${upVal || '-'}</td>
+            <td class="font-mono">${recVal || '-'}</td>
+            <td style="${statusStyle}">${statusText}</td>
+          </tr>
+        `;
+      }).join('');
+
+      // Timeline Summary
+      const timelineSummary = document.getElementById('repTimelineSummary');
+      const history = data.ownership_history || [];
+      timelineSummary.innerHTML = `
+        <div class="d-flex flex-column gap-1">
+          ${history.map((h, i) => {
+            if (h.is_gap) {
+              return `<div class="p-1 rounded text-danger" style="background: #FDE8E8; font-weight: 600;">⚠️ ধারাবাহিকতা বিচ্ছিন্ন: ${h.note || 'রেকর্ড অনুপস্থিত'}</div>`;
+            }
+            return `<div>${formatNumber(i + 1)}. ${h.previous_owner || 'পূর্বতন মালিক'} ➔ <strong>${h.new_owner}</strong> (${h.transfer_date || ''}) [${h.transfer_type}]</div>`;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    await loadReport();
+  </script>
+</body>
+</html>

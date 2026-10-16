@@ -1,0 +1,21 @@
+# Environment and secrets
+.env
+*.env.local
+
+# Storage and uploads
+backend/storage/uploads/*
+!backend/storage/uploads/.gitkeep
+
+# Dependencies
+vendor/
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+env/
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

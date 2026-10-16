@@ -1,0 +1,593 @@
+/**
+ * LandGuard AI - Component Library Styles (components.css)
+ * Matches design.md specifications exactly.
+ */
+
+/* ==========================================================================
+   Buttons (Touch Target >= 44px)
+   ========================================================================== */
+.btn-custom {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: 0 var(--space-4);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btn-custom:disabled,
+.btn-custom[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn-primary-custom {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+}
+
+.btn-primary-custom:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  color: #ffffff;
+}
+
+.btn-secondary-custom {
+  background-color: var(--color-secondary);
+  color: #ffffff;
+  border-color: var(--color-secondary);
+}
+
+.btn-secondary-custom:hover:not(:disabled) {
+  background-color: var(--color-secondary-hover);
+  border-color: var(--color-secondary-hover);
+  color: #ffffff;
+}
+
+.btn-outline-custom {
+  background-color: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .btn-outline-custom {
+  color: var(--color-text);
+}
+
+.btn-outline-custom:hover:not(:disabled) {
+  background-color: var(--color-surface-alt);
+  border-color: var(--color-text-muted);
+}
+
+.btn-ghost-custom {
+  background-color: transparent;
+  color: var(--color-text);
+  border-color: transparent;
+}
+
+.btn-ghost-custom:hover:not(:disabled) {
+  background-color: var(--color-surface-alt);
+}
+
+/* ==========================================================================
+   Cards
+   ========================================================================== */
+.card-custom {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.card-custom--interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ==========================================================================
+   Forms & Inputs (Touch Target >= 44px)
+   ========================================================================== */
+.form-group-custom {
+  margin-bottom: var(--space-4);
+  text-align: left;
+}
+
+.form-label-custom {
+  display: block;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: var(--space-2);
+  color: var(--color-text);
+}
+
+.form-label-custom .required-star {
+  color: var(--risk-high);
+  margin-left: 2px;
+}
+
+.form-control-custom,
+.form-select-custom {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px var(--space-3);
+  font-family: inherit;
+  font-size: 1rem;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-control-custom:focus,
+.form-select-custom:focus {
+  border-color: var(--color-focus);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(29, 111, 224, 0.18);
+}
+
+.form-control-custom.is-invalid {
+  border-color: var(--risk-high);
+  background-color: var(--risk-high-bg);
+}
+
+.form-error-feedback {
+  display: none;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 0.875rem;
+  color: var(--risk-high);
+  margin-top: var(--space-1);
+  line-height: 1.4;
+}
+
+.form-error-feedback.active {
+  display: flex;
+}
+
+/* ==========================================================================
+   Risk Badges & Risk Styling (Strictly reserved for risk)
+   ========================================================================== */
+.risk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.4;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.risk-badge--low {
+  background-color: var(--risk-low-bg);
+  color: var(--risk-low);
+  border-color: var(--risk-low-border);
+}
+
+.risk-badge--medium {
+  background-color: var(--risk-medium-bg);
+  color: var(--risk-medium);
+  border-color: var(--risk-medium-border);
+}
+
+.risk-badge--high {
+  background-color: var(--risk-high-bg);
+  color: var(--risk-high);
+  border-color: var(--risk-high-border);
+}
+
+/* Risk Indicator Dot */
+.risk-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.risk-dot--low { background-color: var(--risk-low); }
+.risk-dot--medium { background-color: var(--risk-medium); }
+.risk-dot--high { background-color: var(--risk-high); }
+
+/* ==========================================================================
+   KPI Cards (Dashboard)
+   ========================================================================== */
+.kpi-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.kpi-card__label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-1);
+}
+
+.kpi-card__value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.1;
+}
+
+.kpi-card__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-alt);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Comparison Table
+   ========================================================================== */
+.table-responsive-custom {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.comparison-table th {
+  background-color: var(--color-surface-alt);
+  color: var(--color-text);
+  font-weight: 600;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 2px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.comparison-table td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+.comparison-table tbody tr:nth-child(even) {
+  background-color: rgba(238, 243, 248, 0.4);
+}
+
+[data-theme="dark"] .comparison-table tbody tr:nth-child(even) {
+  background-color: rgba(26, 48, 71, 0.4);
+}
+
+.status-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+}
+
+.status-cell--match {
+  background-color: var(--risk-low-bg);
+  color: var(--risk-low);
+}
+
+.status-cell--partial {
+  background-color: var(--risk-medium-bg);
+  color: var(--risk-medium);
+}
+
+.status-cell--mismatch {
+  background-color: var(--risk-high-bg);
+  color: var(--risk-high);
+}
+
+/* ==========================================================================
+   Risk Gauge (SVG Semicircle Animation)
+   ========================================================================== */
+.risk-gauge-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 260px;
+  margin: 0 auto;
+}
+
+.risk-gauge-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.risk-gauge-track {
+  fill: none;
+  stroke: var(--color-border);
+  stroke-width: 18;
+  stroke-linecap: round;
+}
+
+.risk-gauge-bar {
+  fill: none;
+  stroke-width: 18;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s ease-out, stroke 0.3s ease;
+}
+
+.risk-gauge-value {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.risk-gauge-number {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+  display: block;
+}
+
+.risk-gauge-scale {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  display: block;
+  margin-top: 2px;
+}
+
+.risk-gauge-label {
+  margin-top: var(--space-2);
+  text-align: center;
+}
+
+/* ==========================================================================
+   Ownership Chain Timeline
+   ========================================================================== */
+.ownership-timeline {
+  position: relative;
+  padding-left: 32px;
+  margin: var(--space-4) 0;
+}
+
+.ownership-timeline::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 11px;
+  width: 2px;
+  background-color: var(--color-border);
+}
+
+.timeline-node {
+  position: relative;
+  margin-bottom: var(--space-4);
+}
+
+.timeline-node:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -32px;
+  top: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-secondary);
+  z-index: 2;
+}
+
+.timeline-node--gap .timeline-marker {
+  border: 2px dashed var(--risk-high);
+  background-color: var(--risk-high-bg);
+  color: var(--risk-high);
+}
+
+.timeline-node--gap .timeline-content {
+  border: 1px dashed var(--risk-high-border);
+  background-color: var(--risk-high-bg);
+}
+
+.timeline-content {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ==========================================================================
+   Alerts & Banners
+   ========================================================================== */
+.alert-custom {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.alert-info-custom {
+  background-color: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.alert-disclaimer {
+  background-color: rgba(233, 185, 73, 0.12);
+  border: 1px solid rgba(233, 185, 73, 0.4);
+  color: var(--color-text);
+}
+
+/* ==========================================================================
+   Navbar & Header
+   ========================================================================== */
+.navbar-custom {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  padding: var(--space-3) 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.navbar-brand-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.navbar-brand-tagline {
+  font-size: 0.75rem;
+  color: #a7c5eb;
+  font-weight: 400;
+  display: block;
+}
+
+.nav-link-custom {
+  color: #dbe4ef;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.nav-link-custom:hover,
+.nav-link-custom.active {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Prototype Simulator Pill */
+.sim-pill {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  background: rgba(233, 185, 73, 0.25);
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.footer-custom {
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-6) 0 var(--space-4) 0;
+  margin-top: auto;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   Watermark & Synthetic Badges
+   ========================================================================== */
+.watermark-synthetic {
+  position: relative;
+  overflow: hidden;
+}
+
+.watermark-synthetic::after {
+  content: "SYNTHETIC / SAMPLE - NOT A REAL DOCUMENT";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-25deg);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: rgba(11, 37, 69, 0.12);
+  pointer-events: none;
+  white-space: nowrap;
+  letter-spacing: 2px;
+  z-index: 1;
+}
+
+[data-theme="dark"] .watermark-synthetic::after {
+  color: rgba(255, 255, 255, 0.12);
+}
+
+/* ==========================================================================
+   Loading Overlay & Empty State
+   ========================================================================== */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--color-border);
+  border-top-color: var(--color-secondary);
+  border-radius: 50%;
+  animation: spinner-rotate 0.8s linear infinite;
+}
+
+@keyframes spinner-rotate {
+  to { transform: rotate(360deg); }
+}
+
+.empty-state {
+  text-align: center;
+  padding: var(--space-7) var(--space-4);
+  color: var(--color-text-muted);
+}
+
+.empty-state__icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--space-3) auto;
+  color: var(--color-text-muted);
+  opacity: 0.6;
+}

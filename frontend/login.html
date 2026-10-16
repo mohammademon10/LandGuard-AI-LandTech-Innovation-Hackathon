@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>লগইন | LandGuard AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">মূল বিষয়বস্তুতে যান</a>
+
+  <!-- Header / Navigation -->
+  <header class="navbar-custom">
+    <div class="container-lg-custom d-flex justify-content-between align-items-center">
+      <a href="/index.html" class="navbar-brand-wrap">
+        <span style="font-size: 1.6rem;">🛡️</span>
+        <div>
+          <span class="navbar-brand-title">LandGuard AI</span>
+          <span class="navbar-brand-tagline" data-i18n="app.tagline">কেনার আগে যাচাই করুন।</span>
+        </div>
+      </a>
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn-custom btn-ghost-custom text-white theme-toggle-btn" aria-label="Toggle theme">
+          <span class="theme-toggle-icon">🌙</span>
+        </button>
+        <button class="btn-custom btn-outline-custom text-white border-white lang-toggle-btn" style="min-height: 36px; padding: 0 12px; font-size: 0.85rem;">
+          English
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main" class="main-content py-5">
+    <div class="container-lg-custom">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-5">
+          <div class="card-custom">
+            <div class="text-center mb-4">
+              <span style="font-size: 2.5rem; display: inline-block; margin-bottom: 8px;">🔐</span>
+              <h1 class="h2 mb-1" data-i18n="auth.login_title">অ্যাকাউন্টে প্রবেশ করুন</h1>
+              <p class="text-muted-custom" data-i18n="auth.login_subtitle">আপনার নিবন্ধিত ইমেইল ও পাসওয়ার্ড দিয়ে লগইন করুন</p>
+            </div>
+
+            <!-- Error Banner -->
+            <div id="loginAlert" class="alert-custom" style="display: none; background-color: var(--risk-high-bg); border: 1px solid var(--risk-high-border); color: var(--risk-high);" role="alert">
+              <span>⚠️</span>
+              <span id="loginAlertMsg">ইমেইল বা পাসওয়ার্ড ভুল হয়েছে।</span>
+            </div>
+
+            <form id="loginForm" novalidate>
+              <div class="form-group-custom">
+                <label for="emailInput" class="form-label-custom">
+                  <span data-i18n="auth.email">ইমেইল ঠিকানা</span>
+                  <span class="required-star">*</span>
+                </label>
+                <input type="email" id="emailInput" class="form-control-custom" placeholder="name@example.com" required autocomplete="email">
+                <div class="form-error-feedback" id="emailError">
+                  <span>❌</span> <span data-i18n="auth.error.missing_fields">সঠিক ইমেইল ঠিকানা দিন</span>
+                </div>
+              </div>
+
+              <div class="form-group-custom">
+                <label for="passwordInput" class="form-label-custom">
+                  <span data-i18n="auth.password">পাসওয়ার্ড</span>
+                  <span class="required-star">*</span>
+                </label>
+                <input type="password" id="passwordInput" class="form-control-custom" placeholder="••••••••" required autocomplete="current-password">
+                <div class="form-error-feedback" id="passwordError">
+                  <span>❌</span> <span data-i18n="auth.error.missing_fields">পাসওয়ার্ড দিন</span>
+                </div>
+              </div>
+
+              <button type="submit" id="submitBtn" class="btn-custom btn-primary-custom w-100 mt-2 mb-3">
+                <span id="btnSpinner" class="spinner-border spinner-border-sm me-2" style="display: none;" role="status"></span>
+                <span data-i18n="auth.login_btn">লগইন করুন</span>
+              </button>
+            </form>
+
+            <div class="text-center mb-4">
+              <span class="text-muted-custom" data-i18n="auth.no_account">নতুন ব্যবহারকারী?</span>
+              <a href="/register.html" class="fw-semibold ms-1" style="color: var(--color-secondary);" data-i18n="auth.register_title">নিবন্ধন করুন</a>
+            </div>
+
+            <!-- 1-Click Demo Accounts -->
+            <div style="background-color: var(--color-surface-alt); border-radius: var(--radius-md); padding: 16px; border: 1px dashed var(--color-border);">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="fw-semibold" style="font-size: 0.85rem;" data-i18n="auth.demo_accounts_title">টেস্ট ও ডেমো অ্যাকাউন্টে এক ক্লিকে লগইন:</span>
+                <span class="sim-pill">Mock Auth</span>
+              </div>
+              <div class="d-flex flex-column gap-2">
+                <button type="button" id="demoCitizenBtn" class="btn-custom btn-outline-custom w-100 justify-content-start" style="font-size: 0.85rem; min-height: 38px;">
+                  <span data-i18n="auth.demo_citizen_btn">👤 নাগরিক হিসেবে লগইন (Citizen Demo)</span>
+                </button>
+                <button type="button" id="demoAdminBtn" class="btn-custom btn-outline-custom w-100 justify-content-start" style="font-size: 0.85rem; min-height: 38px;">
+                  <span data-i18n="auth.demo_admin_btn">🛡️ অ্যাডমিন হিসেবে লগইন (Admin Demo)</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-custom">
+    <div class="container-lg-custom">
+      <div class="alert-custom alert-disclaimer mb-3">
+        <span style="font-size: 1.25rem;">ℹ️</span>
+        <div>
+          <div class="fw-bold mb-1" data-i18n="disclaimer.title">গুরুত্বপূর্ণ আইনি সতর্কতা ও প্রোটোটাইপ ঘোষণা</div>
+          <div data-i18n="disclaimer.text">এটি একটি প্রোটোটাইপ, যা কৃত্রিম (সিনথেটিক) ভূমি রেকর্ড ব্যবহার করে। ঝুঁকির স্কোর সম্ভাব্য অসঙ্গতি নির্দেশ করে; এটি জালিয়াতি বা আইনি মালিকানার প্রমাণ নয়।</div>
+        </div>
+      </div>
+      <div class="text-center" data-i18n="disclaimer.footer_note">
+        ল্যান্ডটেক ইনোভেশন হ্যাকাথন ২০২৬ · দল: প্রোটন (PROTON)
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initAppShell } from '/js/shell.js';
+    import { api } from '/js/api.js';
+    import { t } from '/js/i18n.js';
+
+    await initAppShell();
+
+    const form = document.getElementById('loginForm');
+    const emailInput = document.getElementById('emailInput');
+    const passwordInput = document.getElementById('passwordInput');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnSpinner = document.getElementById('btnSpinner');
+    const loginAlert = document.getElementById('loginAlert');
+    const loginAlertMsg = document.getElementById('loginAlertMsg');
+    const emailError = document.getElementById('emailError');
+    const passwordError = document.getElementById('passwordError');
+
+    const demoCitizenBtn = document.getElementById('demoCitizenBtn');
+    const demoAdminBtn = document.getElementById('demoAdminBtn');
+
+    // Parse redirect param if any
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectUrl = urlParams.get('redirect') ? decodeURIComponent(urlParams.get('redirect')) : '/dashboard.html';
+
+    async function executeLogin(email, password) {
+      loginAlert.style.display = 'none';
+      submitBtn.disabled = true;
+      btnSpinner.style.display = 'inline-block';
+
+      const res = await api.auth.login({ email, password });
+
+      submitBtn.disabled = false;
+      btnSpinner.style.display = 'none';
+
+      if (res.ok) {
+        window.location.href = redirectUrl;
+      } else {
+        loginAlertMsg.textContent = t(res.error ? res.error.message_key : 'auth.error.invalid_credentials');
+        loginAlert.style.display = 'flex';
+      }
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      let hasError = false;
+
+      if (!emailInput.value.trim() || !emailInput.value.includes('@')) {
+        emailInput.classList.add('is-invalid');
+        emailError.classList.add('active');
+        hasError = true;
+      } else {
+        emailInput.classList.remove('is-invalid');
+        emailError.classList.remove('active');
+      }
+
+      if (!passwordInput.value) {
+        passwordInput.classList.add('is-invalid');
+        passwordError.classList.add('active');
+        hasError = true;
+      } else {
+        passwordInput.classList.remove('is-invalid');
+        passwordError.classList.remove('active');
+      }
+
+      if (!hasError) {
+        await executeLogin(emailInput.value.trim(), passwordInput.value);
+      }
+    });
+
+    demoCitizenBtn.addEventListener('click', () => {
+      emailInput.value = 'citizen@landguard.gov.bd';
+      passwordInput.value = 'Password123!';
+      executeLogin('citizen@landguard.gov.bd', 'Password123!');
+    });
+
+    demoAdminBtn.addEventListener('click', () => {
+      emailInput.value = 'admin@landguard.gov.bd';
+      passwordInput.value = 'AdminPassword123!';
+      executeLogin('admin@landguard.gov.bd', 'AdminPassword123!');
+    });
+  </script>
+</body>
+</html>

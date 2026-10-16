@@ -1,0 +1,179 @@
+/**
+ * LandGuard AI - Base Styles (base.css)
+ * Follows design.md rules for Bangla-first typography and accessibility.
+ */
+
+/* Box sizing and scroll reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-bn);
+  line-height: var(--line-height-bn);
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+/* Language font switching */
+html[lang="bn"] body {
+  font-family: var(--font-bn);
+  line-height: var(--line-height-bn);
+  letter-spacing: 0; /* Never track Bangla */
+}
+
+html[lang="en"] body {
+  font-family: var(--font-en);
+  line-height: var(--line-height-en);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: var(--space-3);
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+html[lang="bn"] h1, 
+html[lang="bn"] h2, 
+html[lang="bn"] h3, 
+html[lang="bn"] h4 {
+  font-weight: 600; /* Bangla looks best at 600-700 */
+}
+
+html[lang="en"] h1, 
+html[lang="en"] h2, 
+html[lang="en"] h3 {
+  font-family: var(--font-heading-en);
+}
+
+/* Display scale */
+.display-hero {
+  font-size: 2.25rem;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .display-hero {
+    font-size: 3.5rem;
+  }
+}
+
+h1, .h1 {
+  font-size: 1.875rem;
+  line-height: 1.4;
+}
+@media (min-width: 768px) {
+  h1, .h1 { font-size: 2.5rem; }
+}
+
+h2, .h2 {
+  font-size: 1.625rem;
+  line-height: 1.45;
+}
+@media (min-width: 768px) {
+  h2, .h2 { font-size: 2rem; }
+}
+
+h3, .h3 {
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+@media (min-width: 768px) {
+  h3, .h3 { font-size: 1.5rem; }
+}
+
+h4, .h4 {
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+@media (min-width: 768px) {
+  h4, .h4 { font-size: 1.25rem; }
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: var(--space-4);
+}
+
+.text-lead {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--color-text);
+}
+
+.text-muted-custom {
+  color: var(--color-text-muted) !important;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+  letter-spacing: -0.02em;
+}
+
+/* Accessibility & Focus Rings */
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Skip link for keyboard accessibility */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  z-index: 9999;
+  text-decoration: none;
+  font-weight: 600;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+/* Container constraints */
+.container-lg-custom {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+/* Layout helpers */
+.main-content {
+  flex: 1 0 auto;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

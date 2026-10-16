@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LandGuard AI - কেনার আগে যাচাই করুন | ভূমি দলিল যাচাইকরণ প্ল্যাটফর্ম</title>
+  <meta name="description" content="বাংলা-প্রথম এআইনির্ভর ভূমি দলিল যাচাইকরণ ও জালিয়াতি ঝুঁকি সনাক্তকরণ প্রোটোটাইপ। ল্যান্ডটেক ইনোভেশন হ্যাকাথন ২০২৬, টিম প্রোটন।">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Poppins:wght@600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <style>
+    .hero-section {
+      background: radial-gradient(circle at 80% 20%, rgba(19, 165, 121, 0.12) 0%, rgba(11, 37, 69, 0.02) 70%), var(--color-bg);
+      padding: var(--space-7) 0 var(--space-8) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .feature-icon-box {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-md);
+      background-color: var(--color-surface-alt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      margin-bottom: var(--space-3);
+    }
+    .step-card {
+      position: relative;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4);
+      height: 100%;
+    }
+    .step-num {
+      position: absolute;
+      top: -14px;
+      left: 20px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">মূল বিষয়বস্তুতে যান</a>
+
+  <!-- Header / Navigation -->
+  <header class="navbar-custom">
+    <div class="container-lg-custom d-flex justify-content-between align-items-center">
+      <a href="/index.html" class="navbar-brand-wrap">
+        <span style="font-size: 1.6rem;">🛡️</span>
+        <div>
+          <span class="navbar-brand-title">LandGuard AI</span>
+          <span class="navbar-brand-tagline" data-i18n="app.tagline">কেনার আগে যাচাই করুন।</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="d-none d-md-flex align-items-center gap-1">
+        <a href="/index.html" class="nav-link-custom active" data-nav="home" data-i18n="nav.home">নীড়পাতা</a>
+        <a href="/dashboard.html" class="nav-link-custom" data-nav="dashboard" data-i18n="nav.dashboard">ড্যাশবোর্ড</a>
+        <a href="/upload.html" class="nav-link-custom" data-nav="upload" data-i18n="nav.upload">নথি যাচাই</a>
+        <a href="/admin/index.html" class="nav-link-custom nav-admin-only" style="display: none;" data-nav="admin" data-i18n="nav.admin">অ্যাডমিন</a>
+      </nav>
+
+      <!-- User & Utilities -->
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn-custom btn-ghost-custom text-white theme-toggle-btn" aria-label="Toggle theme">
+          <span class="theme-toggle-icon">🌙</span>
+        </button>
+        <button class="btn-custom btn-outline-custom text-white border-white lang-toggle-btn" style="min-height: 36px; padding: 0 12px; font-size: 0.85rem;">
+          English
+        </button>
+
+        <!-- Guest Links -->
+        <div class="nav-guest-only d-flex align-items-center gap-2">
+          <a href="/login.html" class="btn-custom btn-ghost-custom text-white" style="min-height: 36px; padding: 0 12px; font-size: 0.85rem;" data-i18n="nav.login">লগইন</a>
+          <a href="/register.html" class="btn-custom btn-secondary-custom" style="min-height: 36px; padding: 0 14px; font-size: 0.85rem;" data-i18n="nav.register">নিবন্ধন</a>
+        </div>
+
+        <!-- Authenticated Links -->
+        <div class="nav-auth-only d-none align-items-center gap-2 ps-2 border-start border-secondary">
+          <a href="/dashboard.html" class="btn-custom btn-secondary-custom" style="min-height: 36px; padding: 0 12px; font-size: 0.85rem;">
+            <span>📊</span> <span data-i18n="nav.dashboard">ড্যাশবোর্ড</span>
+          </a>
+          <button class="btn-custom btn-ghost-custom text-white logout-trigger" title="লগআউট" aria-label="লগআউট">
+            <span>🚪</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main" class="main-content">
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container-lg-custom">
+        <div class="row align-items-center g-5">
+          <div class="col-12 col-lg-7">
+            <span class="badge mb-3 px-3 py-2" style="background-color: var(--color-surface); border: 1px solid var(--color-border); color: var(--color-primary); font-size: 0.85rem; border-radius: var(--radius-pill);">
+              🚀 ল্যান্ডটেক ইনোভেশন হ্যাকাথন ২০২৬ · দল: প্রোটন (PROTON)
+            </span>
+            <h1 class="display-hero mb-3" style="color: var(--color-primary);">
+              ভূমি ক্রয়ের পূর্বে দলিলের সঠিকতা ও জালিয়াতি ঝুঁকি নিশ্চিত করুন
+            </h1>
+            <p class="text-lead text-muted-custom mb-4" style="max-width: 620px;">
+              বাংলা সাব-রেজিস্ট্রি দলিলের স্ক্যান কপি আপলোড করুন। কৃত্রিম বুদ্ধিমত্তা ও ডিজিটাল রেফারেন্স খতিয়ানের সাহায্যে নিমেষেই খুঁজে বের করুন নামের গরমিল, জমির পরিমাণের পার্থক্য এবং মালিকানা ধারার বিচ্ছিন্নতা।
+            </p>
+
+            <div class="d-flex flex-wrap gap-3 mb-4">
+              <a href="/upload.html" class="btn-custom btn-secondary-custom" style="font-size: 1.1rem; padding: 0 24px;">
+                <span>📤</span> <span data-i18n="upload.title">নথি যাচাই শুরু করুন</span>
+              </a>
+              <a href="#demoPreview" class="btn-custom btn-outline-custom" style="font-size: 1.1rem; padding: 0 20px;">
+                <span>🔍</span> <span>ডেমো ফলাফল দেখুন</span>
+              </a>
+            </div>
+
+            <!-- Trust Points -->
+            <div class="d-flex flex-wrap gap-4 text-muted-custom pt-3 border-top border-light-subtle" style="font-size: 0.9rem;">
+              <div>✓ শতভাগ বাংলা ভাষা উপযোগী</div>
+              <div>✓ ব্যাখ্যাযোগ্য এআই ঝুঁকি স্কোর</div>
+              <div>✓ প্রিন্ট-রেডি যাচাই প্রতিবেদন</div>
+            </div>
+          </div>
+
+          <!-- Hero Visual Card (Interactive Mini Result Preview) -->
+          <div class="col-12 col-lg-5">
+            <div class="card-custom watermark-synthetic p-4" style="box-shadow: var(--shadow-lg);">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="badge bg-danger-subtle text-danger border border-danger-subtle fw-semibold">ক্যানোনিকাল ডেমো</span>
+                <span class="font-mono text-muted-custom" style="font-size: 0.8rem;">LG-2026-00412</span>
+              </div>
+              <h2 class="h5 mb-1">মোঃ রহিম - সাফ কবলা দলিল</h2>
+              <p class="text-muted-custom mb-3" style="font-size: 0.8rem;">গাজীপুর • খতিয়ান ১০২৪৫ • দাগ ৪৫৬</p>
+
+              <!-- Mini Gauge Preview -->
+              <div class="text-center py-2 mb-3 rounded" style="background-color: var(--color-surface-alt);">
+                <div class="font-mono fw-bold text-danger" style="font-size: 2.8rem; line-height: 1;">৬৫<span style="font-size: 1rem; color: var(--color-text-muted);">/১০০</span></div>
+                <span class="risk-badge risk-badge--high mt-1">
+                  <span>🔴</span> <span>উচ্চ ঝুঁকি (High Risk)</span>
+                </span>
+              </div>
+
+              <div class="d-flex flex-column gap-2 mb-3" style="font-size: 0.85rem;">
+                <div class="d-flex justify-content-between align-items-center p-2 rounded" style="background: var(--risk-high-bg); color: var(--risk-high);">
+                  <span>⚠️ মালিকের নাম অমিল (Md. Rahim vs Md. Karim)</span>
+                  <span class="font-mono fw-bold">+৩৫</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center p-2 rounded" style="background: var(--risk-high-bg); color: var(--risk-high);">
+                  <span>⚠️ জমির পরিমাপে ২০% গরমিল (১২ বনাম ১০ শতক)</span>
+                  <span class="font-mono fw-bold">+২০</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center p-2 rounded" style="background: var(--risk-high-bg); color: var(--risk-high);">
+                  <span>⚠️ মালিকানা চেইন গ্যাপ (২০১৫ রেকর্ড অনুপস্থিত)</span>
+                  <span class="font-mono fw-bold">+১০</span>
+                </div>
+              </div>
+
+              <a href="/result.html?id=3" class="btn-custom btn-primary-custom w-100" style="min-height: 40px; font-size: 0.9rem;">
+                সম্পূর্ণ ফলাফল ও অডিট বিশ্লেষণ দেখুন →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem Breakdown Section -->
+    <section class="py-5">
+      <div class="container-lg-custom">
+        <div class="text-center mb-5">
+          <h2 class="h2 mb-2">বাংলাদেশের ভূমি ব্যবস্থাপনায় বিদ্যমান প্রধান চ্যালেঞ্জসমূহ</h2>
+          <p class="text-muted-custom mx-auto" style="max-width: 640px;">সাধারণ নাগরিক জমি কেনার সময় প্রায়শই জালিয়াতি ও অসঙ্গতির শিকার হন। ল্যান্ডগার্ড এআই এই ৩টি সংকট সমাধান করে:</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-12 col-md-4">
+            <div class="card-custom h-100">
+              <div class="feature-icon-box" style="color: var(--risk-high);">👤❌</div>
+              <h3 class="h4 mb-2">ভুয়া মালিকানা ও নামের অমিল</h3>
+              <p class="text-muted-custom" style="font-size: 0.95rem;">
+                একই বা ভিন্ন নামের নকল ব্যক্তি সাজিয়ে জাল দলিল তৈরি করা হয়। আমাদের এআই মালিকের নামের বানান ও পূর্ববর্তী রেকর্ডের গভীর মিল বিশ্লেষণ করে।
+              </p>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <div class="card-custom h-100">
+              <div class="feature-icon-box" style="color: var(--risk-medium);">📐⚠️</div>
+              <h3 class="h4 mb-2">জমির পরিমাণের গরমিল ও দাগ জালিয়াতি</h3>
+              <p class="text-muted-custom" style="font-size: 0.95rem;">
+                মৌজা রেকর্ডে থাকা জমির চেয়ে অতিরিক্ত জমি দলিলে দেখিয়ে বিক্রি করা হয়। খতিয়ান ও দাগ নম্বর যাচাইয়ের মাধ্যমে পরিমাণের সামান্যতম অমিলও ধরা পড়ে।
+              </p>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <div class="card-custom h-100">
+              <div class="feature-icon-box" style="color: var(--color-primary);">⛓️❓</div>
+              <h3 class="h4 mb-2">মালিকানা ধারার বিচ্ছিন্নতা (Chain Gap)</h3>
+              <p class="text-muted-custom" style="font-size: 0.95rem;">
+                সিএস, এসএ বা আরএস খতিয়ান থেকে বর্তমান বিক্রেতা পর্যন্ত কোনো একটি নামজারি বা উত্তরাধিকার দলিল গায়েব থাকলে ভবিষ্যতে স্বত্ব নিয়ে মামলা হয়।
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-5" style="background-color: var(--color-surface-alt); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+      <div class="container-lg-custom">
+        <div class="text-center mb-5">
+          <h2 class="h2 mb-2">কীভাবে কাজ করে ল্যান্ডগার্ড এআই?</h2>
+          <p class="text-muted-custom mx-auto" style="max-width: 600px;">মাত্র ৪টি ধাপে সম্পন্ন হয় আধুনিক ভূমি দলিল ক্রস-ভেরিফিকেশন</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="step-card">
+              <div class="step-num">১</div>
+              <div class="mt-2 mb-2" style="font-size: 2rem;">📤</div>
+              <h3 class="h5 mb-2">দলিল আপলোড</h3>
+              <p class="text-muted-custom" style="font-size: 0.85rem;">পিডিএফ বা স্পষ্ট ছবি আপলোড করুন। ফাইলটি সুরক্ষিত এনক্রিপশনে আপলোড হয়।</p>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="step-card">
+              <div class="step-num">২</div>
+              <div class="mt-2 mb-2" style="font-size: 2rem;">🧠</div>
+              <h3 class="h5 mb-2">বাংলা এআই এক্সট্রাকশন</h3>
+              <p class="text-muted-custom" style="font-size: 0.85rem;">টেরেসারেক্ট ও জেমিনি এআই বাংলা হস্তলিপি ও টেক্সট থেকে খতিয়ান, দাগ, নাম নিষ্কাশন করে।</p>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="step-card">
+              <div class="step-num">৩</div>
+              <div class="mt-2 mb-2" style="font-size: 2rem;">⚖️</div>
+              <h3 class="h5 mb-2">ক্রস-ভেরিফিকেশন</h3>
+              <p class="text-muted-custom" style="font-size: 0.85rem;">ডিজিটাল ভূমি ডেটাবেজের খতিয়ান ও দাগের সাথে মাঠপর্যায়ের ডেটা মিলিয়ে দেখা হয়।</p>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="step-card">
+              <div class="step-num">৪</div>
+              <div class="mt-2 mb-2" style="font-size: 2rem;">📊</div>
+              <h3 class="h5 mb-2">ঝুঁকি স্কোর ও প্রত্যয়ন</h3>
+              <p class="text-muted-custom" style="font-size: 0.85rem;">ব্যাখ্যাযোগ্য স্কোর, কারণ তালিকা ও প্রিন্টযোগ্য এ৪ প্রত্যয়ন পত্র ডাউনলোড করুন।</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Risk Scoring Explainer Section -->
+    <section class="py-5">
+      <div class="container-lg-custom">
+        <div class="text-center mb-5">
+          <h2 class="h2 mb-2">ব্যাখ্যাযোগ্য ঝুঁকি পরিমাপ ও পয়েন্ট নির্ধারণ পদ্ধতি</h2>
+          <p class="text-muted-custom mx-auto" style="max-width: 650px;">ল্যান্ডগার্ড এআই কোনো ব্ল্যাক-বক্স মডেল নয়; প্রতিটি পয়েন্টের সুনির্দিষ্ট ব্যাখ্যা ও গাণিতিক ভিত্তি রয়েছে</p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+          <div class="col-12 col-md-4">
+            <div class="card-custom text-center p-4" style="border-top: 4px solid var(--risk-low);">
+              <span class="risk-badge risk-badge--low mb-2" style="font-size: 1rem;">০ - ২৯: নিম্ন ঝুঁকি (LOW) 🟢</span>
+              <p class="text-muted-custom mt-2" style="font-size: 0.9rem;">
+                মালিকের নাম, খতিয়ান, দাগ ও পরিমাণ হুবহু মিলেছে। কোনো ধারাবাহিকতা বিচ্ছিন্নতা পাওয়া যায়নি।
+              </p>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <div class="card-custom text-center p-4" style="border-top: 4px solid var(--risk-medium);">
+              <span class="risk-badge risk-badge--medium mb-2" style="font-size: 1rem;">৩০ - ৫৯: মধ্যম ঝুঁকি (MEDIUM) 🟡</span>
+              <p class="text-muted-custom mt-2" style="font-size: 0.9rem;">
+                নামের বানানে আংশিক অমিল বা জমির পরিমাপে ২-৫% পার্থক্য কিংবা রেজিস্ট্রেশনের তারিখে সন্দেহজনক তথ্য।
+              </p>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <div class="card-custom text-center p-4" style="border-top: 4px solid var(--risk-high);">
+              <span class="risk-badge risk-badge--high mb-2" style="font-size: 1rem;">৬০ - ১০০: উচ্চ ঝুঁকি (HIGH) 🔴</span>
+              <p class="text-muted-custom mt-2" style="font-size: 0.9rem;">
+                মালিকের সম্পূর্ণ ভিন্ন নাম, দাগ বা খতিয়ান অমিল, ৫% এর বেশি জমির পার্থক্য অথবা সরাসরি চেইন গ্যাপ।
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Weight Table -->
+        <div class="mt-4 p-4 rounded" style="background-color: var(--color-surface); border: 1px solid var(--color-border);">
+          <h3 class="h5 mb-3">ঝুঁকির পরিমাপক প্যারামিটার ও নির্ধারিত ওজন (Fixed Weights):</h3>
+          <div class="row g-3" style="font-size: 0.9rem;">
+            <div class="col-6 col-md-4">👤 মালিকের নাম অমিল: <strong>৩৫ পয়েন্ট</strong></div>
+            <div class="col-6 col-md-4">📐 জমির পরিমাণের অসঙ্গতি: <strong>২০ পয়েন্ট</strong></div>
+            <div class="col-6 col-md-4">🗺️ দাগ নম্বর অমিল: <strong>১৫ পয়েন্ট</strong></div>
+            <div class="col-6 col-md-4">📑 খতিয়ান নম্বর অমিল: <strong>১৫ পয়েন্ট</strong></div>
+            <div class="col-6 col-md-4">⛓️ মালিকানা চেইন গ্যাপ: <strong>১০ পয়েন্ট</strong></div>
+            <div class="col-6 col-md-4">❓ তথ্য অসম্পূর্ণ / সন্দেহজনক: <strong>৫ পয়েন্ট</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Demo Preview (Anchor #demoPreview) -->
+    <section id="demoPreview" class="py-5" style="background-color: var(--color-surface-alt); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+      <div class="container-lg-custom">
+        <div class="text-center mb-4">
+          <span class="sim-pill mb-2 d-inline-block">ইন্টারেক্টিভ ডেমো পরীক্ষা</span>
+          <h2 class="h2 mb-2">হ্যাকাথনের ৩টি ক্যানোনিকাল দলিল সরাসরি পরীক্ষা করুন</h2>
+          <p class="text-muted-custom mx-auto" style="max-width: 600px;">যেকোনো দৃশ্যপটে ক্লিক করে মুহূর্তেই এআই ফলাফল ও টেবিল বিশ্লেষণ দেখুন</p>
+        </div>
+
+        <!-- Scenario Switcher Buttons -->
+        <div class="d-flex justify-content-center flex-wrap gap-2 mb-4">
+          <button class="btn-custom btn-primary-custom landing-demo-tab" data-target="rahim">
+            🔴 মোঃ রহিম - সাফ কবলা (উচ্চ ঝুঁকি: ৬৫)
+          </button>
+          <button class="btn-custom btn-outline-custom landing-demo-tab" data-target="medium">
+            🟡 মোসাঃ সুলতানা - দানপত্র (মধ্যম ঝুঁকি: ৪০)
+          </button>
+          <button class="btn-custom btn-outline-custom landing-demo-tab" data-target="clean">
+            🟢 আনোয়ারুল - বিক্রয় কবলা (নিম্ন ঝুঁকি: ৫)
+          </button>
+        </div>
+
+        <!-- Preview Card -->
+        <div class="card-custom p-4">
+          <div id="demoDisplayContent">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="py-5">
+      <div class="container-lg-custom">
+        <div class="text-center mb-5">
+          <h2 class="h2 mb-2">সচরাচর জিজ্ঞাসিত প্রশ্নাবলী (FAQ)</h2>
+          <p class="text-muted-custom">ল্যান্ডগার্ড এআই এর ব্যবহার ও কার্যপ্রণালী সংক্রান্ত প্রয়োজনীয় তথ্য</p>
+        </div>
+
+        <div class="accordion mx-auto" id="faqAccordion" style="max-width: 800px;">
+          <div class="accordion-item mb-2" style="border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden;">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                ১. ল্যান্ডগার্ড এআই কি সরাসরি সরকারি ডেটাবেজ থেকে তথ্য যাচাই করে?
+              </button>
+            </h2>
+            <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-muted-custom" style="font-size: 0.95rem;">
+                না। এটি একটি উদ্ভাবনী প্রোটোটাইপ যা কৃত্রিম (সিনথেটিক) ভূমি রেকর্ড ব্যবহার করে কৃত্রিম বুদ্ধিমত্তার কার্যকারিতা প্রদর্শন করছে। ভবিষ্যতে সরকারের অনুমোদিত ভূমি ডেটাবেজের এপিআই এর সাথে সমন্বয়ের উপযোগী অ্যাডাপ্টার আর্কিটেকচারে এটি নির্মিত।
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item mb-2" style="border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden;">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                ২. ঝুঁকির স্কোর কীভাবে নির্ধারিত হয়?
+              </button>
+            </h2>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-muted-custom" style="font-size: 0.95rem;">
+                ঝুঁকির স্কোর সম্পূর্ণ গাণিতিক ও ব্যাখ্যাযোগ্য। এতে মালিকের নাম অমিলের জন্য সর্বোচ্চ ৩৫ পয়েন্ট, জমির পরিমাণের পার্থক্যের জন্য ২০ পয়েন্ট, দাগ ও খতিয়ান অমিলের জন্য ১৫+১৫ পয়েন্ট এবং মালিকানা চেইন গ্যাপের জন্য ১০ পয়েন্ট নির্ধারিত।
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item mb-2" style="border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden;">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                ৩. আমার আপলোডকৃত দলিলের তথ্য কি সুরক্ষিত থাকে?
+              </button>
+            </h2>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-muted-custom" style="font-size: 0.95rem;">
+                হ্যাঁ। ডেটা লিকেজ প্রতিরোধের জন্য কোনো ব্যক্তিগত তথ্য বা নথির কনটেন্ট পাবলিকলি সংরক্ষণ বা অডিট লগে উন্মুক্ত করা হয় না। সমস্ত ডেটা সুরক্ষিত সেশন ও রোলে আবদ্ধ।
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item mb-2" style="border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden;">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                ৪. এই যাচাইকরণ প্রতিবেদন কি কোনো আইনি মালিকানার প্রমাণ?
+              </button>
+            </h2>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-muted-custom" style="font-size: 0.95rem;">
+                না। এটি শুধুমাত্র প্রাথমিক তথ্য অসঙ্গতি নির্দেশ করে। এটি কোনো আইনি মালিকানার প্রমাণ বা দলিল রেজিস্ট্রেশনের বিকল্প নয়।
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer with Mandatory Disclaimer -->
+  <footer class="footer-custom">
+    <div class="container-lg-custom">
+      <div class="alert-custom alert-disclaimer mb-4">
+        <span style="font-size: 1.25rem;">ℹ️</span>
+        <div>
+          <div class="fw-bold mb-1" data-i18n="disclaimer.title">গুরুত্বপূর্ণ আইনি সতর্কতা ও প্রোটোটাইপ ঘোষণা</div>
+          <div data-i18n="disclaimer.text">এটি একটি প্রোটোটাইপ, যা কৃত্রিম (সিনথেটিক) ভূমি রেকর্ড ব্যবহার করে। ঝুঁকির স্কোর সম্ভাব্য অসঙ্গতি নির্দেশ করে; এটি জালিয়াতি বা আইনি মালিকানার প্রমাণ নয়।</div>
+        </div>
+      </div>
+
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 pt-3 border-top border-light-subtle" style="font-size: 0.85rem;">
+        <div>
+          © ২০২৬ <strong>LandGuard AI</strong>. সকল স্বত্ব সংরক্ষিত।
+        </div>
+        <div data-i18n="disclaimer.footer_note">
+          ল্যান্ডটেক ইনোভেশন হ্যাকাথন ২০২৬ · দল: প্রোটন (PROTON)
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script type="module">
+    import { initAppShell } from '/js/shell.js';
+    import { MOCK_SCENARIOS } from '/js/mock/scenarios.js';
+    import { formatNumber } from '/js/i18n.js';
+
+    await initAppShell({ activeNav: 'home' });
+
+    const demoDisplay = document.getElementById('demoDisplayContent');
+    const tabs = document.querySelectorAll('.landing-demo-tab');
+
+    function renderScenarioPreview(key) {
+      let data = MOCK_SCENARIOS.Rahim_Land_Deed;
+      if (key === 'medium') data = MOCK_SCENARIOS.medium_risk;
+      else if (key === 'clean') data = MOCK_SCENARIOS.clean_match;
+
+      let badgeClass = data.risk_level === 'HIGH' ? 'risk-badge--high' : data.risk_level === 'MEDIUM' ? 'risk-badge--medium' : 'risk-badge--low';
+      let icon = data.risk_level === 'HIGH' ? '🔴' : data.risk_level === 'MEDIUM' ? '🟡' : '🟢';
+
+      demoDisplay.innerHTML = `
+        <div class="row g-4 align-items-center">
+          <div class="col-12 col-md-5 text-center border-end-md pb-3 pb-md-0">
+            <span class="badge bg-light text-dark border mb-2 font-mono">${data.report_code}</span>
+            <h3 class="h4 mb-1">${data.title_bn}</h3>
+            <p class="text-muted-custom mb-3" style="font-size: 0.85rem;">${data.extracted.mouza}, ${data.extracted.district} • খতিয়ান ${formatNumber(data.extracted.khatian_no)} • দাগ ${formatNumber(data.extracted.dag_no)}</p>
+
+            <div class="font-mono fw-bold mb-1" style="font-size: 3rem; color: ${data.risk_score >= 60 ? 'var(--risk-high)' : data.risk_score >= 30 ? 'var(--risk-medium)' : 'var(--risk-low)'};">
+              ${formatNumber(data.risk_score)}<span style="font-size: 1.2rem; color: var(--color-text-muted);">/১০০</span>
+            </div>
+            <span class="risk-badge ${badgeClass} mb-3" style="font-size: 1rem; padding: 6px 16px;">
+              <span>${icon}</span>
+              <span>${data.risk_level === 'HIGH' ? 'উচ্চ ঝুঁকি' : data.risk_level === 'MEDIUM' ? 'মধ্যম ঝুঁকি' : 'নিম্ন ঝুঁকি'}</span>
+            </span>
+
+            <div>
+              <a href="/result.html?id=${data.id}" class="btn-custom btn-primary-custom" style="font-size: 0.9rem;">
+                সম্পূর্ণ ফলাফল ও রিপোর্ট দেখুন →
+              </a>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-7">
+            <h4 class="h5 mb-3">শনাক্তকৃত মূল অসঙ্গতি ও তথ্য তুলনা:</h4>
+            <div class="d-flex flex-column gap-2 mb-3">
+              ${data.reasons.length === 0 ? '<div class="p-2 text-success">✓ কোনো অসঙ্গতি বা ঝুঁকি পাওয়া যায়নি। হুবহু মিল রয়েছে।</div>' : data.reasons.map(r => `
+                <div class="d-flex justify-content-between align-items-center p-2 rounded" style="background-color: var(--color-surface-alt); border: 1px solid var(--color-border); font-size: 0.9rem;">
+                  <div>⚠️ ${r.code === 'OWNER_MISMATCH' ? 'মালিকের নাম রেকর্ডের সাথে মেলেনি' : r.code === 'AREA_MISMATCH' ? 'জমির পরিমাপে গরমিল পাওয়া গেছে' : r.code === 'CHAIN_GAP' ? 'মালিকানা চেইন গ্যাপ (অনুপস্থিত রেকর্ড)' : r.code}</div>
+                  <span class="font-mono fw-bold text-danger">+${formatNumber(r.points)}</span>
+                </div>
+              `).join('')}
+            </div>
+
+            <div class="table-responsive-custom">
+              <table class="table table-sm comparison-table mb-0" style="font-size: 0.8rem;">
+                <thead>
+                  <tr>
+                    <th>তথ্য ক্ষেত্র</th>
+                    <th>দলিলে প্রাপ্ত তথ্য</th>
+                    <th>রেফারেন্স রেকর্ড</th>
+                    <th>ফলাফল</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>মালিকের নাম</td>
+                    <td>${data.extracted.owner_name}</td>
+                    <td>${data.reference.owner_name}</td>
+                    <td>${data.field_results.owner.status === 'match' ? '✓ সঠিক' : '❌ অমিল'}</td>
+                  </tr>
+                  <tr>
+                    <td>জমির পরিমাণ</td>
+                    <td>${formatNumber(data.extracted.area_decimal)} শতক</td>
+                    <td>${formatNumber(data.reference.area_decimal)} শতক</td>
+                    <td>${data.field_results.area.status === 'match' ? '✓ সঠিক' : '❌ গরমিল'}</td>
+                  </tr>
+                  <tr>
+                    <td>মালিকানা চেইন</td>
+                    <td>হস্তান্তর ধারা</td>
+                    <td>নামজারি রেকর্ড</td>
+                    <td>${data.chain_gap ? '⚠️ গ্যাপ রয়েছে' : '✓ সম্পূর্ণ'}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      `;
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => {
+          t.classList.remove('btn-primary-custom');
+          t.classList.add('btn-outline-custom');
+        });
+        tab.classList.remove('btn-outline-custom');
+        tab.classList.add('btn-primary-custom');
+
+        renderScenarioPreview(tab.getAttribute('data-target'));
+      });
+    });
+
+    // Default initial render
+    renderScenarioPreview('rahim');
+  </script>
+</body>
+</html>

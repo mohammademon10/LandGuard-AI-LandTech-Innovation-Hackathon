@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>প্রবেশাধিকার সংরক্ষিত (403) | LandGuard AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="navbar-custom">
+    <div class="container-lg-custom d-flex justify-content-between align-items-center">
+      <a href="/index.html" class="navbar-brand-wrap">
+        <span style="font-size: 1.6rem;">🛡️</span>
+        <div>
+          <span class="navbar-brand-title">LandGuard AI</span>
+          <span class="navbar-brand-tagline" data-i18n="app.tagline">কেনার আগে যাচাই করুন।</span>
+        </div>
+      </a>
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn-custom btn-ghost-custom text-white theme-toggle-btn" aria-label="Toggle theme">
+          <span class="theme-toggle-icon">🌙</span>
+        </button>
+        <button class="btn-custom btn-outline-custom text-white border-white lang-toggle-btn" style="min-height: 36px; padding: 0 12px; font-size: 0.85rem;">
+          English
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content py-5">
+    <div class="container-lg-custom">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6 text-center">
+          <div class="card-custom py-5">
+            <span style="font-size: 4rem; display: block; margin-bottom: 16px;">🛑</span>
+            <h1 class="h2 mb-3" data-i18n="auth.forbidden_title">প্রবেশাধিকার সংরক্ষিত (403 Forbidden)</h1>
+            <p class="text-muted-custom mb-4" data-i18n="auth.forbidden_desc" style="font-size: 1.1rem;">
+              দুঃখিত! এই পৃষ্ঠায় প্রবেশের জন্য আপনার অ্যাকাউন্টের প্রয়োজনীয় অ্যাডমিন অনুমতি নেই।
+            </p>
+            <div class="d-flex justify-content-center gap-3">
+              <a href="/dashboard.html" class="btn-custom btn-primary-custom" data-i18n="auth.back_to_dashboard">
+                ড্যাশবোর্ডে ফিরে যান
+              </a>
+              <a href="/login.html" class="btn-custom btn-outline-custom" data-i18n="nav.login">
+                অন্য অ্যাকাউন্টে লগইন করুন
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-custom">
+    <div class="container-lg-custom">
+      <div class="alert-custom alert-disclaimer mb-3">
+        <span style="font-size: 1.25rem;">ℹ️</span>
+        <div>
+          <div class="fw-bold mb-1" data-i18n="disclaimer.title">গুরুত্বপূর্ণ আইনি সতর্কতা ও প্রোটোটাইপ ঘোষণা</div>
+          <div data-i18n="disclaimer.text">এটি একটি প্রোটোটাইপ, যা কৃত্রিম (সিনথেটিক) ভূমি রেকর্ড ব্যবহার করে। ঝুঁকির স্কোর সম্ভাব্য অসঙ্গতি নির্দেশ করে; এটি জালিয়াতি বা আইনি মালিকানার প্রমাণ নয়।</div>
+        </div>
+      </div>
+      <div class="text-center" data-i18n="disclaimer.footer_note">
+        ল্যান্ডটেক ইনোভেশন হ্যাকাথন ২০২৬ · দল: প্রোটন (PROTON)
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initAppShell } from '/js/shell.js';
+    await initAppShell();
+  </script>
+</body>
+</html>

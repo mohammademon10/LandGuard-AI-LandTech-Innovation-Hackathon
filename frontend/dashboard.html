@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ড্যাশবোর্ড | LandGuard AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Poppins:wght@600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">মূল বিষয়বস্তুতে যান</a>
+
+  <!-- Header / Navigation -->
+  <header class="navbar-custom">
+    <div class="container-lg-custom d-flex justify-content-between align-items-center">
+      <a href="/index.html" class="navbar-brand-wrap">
+        <span style="font-size: 1.6rem;">🛡️</span>
+        <div>
+          <span class="navbar-brand-title">LandGuard AI</span>
+          <span class="navbar-brand-tagline" data-i18n="app.tagline">কেনার আগে যাচাই করুন।</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="d-none d-md-flex align-items-center gap-1">
+        <a href="/dashboard.html" class="nav-link-custom" data-nav="dashboard" data-i18n="nav.dashboard">ড্যাশবোর্ড</a>
+        <a href="/upload.html" class="nav-link-custom" data-nav="upload" data-i18n="nav.upload">নথি যাচাই</a>
+        <a href="/admin/index.html" class="nav-link-custom nav-admin-only" style="display: none;" data-nav="admin" data-i18n="nav.admin">অ্যাডমিন</a>
+      </nav>
+
+      <!-- User & Utilities -->
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn-custom btn-ghost-custom text-white theme-toggle-btn" aria-label="Toggle theme">
+          <span class="theme-toggle-icon">🌙</span>
+        </button>
+        <button class="btn-custom btn-outline-custom text-white border-white lang-toggle-btn" style="min-height: 36px; padding: 0 12px; font-size: 0.85rem;">
+          English
+        </button>
+
+        <!-- User profile pill / logout -->
+        <div class="d-flex align-items-center gap-2 ps-2 border-start border-secondary">
+          <div class="text-end d-none d-sm-block text-white">
+            <div class="fw-semibold nav-user-name" style="font-size: 0.85rem;">...</div>
+            <div class="nav-user-role" style="font-size: 0.7rem; color: #a7c5eb;">...</div>
+          </div>
+          <button class="btn-custom btn-ghost-custom text-white logout-trigger" title="লগআউট" aria-label="লগআউট">
+            <span>🚪</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main" class="main-content py-4">
+    <div class="container-lg-custom">
+      
+      <!-- Page Header -->
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        <div>
+          <h1 class="h2 mb-1" data-i18n="dashboard.title">ভূমি যাচাই ড্যাশবোর্ড</h1>
+          <p class="text-muted-custom mb-0" data-i18n="dashboard.subtitle">আপনার আপলোডকৃত ও যাচাইকৃত সকল দলিলের সারাংশ ও বর্তমান স্থিতি</p>
+        </div>
+        <div>
+          <a href="/upload.html" class="btn-custom btn-secondary-custom shadow-sm">
+            <span>➕</span>
+            <span data-i18n="dashboard.upload_cta">নতুন নথি যাচাই করুন</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- KPI Cards (4 Cards) -->
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-lg-3">
+          <div class="kpi-card">
+            <div>
+              <div class="kpi-card__label" data-i18n="dashboard.kpi_total">মোট যাচাইকৃত নথি</div>
+              <div class="kpi-card__value" id="kpiTotal">-</div>
+            </div>
+            <div class="kpi-card__icon">📄</div>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-3">
+          <div class="kpi-card">
+            <div>
+              <div class="kpi-card__label" data-i18n="dashboard.kpi_verified">সফল যাচাইকরণ</div>
+              <div class="kpi-card__value" id="kpiVerified">-</div>
+            </div>
+            <div class="kpi-card__icon" style="color: var(--risk-low);">✅</div>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-3">
+          <div class="kpi-card">
+            <div>
+              <div class="kpi-card__label" data-i18n="dashboard.kpi_conflicts">সম্ভাব্য অসঙ্গতি</div>
+              <div class="kpi-card__value" id="kpiConflicts">-</div>
+            </div>
+            <div class="kpi-card__icon" style="color: var(--risk-medium);">⚠️</div>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-3">
+          <div class="kpi-card">
+            <div>
+              <div class="kpi-card__label" data-i18n="dashboard.kpi_high_risk">উচ্চ ঝুঁকিপূর্ণ নথি</div>
+              <div class="kpi-card__value" id="kpiHighRisk">-</div>
+            </div>
+            <div class="kpi-card__icon" style="color: var(--risk-high);">🛑</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table Section -->
+      <div class="card-custom">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-3 pb-3 border-bottom border-light-subtle">
+          <h2 class="h3 mb-0" data-i18n="dashboard.recent_title">সাম্প্রতিক যাচাইকৃত দলিলের তালিকা</h2>
+          
+          <!-- Filters -->
+          <div class="d-flex flex-wrap gap-2" id="filterContainer">
+            <button class="btn-custom btn-outline-custom active-filter filter-btn" data-level="ALL" style="min-height: 36px; padding: 0 12px; font-size: 0.85rem;" data-i18n="dashboard.filter_all">
+              সকল নথি
+            </button>
+            <button class="btn-custom btn-outline-custom filter-btn" data-level="LOW" style="min-height: 36px; padding: 0 12px; font-size: 0.85rem;" data-i18n="dashboard.filter_low">
+              🟢 নিম্ন ঝুঁকি
+            </button>
+            <button class="btn-custom btn-outline-custom filter-btn" data-level="MEDIUM" style="min-height: 36px; padding: 0 12px; font-size: 0.85rem;" data-i18n="dashboard.filter_medium">
+              🟡 মধ্যম ঝুঁকি
+            </button>
+            <button class="btn-custom btn-outline-custom filter-btn" data-level="HIGH" style="min-height: 36px; padding: 0 12px; font-size: 0.85rem;" data-i18n="dashboard.filter_high">
+              🔴 উচ্চ ঝুঁকি
+            </button>
+          </div>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div id="tableLoading" class="text-center py-5">
+          <div class="loading-spinner mx-auto mb-3"></div>
+          <span class="text-muted-custom" data-i18n="common.loading">লোড হচ্ছে...</span>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state" style="display: none;">
+          <div class="empty-state__icon">📁</div>
+          <h3 class="h4" data-i18n="dashboard.empty_title">এখনো কোনো নথি যাচাই করা হয়নি</h3>
+          <p class="text-muted-custom mb-4" data-i18n="dashboard.empty_desc">আপনার জমির দলিল আপলোড করে সরকারি খতিয়ান ও দাগের সাথে নিমেষেই যাচাই করুন।</p>
+          <a href="/upload.html" class="btn-custom btn-primary-custom" data-i18n="dashboard.upload_cta">
+            নতুন নথি যাচাই করুন
+          </a>
+        </div>
+
+        <!-- Table View -->
+        <div class="table-responsive-custom" id="tableView" style="display: none;">
+          <table class="comparison-table" id="verificationsTable">
+            <thead>
+              <tr>
+                <th data-i18n="dashboard.col_doc">দলিলের নাম ও ধরন</th>
+                <th data-i18n="dashboard.col_khatian_dag">খতিয়ান ও দাগ</th>
+                <th data-i18n="dashboard.col_owner">মালিকের নাম</th>
+                <th data-i18n="dashboard.col_mouza">মৌজা ও জেলা</th>
+                <th data-i18n="dashboard.col_score">ঝুঁকির স্কোর</th>
+                <th data-i18n="dashboard.col_status">ফলাফল</th>
+                <th data-i18n="dashboard.col_date">তারিখ</th>
+                <th data-i18n="dashboard.col_actions">পদক্ষেপ</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer with Disclaimer -->
+  <footer class="footer-custom">
+    <div class="container-lg-custom">
+      <div class="alert-custom alert-disclaimer mb-3">
+        <span style="font-size: 1.25rem;">ℹ️</span>
+        <div>
+          <div class="fw-bold mb-1" data-i18n="disclaimer.title">গুরুত্বপূর্ণ আইনি সতর্কতা ও প্রোটোটাইপ ঘোষণা</div>
+          <div data-i18n="disclaimer.text">এটি একটি প্রোটোটাইপ, যা কৃত্রিম (সিনথেটিক) ভূমি রেকর্ড ব্যবহার করে। ঝুঁকির স্কোর সম্ভাব্য অসঙ্গতি নির্দেশ করে; এটি জালিয়াতি বা আইনি মালিকানার প্রমাণ নয়।</div>
+        </div>
+      </div>
+      <div class="text-center" data-i18n="disclaimer.footer_note">
+        ল্যান্ডটেক ইনোভেশন হ্যাকাথন ২০২৬ · দল: প্রোটন (PROTON)
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initAppShell } from '/js/shell.js';
+    import { auth } from '/js/auth.js';
+    import { api } from '/js/api.js';
+    import { formatNumber, t } from '/js/i18n.js';
+
+    // Route Guard: Authentication required
+    const user = await auth.requireAuth();
+    if (!user) {
+      // Stopped by redirect
+    }
+
+    await initAppShell({ activeNav: 'dashboard' });
+
+    let currentFilter = 'ALL';
+    let allVerifications = [];
+
+    const kpiTotal = document.getElementById('kpiTotal');
+    const kpiVerified = document.getElementById('kpiVerified');
+    const kpiConflicts = document.getElementById('kpiConflicts');
+    const kpiHighRisk = document.getElementById('kpiHighRisk');
+
+    const tableLoading = document.getElementById('tableLoading');
+    const emptyState = document.getElementById('emptyState');
+    const tableView = document.getElementById('tableView');
+    const tableBody = document.getElementById('tableBody');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+
+    async function loadDashboardData() {
+      tableLoading.style.display = 'block';
+      emptyState.style.display = 'none';
+      tableView.style.display = 'none';
+
+      const res = await api.dashboard.getStats();
+
+      tableLoading.style.display = 'none';
+
+      if (res.ok && res.data) {
+        const { stats, recent_verifications } = res.data;
+        allVerifications = recent_verifications;
+
+        // Render KPIs
+        kpiTotal.textContent = formatNumber(stats.total_documents);
+        kpiVerified.textContent = formatNumber(stats.verified_count);
+        kpiConflicts.textContent = formatNumber(stats.potential_conflicts);
+        kpiHighRisk.textContent = formatNumber(stats.high_risk_count);
+
+        renderTable();
+      } else {
+        emptyState.style.display = 'block';
+      }
+    }
+
+    function renderTable() {
+      const filtered = currentFilter === 'ALL'
+        ? allVerifications
+        : allVerifications.filter(v => v.risk_level === currentFilter);
+
+      if (filtered.length === 0) {
+        emptyState.style.display = 'block';
+        tableView.style.display = 'none';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+      tableView.style.display = 'block';
+
+      tableBody.innerHTML = filtered.map(item => {
+        let riskBadgeClass = 'risk-badge--low';
+        let riskIcon = '🟢';
+        let riskTextKey = 'risk_levels.LOW';
+
+        if (item.risk_level === 'HIGH') {
+          riskBadgeClass = 'risk-badge--high';
+          riskIcon = '🔴';
+          riskTextKey = 'risk_levels.HIGH';
+        } else if (item.risk_level === 'MEDIUM') {
+          riskBadgeClass = 'risk-badge--medium';
+          riskIcon = '🟡';
+          riskTextKey = 'risk_levels.MEDIUM';
+        }
+
+        return `
+          <tr>
+            <td>
+              <div class="fw-semibold text-truncate" style="max-width: 200px;" title="${item.document_name}">
+                📄 ${item.document_name}
+              </div>
+              <div class="text-muted-custom" style="font-size: 0.8rem;">
+                ${item.document_type || ''} • <span class="font-mono">${item.report_code || ''}</span>
+              </div>
+            </td>
+            <td>
+              <div><span class="text-muted-custom">খতিয়ান:</span> <span class="font-mono fw-semibold">${formatNumber(item.khatian_no)}</span></div>
+              <div><span class="text-muted-custom">দাগ:</span> <span class="font-mono fw-semibold">${formatNumber(item.dag_no)}</span></div>
+            </td>
+            <td>
+              <div class="fw-semibold">${item.owner_name || ''}</div>
+              <div class="text-muted-custom" style="font-size: 0.8rem;">${formatNumber(item.area_decimal)} শতক</div>
+            </td>
+            <td>
+              <div>${item.mouza || ''}</div>
+              <div class="text-muted-custom" style="font-size: 0.8rem;">${item.upazila || ''}, ${item.district || ''}</div>
+            </td>
+            <td>
+              <div class="font-mono fw-bold" style="font-size: 1.15rem;">${formatNumber(item.risk_score)}<span style="font-size: 0.75rem; color: var(--color-text-muted);">/১০০</span></div>
+            </td>
+            <td>
+              <span class="risk-badge ${riskBadgeClass}">
+                <span>${riskIcon}</span>
+                <span>${t(riskTextKey)}</span>
+              </span>
+            </td>
+            <td>
+              <span class="font-mono" style="font-size: 0.85rem;">${item.created_at ? item.created_at.substring(0, 10) : ''}</span>
+            </td>
+            <td>
+              <div class="d-flex gap-2">
+                <a href="/result.html?id=${item.id}" class="btn-custom btn-primary-custom" style="min-height: 32px; padding: 2px 10px; font-size: 0.8rem;" data-i18n="dashboard.view_result">
+                  ফলাফল
+                </a>
+                <a href="/report.html?id=${item.id}" class="btn-custom btn-outline-custom" style="min-height: 32px; padding: 2px 10px; font-size: 0.8rem;" data-i18n="dashboard.view_report">
+                  প্রতিবেদন
+                </a>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Filter clicks
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        filterBtns.forEach(b => {
+          b.classList.remove('btn-primary-custom');
+          b.classList.add('btn-outline-custom');
+        });
+        btn.classList.remove('btn-outline-custom');
+        btn.classList.add('btn-primary-custom');
+
+        currentFilter = btn.getAttribute('data-level');
+        renderTable();
+      });
+    });
+
+    // Language change event listener
+    window.addEventListener('languageChanged', () => {
+      loadDashboardData();
+    });
+
+    // Initial load
+    await loadDashboardData();
+  </script>
+</body>
+</html>

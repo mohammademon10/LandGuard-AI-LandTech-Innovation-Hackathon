@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>অ্যাডমিন প্যানেল | LandGuard AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Poppins:wght@600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">মূল বিষয়বস্তুতে যান</a>
+
+  <!-- Header / Navigation -->
+  <header class="navbar-custom">
+    <div class="container-lg-custom d-flex justify-content-between align-items-center">
+      <a href="/index.html" class="navbar-brand-wrap">
+        <span style="font-size: 1.6rem;">🛡️</span>
+        <div>
+          <span class="navbar-brand-title">LandGuard AI</span>
+          <span class="navbar-brand-tagline" data-i18n="app.tagline">কেনার আগে যাচাই করুন।</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="d-none d-md-flex align-items-center gap-1">
+        <a href="/dashboard.html" class="nav-link-custom" data-nav="dashboard" data-i18n="nav.dashboard">ড্যাশবোর্ড</a>
+        <a href="/upload.html" class="nav-link-custom" data-nav="upload" data-i18n="nav.upload">নথি যাচাই</a>
+        <a href="/admin/index.html" class="nav-link-custom active" data-nav="admin" data-i18n="nav.admin">অ্যাডমিন</a>
+        <a href="/admin/records.html" class="nav-link-custom" data-i18n="nav.records">ভূমি রেকর্ডস</a>
+        <a href="/admin/audit.html" class="nav-link-custom" data-i18n="nav.audit">অডিট লগ</a>
+      </nav>
+
+      <!-- User & Utilities -->
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn-custom btn-ghost-custom text-white theme-toggle-btn" aria-label="Toggle theme">
+          <span class="theme-toggle-icon">🌙</span>
+        </button>
+        <button class="btn-custom btn-outline-custom text-white border-white lang-toggle-btn" style="min-height: 36px; padding: 0 12px; font-size: 0.85rem;">
+          English
+        </button>
+
+        <div class="d-flex align-items-center gap-2 ps-2 border-start border-secondary">
+          <div class="text-end d-none d-sm-block text-white">
+            <div class="fw-semibold nav-user-name" style="font-size: 0.85rem;">...</div>
+            <div class="nav-user-role" style="font-size: 0.7rem; color: #a7c5eb;">অ্যাডমিন কর্মকর্তা</div>
+          </div>
+          <button class="btn-custom btn-ghost-custom text-white logout-trigger" title="লগআউট" aria-label="লগআউট">
+            <span>🚪</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main" class="main-content py-4">
+    <div class="container-lg-custom">
+
+      <!-- Admin Top Nav Tabs -->
+      <div class="d-flex flex-wrap gap-2 mb-4 border-bottom pb-3">
+        <a href="/admin/index.html" class="btn-custom btn-primary-custom" style="min-height: 38px; font-size: 0.9rem;">
+          📋 <span data-i18n="admin.tab_verifications">সকল যাচাইকরণ</span>
+        </a>
+        <a href="/admin/records.html" class="btn-custom btn-outline-custom" style="min-height: 38px; font-size: 0.9rem;">
+          🗃️ <span data-i18n="admin.tab_records">রেফারেন্স ল্যান্ড রেকর্ডস</span>
+        </a>
+        <a href="/admin/audit.html" class="btn-custom btn-outline-custom" style="min-height: 38px; font-size: 0.9rem;">
+          🔒 <span data-i18n="admin.tab_audit">নিরাপত্তা অডিট লগ</span>
+        </a>
+      </div>
+
+      <!-- Page Heading -->
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        <div>
+          <h1 class="h2 mb-1" data-i18n="admin.title">অ্যাডমিন নিয়ন্ত্রণ প্যানেল</h1>
+          <p class="text-muted-custom mb-0" data-i18n="admin.subtitle">সার্বিক যাচাইকরণ পরিসংখ্যান, রেফারেন্স ডেটাবেজ ও নিরাপত্তা পর্যবেক্ষণ</p>
+        </div>
+        <div class="d-flex gap-2" id="filterContainer">
+          <button class="btn-custom btn-primary-custom filter-btn" data-level="ALL" style="min-height: 36px; padding: 0 12px; font-size: 0.85rem;">
+            সবগুলো
+          </button>
+          <button class="btn-custom btn-outline-custom filter-btn" data-level="HIGH" style="min-height: 36px; padding: 0 12px; font-size: 0.85rem;">
+            🔴 উচ্চ ঝুঁকি
+          </button>
+          <button class="btn-custom btn-outline-custom filter-btn" data-level="MEDIUM" style="min-height: 36px; padding: 0 12px; font-size: 0.85rem;">
+            🟡 মধ্যম ঝুঁকি
+          </button>
+          <button class="btn-custom btn-outline-custom filter-btn" data-level="LOW" style="min-height: 36px; padding: 0 12px; font-size: 0.85rem;">
+            🟢 নিম্ন ঝুঁকি
+          </button>
+        </div>
+      </div>
+
+      <!-- Verifications Table Card -->
+      <div class="card-custom">
+        <div id="loading" class="text-center py-5">
+          <div class="loading-spinner mx-auto mb-3"></div>
+          <span class="text-muted-custom" data-i18n="common.loading">লোড হচ্ছে...</span>
+        </div>
+
+        <div class="table-responsive-custom" id="tableWrap" style="display: none;">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>আইডি / রিপোর্ট কোড</th>
+                <th>ব্যবহারকারী (নাগরিক)</th>
+                <th>নথির নাম ও বিবরণ</th>
+                <th>খতিয়ান ও দাগ</th>
+                <th>মালিকের নাম</th>
+                <th>ঝুঁকির স্কোর</th>
+                <th>ফলাফল</th>
+                <th>তারিখ</th>
+                <th>পদক্ষেপ</th>
+              </tr>
+            </thead>
+            <tbody id="adminTableBody">
+              <!-- Verifications -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer with Disclaimer -->
+  <footer class="footer-custom">
+    <div class="container-lg-custom">
+      <div class="alert-custom alert-disclaimer mb-3">
+        <span style="font-size: 1.25rem;">ℹ️</span>
+        <div>
+          <div class="fw-bold mb-1" data-i18n="disclaimer.title">গুরুত্বপূর্ণ আইনি সতর্কতা ও প্রোটোটাইপ ঘোষণা</div>
+          <div data-i18n="disclaimer.text">এটি একটি প্রোটোটাইপ, যা কৃত্রিম (সিনথেটিক) ভূমি রেকর্ড ব্যবহার করে। ঝুঁকির স্কোর সম্ভাব্য অসঙ্গতি নির্দেশ করে; এটি জালিয়াতি বা আইনি মালিকানার প্রমাণ নয়।</div>
+        </div>
+      </div>
+      <div class="text-center" data-i18n="disclaimer.footer_note">
+        ল্যান্ডটেক ইনোভেশন হ্যাকাথন ২০২৬ · দল: প্রোটন (PROTON)
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initAppShell } from '/js/shell.js';
+    import { auth } from '/js/auth.js';
+    import { api } from '/js/api.js';
+    import { formatNumber, t } from '/js/i18n.js';
+
+    // Role Guard: strictly requires admin role
+    const user = await auth.requireAuth({ requireRole: 'admin' });
+    await initAppShell({ activeNav: 'admin' });
+
+    let currentFilter = 'ALL';
+    let allRecords = [];
+
+    const loading = document.getElementById('loading');
+    const tableWrap = document.getElementById('tableWrap');
+    const adminTableBody = document.getElementById('adminTableBody');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+
+    async function loadData() {
+      loading.style.display = 'block';
+      tableWrap.style.display = 'none';
+
+      const res = await api.admin.getVerifications(currentFilter);
+      loading.style.display = 'none';
+
+      if (res.ok && res.data) {
+        allRecords = res.data;
+        renderRows();
+        tableWrap.style.display = 'block';
+      }
+    }
+
+    function renderRows() {
+      adminTableBody.innerHTML = allRecords.map(item => {
+        let badgeClass = 'risk-badge--low';
+        let badgeIcon = '🟢';
+        let badgeKey = 'risk_levels.LOW';
+
+        if (item.risk_level === 'HIGH') {
+          badgeClass = 'risk-badge--high';
+          badgeIcon = '🔴';
+          badgeKey = 'risk_levels.HIGH';
+        } else if (item.risk_level === 'MEDIUM') {
+          badgeClass = 'risk-badge--medium';
+          badgeIcon = '🟡';
+          badgeKey = 'risk_levels.MEDIUM';
+        }
+
+        return `
+          <tr>
+            <td>
+              <span class="font-mono fw-bold text-primary">${item.report_code || 'LG-2026-00000'}</span>
+              <div class="text-muted-custom" style="font-size: 0.75rem;">ID: #${item.id}</div>
+            </td>
+            <td>
+              <div class="fw-semibold">${item.user_name || 'নাগরিক'}</div>
+              <div class="text-muted-custom" style="font-size: 0.8rem;">User #${item.user_id}</div>
+            </td>
+            <td>
+              <div class="fw-semibold text-truncate" style="max-width: 180px;">${item.document_name}</div>
+              <div class="text-muted-custom" style="font-size: 0.8rem;">${item.document_type || ''}</div>
+            </td>
+            <td>
+              <div>খতিয়ান: <span class="font-mono fw-bold">${formatNumber(item.khatian_no)}</span></div>
+              <div>দাগ: <span class="font-mono fw-bold">${formatNumber(item.dag_no)}</span></div>
+            </td>
+            <td>
+              <div class="fw-semibold">${item.owner_name}</div>
+              <div class="text-muted-custom" style="font-size: 0.8rem;">${item.mouza}, ${item.district}</div>
+            </td>
+            <td>
+              <span class="font-mono fw-bold" style="font-size: 1.1rem;">${formatNumber(item.risk_score)}</span><span class="text-muted-custom" style="font-size: 0.75rem;">/১০০</span>
+            </td>
+            <td>
+              <span class="risk-badge ${badgeClass}">
+                <span>${badgeIcon}</span>
+                <span>${t(badgeKey)}</span>
+              </span>
+            </td>
+            <td>
+              <span class="font-mono" style="font-size: 0.8rem;">${item.created_at ? item.created_at.substring(0, 10) : ''}</span>
+            </td>
+            <td>
+              <div class="d-flex gap-1">
+                <a href="/result.html?id=${item.id}" class="btn-custom btn-primary-custom" style="min-height: 30px; padding: 2px 8px; font-size: 0.75rem;">
+                  ফলাফল
+                </a>
+                <a href="/report.html?id=${item.id}" class="btn-custom btn-outline-custom" style="min-height: 30px; padding: 2px 8px; font-size: 0.75rem;">
+                  প্রতিবেদন
+                </a>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('btn-primary-custom');
+          b.classList.add('btn-outline-custom');
+        });
+        btn.classList.remove('btn-outline-custom');
+        btn.classList.add('btn-primary-custom');
+
+        currentFilter = btn.getAttribute('data-level');
+        loadData();
+      });
+    });
+
+    await loadData();
+  </script>
+</body>
+</html>
