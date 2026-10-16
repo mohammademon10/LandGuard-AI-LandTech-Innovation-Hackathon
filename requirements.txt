@@ -1,0 +1,2 @@
+# LandGuard AI - Frontend Prototype
+# Standard library only (no external dependencies required for static mock server)

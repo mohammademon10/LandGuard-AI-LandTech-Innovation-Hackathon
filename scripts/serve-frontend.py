@@ -10,7 +10,7 @@ import socketserver
 import os
 import sys
 
-PORT = 8080
+PORT = int(os.environ.get("PORT", 8080))
 DIRECTORY = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend"))
 
 class LandGuardStaticHTTPHandler(http.server.SimpleHTTPRequestHandler):
