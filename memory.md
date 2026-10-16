@@ -71,7 +71,7 @@
 | Action | Owner | Status |
 |--------|-------|--------|
 | Maintain minimum quality for the prototype | Whole team | Complete for Part A |
-| Report the GitHub repository link | Hasin Ishruq (per notes) | Open |
+| Report the GitHub repository link | Whole team | Complete: https://github.com/mohammademon10/LandGuard-AI-LandTech-Innovation-Hackathon |
 | Set Bangla as the primary language | Whole team | Implemented (`lang="bn"` default) |
 | Share the email address for system access | Whole team | Open |
 
